@@ -51,7 +51,7 @@ class DiretrizesEstrategicaCSVViewSet(viewsets.ModelViewSet):
     serializer_class = DiretrizesEstrategicaCSVSerializer
 
     def create(self, request):
-        DadosMestre.objects.all().delete()
+        DiretrizesEstrategica.objects.all().delete()
         csvfile = request.data.get('csvfile').read().decode('utf-8')
         diretrizesestrategicas = parse_csv_model(csvfile, DiretrizesEstrategica)
         for diretrizesestrategica in diretrizesestrategicas:
