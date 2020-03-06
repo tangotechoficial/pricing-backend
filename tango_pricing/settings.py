@@ -83,9 +83,13 @@ DATABASES = {
         'PASSWORD': 'devpass',
         'HOST': 'db',
         'PORT': 5432,
+    },
+    'auth_db': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'usersdb.sqlite3',
     }
 }
-
+DATABASE_ROUTERS = ['api.authrouter.AuthRouter']
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
