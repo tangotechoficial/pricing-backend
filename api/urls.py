@@ -5,8 +5,10 @@ from rest_framework_jwt.views import obtain_jwt_token
 from . import views
 
 router = routers.DefaultRouter()
-router.register(r'dadosmestre', views.DadosMestreViewSet)
-router.register(r'dadosmestrecsv', views.DadosMestreCSVViewSet)
+router.register(r'dadosmestreverba', views.DadosMestre_VerbaViewSet)
+router.register(r'dadosmestreverbacsv', views.DadosMestre_VerbaCSVViewSet)
+router.register(r'dadosmestrecomposicao', views.DadosMestre_ComposicaoPrecoViewSet)
+router.register(r'dadosmestrecomposicaocsv', views.DadosMestre_ComposicaoPrecoCSVViewSet)
 router.register(r'diretrizesestrategica', views.DiretrizesEstrategicaViewSet)
 router.register(r'diretrizesestrategicacsv', views.DiretrizesEstrategicaCSVViewSet)
 
