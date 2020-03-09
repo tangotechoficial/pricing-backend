@@ -6,31 +6,57 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-from .models import DadosMestre, DadosMestreCSV, DiretrizesEstrategica, DiretrizesEstrategicaCSV
-from .serializers import (DadosMestreSerializer, DadosMestreCSVSerializer,
-                          DiretrizesEstrategicaSerializer, DiretrizesEstrategicaCSVSerializer)
+from . import models
+from . import serializers
 from .utils import parse_csv_model
 
-class DadosMestreViewSet(viewsets.ModelViewSet):
+class DadosMestre_VerbaViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows DadosMestre to be viewed or edited.
     """
-    queryset = DadosMestre.objects.all()
-    serializer_class = DadosMestreSerializer
+    queryset = models.DadosMestre_Verba.objects.all()
+    serializer_class = serializers.DadosMestre_VerbaSerializer
 
 
-class DadosMestreCSVViewSet(viewsets.ModelViewSet):
+class DadosMestre_VerbaCSVViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows DadosMestre to be viewed or edited.
     """
-    queryset = DadosMestreCSV.objects.all()
-    serializer_class = DadosMestreCSVSerializer
+    queryset = models.DadosMestre_VerbaCSV.objects.all()
+    serializer_class = serializers.DadosMestre_VerbaCSVSerializer
 
     def create(self, request):
-        DadosMestre.objects.all().delete()
+        models.DadosMestre_Verba.objects.all().delete()
         csvfile = request.data.get('csvfile').read().decode('utf-8')
-        dadosmestres = parse_csv_model(csvfile, DadosMestre)
+        dadosmestres = parse_csv_model(csvfile, models.DadosMestre_Verba)
         for dadosmestre in dadosmestres:
+            dadosmestre.save()
+        
+        return Response({'status': 'CSV Imported Successfully'})
+
+
+class DadosMestre_ComposicaoPrecoViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DadosMestre to be viewed or edited.
+    """
+    queryset = models.DadosMestre_ComposicaoPreco.objects.all()
+    serializer_class = serializers.DadosMestre_ComposicaoPrecoSerializer
+
+
+class DadosMestre_ComposicaoPrecoCSVViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DadosMestre to be viewed or edited.
+    """
+    queryset = models.DadosMestre_ComposicaoPrecoCSV.objects.all()
+    serializer_class = serializers.DadosMestre_ComposicaoPrecoCSVSerializer
+
+    def create(self, request):
+        models.DadosMestre_ComposicaoPreco.objects.all().delete()
+        csvfile = request.data.get('csvfile').read().decode('utf-8')
+        dadosmestres = parse_csv_model(csvfile, models.DadosMestre_ComposicaoPreco)
+        for dadosmestre in dadosmestres:
+            dadosmestre.DATA_PRECO = datetime.strptime(dadosmestre.DATA_PRECO, "%m/%d/%Y %H:%M")
+            print (vars(dadosmestre))
             dadosmestre.save()
         
         return Response({'status': 'CSV Imported Successfully'})
@@ -39,21 +65,21 @@ class DiretrizesEstrategicaViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows DiretrizesEstrategica to be viewed or edited.
     """
-    queryset = DiretrizesEstrategica.objects.all()
-    serializer_class = DiretrizesEstrategicaSerializer
+    queryset = models.DiretrizesEstrategica.objects.all()
+    serializer_class = serializers.DiretrizesEstrategicaSerializer
 
 
 class DiretrizesEstrategicaCSVViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows DiretrizesEstrategica to be viewed or edited.
     """
-    queryset = DiretrizesEstrategica.objects.all()
-    serializer_class = DiretrizesEstrategicaCSVSerializer
+    queryset = models.DiretrizesEstrategica.objects.all()
+    serializer_class = serializers.DiretrizesEstrategicaCSVSerializer
 
     def create(self, request):
-        DiretrizesEstrategica.objects.all().delete()
+        models.DiretrizesEstrategica.objects.all().delete()
         csvfile = request.data.get('csvfile').read().decode('utf-8')
-        diretrizesestrategicas = parse_csv_model(csvfile, DiretrizesEstrategica)
+        diretrizesestrategicas = parse_csv_model(csvfile, models.DiretrizesEstrategica)
         for diretrizesestrategica in diretrizesestrategicas:
             diretrizesestrategica.DATINI = datetime.strptime(diretrizesestrategica.DATINI, "%d%b%Y:%H:%M:%S")
             diretrizesestrategica.save()
