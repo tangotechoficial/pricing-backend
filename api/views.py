@@ -84,3 +84,10 @@ class DiretrizesEstrategicaCSVViewSet(viewsets.ModelViewSet):
             diretrizesestrategica.DATINI = datetime.strptime(diretrizesestrategica.DATINI, "%d%b%Y:%H:%M:%S")
             diretrizesestrategica.save()
         return Response({'status': 'CSV Imported Successfully'})
+
+class PlanoComprasViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.PlanoCompras.objects.all()
+    serializer_class = serializers.PlanoComprasSerializer
