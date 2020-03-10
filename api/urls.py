@@ -11,6 +11,8 @@ router.register(r'dadosmestrecomposicao', views.DadosMestre_ComposicaoPrecoViewS
 router.register(r'dadosmestrecomposicaocsv', views.DadosMestre_ComposicaoPrecoCSVViewSet)
 router.register(r'diretrizesestrategica', views.DiretrizesEstrategicaViewSet)
 router.register(r'diretrizesestrategicacsv', views.DiretrizesEstrategicaCSVViewSet)
+router.register(r'diretrizesestrategicacsv', views.DiretrizesEstrategicaCSVViewSet)
+router.register(r'planocompras', views.PlanoComprasViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
