@@ -2,9 +2,6 @@ from django.db import models
 
 
 class DadosMestre_Verba(models.Model):
-    """
-        Modelo de Tabela Dados Mestre
-    """
     NUMANOMES = models.IntegerField()
     CODPRD = models.IntegerField()
     DESPRD = models.CharField(max_length=150)
