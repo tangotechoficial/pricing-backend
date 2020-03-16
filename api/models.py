@@ -1,7 +1,164 @@
 from django.db import models
 
 
+class Fornecedor(models.Model):
+    """
+    Model for table FORNECEDOR
+    """
+
+    class Meta:
+        db_table = "FORNECEDOR"
+
+    CODDIVFRN = models.IntegerField(primary_key=True)
+    DESDIVFRN = models.CharField(max_length=45)
+    CODGRPECOFRN = models.IntegerField()
+    NOMGRPECOFRN = models.CharField(max_length=45)
+
+class Comprador(models.Model):
+    """
+    Model for table COMPRADOR
+    """
+
+    class Meta:
+        db_table = "COMPRADOR"
+
+    CODCPRATU = models.IntegerField(primary_key=True)
+    NOMCPRATU = models.CharField(max_length=45)
+    CODCLLCMPATU = models.IntegerField()
+    DESCLLCMPATU = models.CharField(max_length=45)
+    CODDRTCLLATU = models.IntegerField()
+    DESDRTCLLATU = models.CharField(max_length=45)
+
+class TabAuxGrp(models.Model):
+    
+    class Meta:
+        db_table = "TAB_AUX_GRP"
+
+    Id_Aux = models.IntegerField(primary_key=True)
+    CODSUBCTGPRD = models.IntegerField()
+    DESSUBCTGPRD = models.CharField(max_length=45)
+    CODCTGPRD = models.IntegerField()
+    DESCTGPRD = models.CharField(max_length=45)
+    CODGRPPRD = models.IntegerField()
+    DESGRPPRD = models.CharField(max_length=45)
+    Linha_de_negocio = models.CharField(max_length=45)
+
+class RelacionamentoFilialRegiao(models.Model):
+    
+    class Meta:
+        db_table = 'RELACIONAMENTO_FILIAL_REGIAO'
+
+    CODFILEPD = models.IntegerField(primary_key=True)
+    NOMFILEPD = models.CharField(max_length=45)
+    CODFILFAT = models.IntegerField()
+    NOMFILFAT = models.CharField(max_length=45)
+    CODESTUNI = models.CharField(max_length=2)
+    NOMESTUNI = models.CharField(max_length=45)
+    TIPEDEREG = models.IntegerField()
+    CODEDEREG = models.IntegerField()
+
+
+class Mercadoria(models.Model):
+    """
+    Model for table MERCADORIA
+    """
+
+    class Meta:
+        db_table = "MERCADORIA"
+
+    CODPRD = models.IntegerField(primary_key=True)
+    Id_Aux = models.ManyToManyField(TabAuxGrp)
+    DESPRD = models.CharField(max_length=45)
+    CODDIVFRN = models.ForeignKey(Fornecedor)
+    CODCPRATU = models.ForeignKey(Comprador)
+    CODFIL = models.ForeignKey(RelacionamentoFilialRegiao)
+    CODSML = models.IntegerField()
+    dessml = models.CharField(max_length=45)
+    ABC = models.CharField(max_length=1)
+
+class Representante(models.Model):
+    class Meta:
+        db_table = 'REPRESENTANTE'
+    
+    CODREPCMC = models.IntegerField(primary_key=True)
+    NOMREPCMC = models.CharField(max_length=45)
+    DATCADREPCMC = models.DateTimeField()
+
+class Vendas(models.Model):
+    class Meta:
+        db_table = 'VENDAS'
+
+    CODPRD = models.ForeignKey(Mercadoria)
+    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao)
+    CODFILFAT = models.IntegerField()
+    CODESTCLI = models.IntegerField()
+    CODREPCMC = models.ForeignKey(Representante)
+    NUMPED = models.IntegerField()
+    NUMANOMESSMN = models.DateTimeField()
+    NUMANOMESDIA = models.DateTimeField()
+    CMV = models.DecimalField(decimal_places=2, max_digits=10)
+    QDEITE = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRVNDLIQ = models.DecimalField(decimal_places=2, max_digits=10)
+    MARGEM_CONTRIBUICAO = models.DecimalField(decimal_places=2, max_digits=10)
+    MARGEM_BRUTA = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRRCTLIQ = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRIMPTOT = models.DecimalField(decimal_places=2, max_digits=10)
+    TRANSFERENCIA = models.DecimalField(decimal_places=2, max_digits=10)
+    DISTRIBUICAO = models.DecimalField(decimal_places=2, max_digits=10)
+    ARMAZENAGEM = models.DecimalField(decimal_places=2, max_digits=10)
+    FUNDING = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRSUPFLX = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRDSCFLXCNS = models.DecimalField(decimal_places=2, max_digits=10)
+    Despesas_Financeiras = models.DecimalField(decimal_places=2, max_digits=10)
+    Margem_por_Segmento = models.DecimalField(decimal_places=2, max_digits=10)
+
+class VerbaeBC(models.Model):
+    class Meta:
+        db_table = 'VERBA_E_BC'
+
+    CODPRD = models.ForeignKey(Mercadoria)
+    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao)
+    CODFILFAT = models.IntegerField()
+    CODESTCLI = models.IntegerField()
+    NUMANOMESDIA = models.DateTimeField()
+    QUANTIDADE_ITENS_PEDIDO = models.IntegerField()
+    VALOR_TOTAL_VENDA_LIQUIDA = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_UNITARIO_CMV = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_TOTAL_CMV = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_UNITARIO_FUNDING = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_TOTAL_FUNDING = models.DecimalField(decimal_places=2, max_digits=10)
+    QUANTIDADE_ITENS_PROMOCAO = models.IntegerField()
+    QUANTIDADE_ITENS_BENEFICIO = models.IntegerField()
+    VALOR_UNITARIO_PROMOCAO = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_UNITARIO_BENEFICIO = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_UNITARIO_FUNDING_PRECO = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_UNITARIO_FUNDING_MARGEM = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_TOTAL_PROMOCAO = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_TOTAL_BENEFICIO = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_TOTAL_FUNDING_PRECO = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_TOTAL_FUNDING_MARGEM = models.DecimalField(decimal_places=2, max_digits=10)
+    VALOR_TOTAL_DMS_SANSUNG = models.DecimalField(decimal_places=2, max_digits=10)
+    REBATE = models.DecimalField(decimal_places=2, max_digits=10)
+
+class Elasticidade(models.Model):
+
+    class Meta:
+        db_table = 'ELASTICIDADE'
+
+    codsml = models.ForeignKey(Mercadoria)
+    uf = models.CharField(max_length=2)
+    Elasticidade = models.DecimalField(decimal_places=2, max_digits=10)
+    qt = models.IntegerField()
+    pcmed = models.DecimalField(decimal_places=2, max_digits=10)
+    unitfnd = models.DecimalField(decimal_places=2, max_digits=10)
+    verba = models.DecimalField(decimal_places=2, max_digits=10)
+
+
 class DadosMestre_Verba(models.Model):
+
+    class Meta:
+        db_table = "VERBA_DISPONIVEL"
+
     NUMANOMES = models.IntegerField()
     CODPRD = models.IntegerField()
     DESPRD = models.CharField(max_length=150)
@@ -19,6 +176,10 @@ class DadosMestre_VerbaCSV(models.Model):
     csvfile = models.FileField()
 
 class DadosMestre_ComposicaoPreco(models.Model):
+
+    class Meta:
+        db_table = "COMPOSICAO_PRECO"
+
     CODPRD = models.IntegerField()
     DESPRD = models.CharField(max_length=150)
     ABC = models.CharField(max_length=1)
@@ -50,6 +211,11 @@ class DadosMestre_ComposicaoPrecoCSV(models.Model):
     csvfile = models.FileField()
 
 class DiretrizesEstrategica(models.Model):
+
+    class Meta:
+        db_table = "DIRETRIZ_ESTRATEGICA"
+
+    Id_Aux = models.ForeignKey(TabAuxGrp)
     DATINI = models.DateTimeField()
     CODDRTCLLATU = models.IntegerField()
     DESDRTCLLATU = models.CharField(max_length=150)
@@ -78,6 +244,10 @@ class DiretrizesEstrategicaCSV(models.Model):
     csvfile = models.FileField()
 
 class PlanoCompras(models.Model):
+
+    class Meta:
+        db_table = "PLANO_COMPRAS"
+
     CODPRD = models.IntegerField()
     CODFILEMP = models.IntegerField()
     CODFILFAT = models.IntegerField()
@@ -100,4 +270,5 @@ class PlanoCompras(models.Model):
     CMV_SUGERIDO = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     CMV_PLANEJADO = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     SENSIVEL_REBATE = models.CharField(max_length=1)
+
 
