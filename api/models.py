@@ -30,7 +30,10 @@ class Comprador(models.Model):
     DESDRTCLLATU = models.CharField(max_length=45)
 
 class TabAuxGrp(models.Model):
-    
+    """
+    Model for table TAB_AUX_GRP
+    """
+
     class Meta:
         db_table = "TAB_AUX_GRP"
 
@@ -44,7 +47,10 @@ class TabAuxGrp(models.Model):
     Linha_de_negocio = models.CharField(max_length=45)
 
 class RelacionamentoFilialRegiao(models.Model):
-    
+    """
+    Model for table RELACIONAMENTO_FILIAL_REGIAO
+    """
+
     class Meta:
         db_table = 'RELACIONAMENTO_FILIAL_REGIAO'
 
@@ -77,6 +83,10 @@ class Mercadoria(models.Model):
     ABC = models.CharField(max_length=1)
 
 class Representante(models.Model):
+    """
+    Model for table REPRESENTANTE
+    """
+
     class Meta:
         db_table = 'REPRESENTANTE'
     
@@ -85,6 +95,10 @@ class Representante(models.Model):
     DATCADREPCMC = models.DateTimeField()
 
 class Vendas(models.Model):
+    """
+    Model for table VENDAS
+    """
+
     class Meta:
         db_table = 'VENDAS'
 
@@ -113,6 +127,10 @@ class Vendas(models.Model):
     Margem_por_Segmento = models.DecimalField(decimal_places=2, max_digits=10)
 
 class VerbaeBC(models.Model):
+    """
+    Model for table VERBA_E_BC
+    """
+
     class Meta:
         db_table = 'VERBA_E_BC'
 
@@ -141,11 +159,15 @@ class VerbaeBC(models.Model):
     REBATE = models.DecimalField(decimal_places=2, max_digits=10)
 
 class Elasticidade(models.Model):
+    """
+    Model for table ELASTICIDADE
+    """
 
     class Meta:
         db_table = 'ELASTICIDADE'
 
     codsml = models.ForeignKey(Mercadoria)
+
     uf = models.CharField(max_length=2)
     Elasticidade = models.DecimalField(decimal_places=2, max_digits=10)
     qt = models.IntegerField()
@@ -153,6 +175,57 @@ class Elasticidade(models.Model):
     unitfnd = models.DecimalField(decimal_places=2, max_digits=10)
     verba = models.DecimalField(decimal_places=2, max_digits=10)
 
+class Estoque(models.Model):
+    """
+    Model for table ESTOQUE
+    """
+
+    class Meta:
+        db_table = 'ESTOQUE'
+
+    CODPRD = models.ForeignKey(Mercadoria)
+    CODFIL = models.ForeignKey(RelacionamentoFilialRegiao)
+    DATINI = models.DateTimeField()
+    NUMSMNANO = models.DateTimeField()
+    NOMSMSANO = models.DateTimeField()
+    NOMDIASMN = models.DateTimeField()
+    NUMDIASMN = models.DateTimeField()
+    NOMABVMESANO = models.CharField(max_length=45)
+    VLRUNTCSTSCO = models.DecimalField(decimal_places=2, max_digits=10)
+    QDEITEETQ = models.IntegerField()
+    VLRVNDPDAFLTETQ = models.DecimalField(decimal_places=2, max_digits=10)
+    QDEMEDVNDMNSMER = models.IntegerField()
+    VLRCSTCMPIDL = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRMEDPCOCMP = models.DecimalField(decimal_places=2, max_digits=10)
+    CODSTAPRDETQ = models.IntegerField()
+    DESSTAPRDETQ = models.CharField(max_length=45)
+    CODUNDREG = models.IntegerField()
+    DESUNDREG = models.CharField(max_length=45)
+    FLGUNDREG = models.CharField(max_length=45)
+
+class Competitividade(models.Model):
+    """
+    Model for table COMPETITIVIDADE
+    """
+
+    class Meta:
+        db_table = 'COMPETITIVIDADE'
+
+    CODPRD = models.ForeignKey(Mercadoria)
+    estado = models.CharField(max_length=2)
+    NUMANOMES = models.DateTimeField()
+    NUMSMNANO = models.DateTimeField()
+    Id = models.IntegerField()
+    data_emissao = models.DateTimeField()
+    TipoPesquisa = models.CharField(max_length=45)
+    pc_mrt = models.DecimalField(decimal_places=2, max_digits=10)
+    pc_psq = models.DecimalField(decimal_places=2, max_digits=10)
+    Comp = models.DecimalField(decimal_places=2, max_digits=10)
+    pc_psq_pond = models.DecimalField(decimal_places=2, max_digits=10)
+    pc_mrt_pond = models.DecimalField(decimal_places=2, max_digits=10)
+    regiao = models.CharField(max_length=45)
+    Uf_Destino = models.CharField(max_length=2)
+    ABC = models.CharField(max_length=1)
 
 class DadosMestre_Verba(models.Model):
 
@@ -246,7 +319,7 @@ class DiretrizesEstrategicaCSV(models.Model):
 class PlanoCompras(models.Model):
 
     class Meta:
-        db_table = "PLANO_COMPRAS"
+        db_table = "PLANOCOMPRAS"
 
     CODPRD = models.IntegerField()
     CODFILEMP = models.IntegerField()
