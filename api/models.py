@@ -75,9 +75,9 @@ class Mercadoria(models.Model):
     CODPRD = models.IntegerField(primary_key=True)
     Id_Aux = models.ManyToManyField(TabAuxGrp)
     DESPRD = models.CharField(max_length=45)
-    CODDIVFRN = models.ForeignKey(Fornecedor)
-    CODCPRATU = models.ForeignKey(Comprador)
-    CODFIL = models.ForeignKey(RelacionamentoFilialRegiao)
+    CODDIVFRN = models.ForeignKey(Fornecedor, on_delete=models.DO_NOTHING)
+    CODCPRATU = models.ForeignKey(Comprador, on_delete=models.DO_NOTHING)
+    CODFIL = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     CODSML = models.IntegerField()
     dessml = models.CharField(max_length=45)
     ABC = models.CharField(max_length=1)
@@ -102,11 +102,11 @@ class Vendas(models.Model):
     class Meta:
         db_table = 'VENDAS'
 
-    CODPRD = models.ForeignKey(Mercadoria)
-    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao)
+    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
+    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     CODFILFAT = models.IntegerField()
     CODESTCLI = models.IntegerField()
-    CODREPCMC = models.ForeignKey(Representante)
+    CODREPCMC = models.ForeignKey(Representante, on_delete=models.DO_NOTHING)
     NUMPED = models.IntegerField()
     NUMANOMESSMN = models.DateTimeField()
     NUMANOMESDIA = models.DateTimeField()
@@ -134,8 +134,8 @@ class VerbaeBC(models.Model):
     class Meta:
         db_table = 'VERBA_E_BC'
 
-    CODPRD = models.ForeignKey(Mercadoria)
-    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao)
+    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
+    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     CODFILFAT = models.IntegerField()
     CODESTCLI = models.IntegerField()
     NUMANOMESDIA = models.DateTimeField()
@@ -166,7 +166,7 @@ class Elasticidade(models.Model):
     class Meta:
         db_table = 'ELASTICIDADE'
 
-    codsml = models.ForeignKey(Mercadoria)
+    codsml = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
 
     uf = models.CharField(max_length=2)
     Elasticidade = models.DecimalField(decimal_places=2, max_digits=10)
@@ -183,8 +183,8 @@ class Estoque(models.Model):
     class Meta:
         db_table = 'ESTOQUE'
 
-    CODPRD = models.ForeignKey(Mercadoria)
-    CODFIL = models.ForeignKey(RelacionamentoFilialRegiao)
+    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
+    CODFIL = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     DATINI = models.DateTimeField()
     NUMSMNANO = models.DateTimeField()
     NOMSMSANO = models.DateTimeField()
@@ -211,7 +211,7 @@ class Competitividade(models.Model):
     class Meta:
         db_table = 'COMPETITIVIDADE'
 
-    CODPRD = models.ForeignKey(Mercadoria)
+    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
     estado = models.CharField(max_length=2)
     NUMANOMES = models.DateTimeField()
     NUMSMNANO = models.DateTimeField()
@@ -236,9 +236,9 @@ class DadosMestre_Verba(models.Model):
         db_table = "VERBA_DISPONIVEL"
 
     NUMANOMES = models.IntegerField()
-    CODPRD = models.IntegerField()
+    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
     DESPRD = models.CharField(max_length=150)
-    CODFILEPD = models.IntegerField()
+    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     CODDIVFRN = models.IntegerField()
     VLRPRECOSALDOMESANTERIOR = models.DecimalField(decimal_places=2, max_digits=10)
     VLRPRECOCREDITO = models.DecimalField(decimal_places=2, max_digits=10)
@@ -256,13 +256,13 @@ class DadosMestre_ComposicaoPreco(models.Model):
     class Meta:
         db_table = "COMPOSICAO_PRECO"
 
-    CODPRD = models.IntegerField()
+    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
     DESPRD = models.CharField(max_length=150)
     ABC = models.CharField(max_length=1)
     SENSIVEL_REBATE = models.SmallIntegerField()
     TIPEDEREG = models.IntegerField()
     CODEDEREG = models.IntegerField()
-    CODFILEMP = models.IntegerField()
+    CODFILEMP = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     CODFILFAT = models.IntegerField()
     MB = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     MB_CALCULADA = models.DecimalField(decimal_places=2, max_digits=10, null=True)
@@ -291,7 +291,7 @@ class DiretrizesEstrategica(models.Model):
     class Meta:
         db_table = "DIRETRIZ_ESTRATEGICA"
 
-    Id_Aux = models.ForeignKey(TabAuxGrp)
+    Id_Aux = models.ForeignKey(TabAuxGrp, on_delete=models.DO_NOTHING)
     DATINI = models.DateTimeField()
     CODDRTCLLATU = models.IntegerField()
     DESDRTCLLATU = models.CharField(max_length=150)
@@ -324,8 +324,8 @@ class PlanoCompras(models.Model):
     class Meta:
         db_table = "PLANOCOMPRAS"
 
-    CODPRD = models.IntegerField()
-    CODFILEMP = models.IntegerField()
+    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
+    CODFILEMP = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     CODFILFAT = models.IntegerField()
     DATA_PRECO = models.DateTimeField()
     CODESTUNI = models.IntegerField()
@@ -346,5 +346,22 @@ class PlanoCompras(models.Model):
     CMV_SUGERIDO = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     CMV_PLANEJADO = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     SENSIVEL_REBATE = models.CharField(max_length=1)
+    SEMANA = models.IntegerField()
 
+class Otimizador(models.Model):
+    """
+        Model for table Otimizador
+    """
 
+    class Meta: 
+        db_table= "OTIMIZADOR"
+
+    DATA_PRECO = models.DateTimeField()
+    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
+    CODFILEMP = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
+    CODFILFAT = models.IntegerField()
+    CODESTUNI = models.IntegerField()
+    VERBA_OTIMIZADA = models.DecimalField(decimal_places=2, max_digits=10)
+    VERBA_INPUT = models.DecimalField(decimal_places=2, max_digits=10)
+    VERBA_NECESSARIA = models.DecimalField(decimal_places=2, max_digits=10)
+    VERBA_DISPONIVEL = models.DecimalField(decimal_places=2, max_digits=10)
