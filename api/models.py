@@ -228,6 +228,9 @@ class Competitividade(models.Model):
     ABC = models.CharField(max_length=1)
 
 class DadosMestre_Verba(models.Model):
+    """
+        Modelo de Tabela Dados Mestre
+    """
 
     class Meta:
         db_table = "VERBA_DISPONIVEL"
