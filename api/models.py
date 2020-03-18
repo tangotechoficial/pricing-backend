@@ -215,7 +215,6 @@ class Competitividade(models.Model):
     estado = models.CharField(max_length=2)
     NUMANOMES = models.DateTimeField()
     NUMSMNANO = models.DateTimeField()
-    Id = models.IntegerField()
     data_emissao = models.DateTimeField()
     TipoPesquisa = models.CharField(max_length=45)
     pc_mrt = models.DecimalField(decimal_places=2, max_digits=10)

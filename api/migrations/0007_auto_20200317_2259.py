@@ -256,7 +256,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Competitividade',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                # ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('estado', models.CharField(max_length=2)),
                 ('NUMANOMES', models.DateTimeField()),
                 ('NUMSMNANO', models.DateTimeField()),
