@@ -36,12 +36,18 @@ class DadosMestreComposicaoPrecoTest(TestCase):
 
 
 class PlanoDeCompras(TestCase):
-	#cria uma instância de PlanoCompras
+	"""
+		cria uma instância de PlanoCompras
+		
+	"""
 	def create_plano_de_compras(self):
 		return PlanoCompras.objects.create(CODPRD=125, CODFILEMP=10, CODFILFAT=12, DATA_PRECO=make_aware(datetime.now()), CODESTUNI=2)
 	
-	#verifica se o objeto criado é uma instância da classe desejada 
-	#checa as propriedades existentes na instância
+	"""
+		verifica se o objeto criado é uma instância da classe desejada 
+		checa as propriedades existentes na instância
+
+	"""
 	def test_criacao_de_model(self):
 		dado = self.create_plano_de_compras()
 
