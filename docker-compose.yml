@@ -4,13 +4,15 @@ services:
   db:
     image: postgres
     environment:
-      - POSTGRES_PASSWORD=devpass
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:${DJANGO_PORT}
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - "${DJANGO_PORT}:${DJANGO_PORT}"
     depends_on:
       - db
