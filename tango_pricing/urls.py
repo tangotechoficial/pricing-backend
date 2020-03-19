@@ -22,15 +22,14 @@ from drf_yasg import openapi
 
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Tango Pricing Swagger Documentation",
-      default_version='v1',
-      description="",
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="Tango Pricing Swagger Documentation",
+        default_version='v1',
+        description="",
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
 )
-
 
 
 urlpatterns = [
