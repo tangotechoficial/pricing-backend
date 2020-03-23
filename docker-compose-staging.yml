@@ -1,18 +1,10 @@
 version: '3'
 
 services:
-  staging_db:
-    image: postgres
-    environment:
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-    ports:
-      - "${DB_PORT}:5432"
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:${DJANGO_PORT}
+    command: python manage.py runserver 0.0.0.0:8001
     volumes:
       - .:/code
     ports:
-      - "${DJANGO_PORT}:${DJANGO_PORT}"
-    depends_on:
-      - staging_db
+      - "8001:8001"
