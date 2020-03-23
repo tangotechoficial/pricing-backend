@@ -90,7 +90,7 @@ DATABASES = {
         'USER': config('DB_USER', default='postgres'),
         'PASSWORD': config('DB_PASSWORD', default='devpass'),
         'HOST': config('DB_HOST', default='db'),
-        'PORT': 5432,
+        'PORT': config('DB_PORT', default=5432),
     },
     'auth_db': {
         'ENGINE': 'django.db.backends.sqlite3',
