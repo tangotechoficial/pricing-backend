@@ -8,3 +8,4 @@ services:
       - .:/code
     ports:
       - "8001:8001"
+    network_mode: host
