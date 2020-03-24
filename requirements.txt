@@ -4,3 +4,4 @@ djangorestframework-jwt==1.11.0
 django-cors-headers==3.2.1 
 psycopg2==2.8.4
 python-decouple==3.3 
+drf-yasg
