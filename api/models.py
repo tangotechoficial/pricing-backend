@@ -323,6 +323,7 @@ class PlanoCompras(models.Model):
     class Meta:
         db_table = "PLANOCOMPRAS"
 
+    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
     CODFILEMP = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     CODFILFAT = models.IntegerField()
     DATA_PRECO = models.DateTimeField()
