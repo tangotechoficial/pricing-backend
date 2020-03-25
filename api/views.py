@@ -91,10 +91,3 @@ class PlanoComprasViewSet(viewsets.ModelViewSet):
     """
     queryset = models.PlanoCompras.objects.all()
     serializer_class = serializers.PlanoComprasSerializer
-
-class PlanoComprasExecutadoViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
-    """
-    queryset = models.PlanoComprasExecutado.objects.all()
-    serializer_class = serializers.PlanoComprasExecutadoSerializer
