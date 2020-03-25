@@ -44,4 +44,3 @@ class PlanoComprasSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.PlanoCompras
         fields = '__all__'
-
