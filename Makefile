@@ -9,6 +9,7 @@ else
 endif
 
 COMPOSE=docker-compose $(CONFIG)
+SCREEN=screen -d -m -S "backend-logs"
 
 # help: Makefile targets description
 # #
@@ -22,14 +23,14 @@ build-dev:
 
 # target: build-staging -> build web app staging container
 build-staging:
-	docker-compose -p pricing_staging -f docker-compose-staging.yml up --no-start --build web 
+	docker-compose -p pricing_staging -f docker-compose-staging.yml up --no-start --build web
 
 # target: start -> start containers
-start: 
+start:
 	$(COMPOSE) start web db
 
 # target: stop -> Stop running containers
-stop: 
+stop:
 	$(COMPOSE) stop
 
 # target: restart -> restart containers
@@ -44,16 +45,13 @@ shell:
 	$(COMPOSE) exec web bin/bash
 
 # target: psql -> Give a psql shell
-psql: 
+psql:
 	psql -h localhost -p 5432 -U postgres -W
 
-# target: logs -> Use to display containers logs 
+# target: logs -> Use to display containers logs
 logs:
-	$(COMPOSE) logs --follow
+	$(SCREEN) $(COMPOSE) logs --follow
 
 # target: migrate -> Run application migrations
 migrate:
 	$(COMPOSE) run web python manage.py migrate
-
-
-
