@@ -35,9 +35,17 @@ stop:
 # target: restart -> restart containers
 restart: stop start
 
-# target: shell -> Give a shell into container
+# target: clean -> Stop and remove containers (will require to build everything again)
+clean:
+	$(COMPOSE) down
+
+# target: shell -> Give a shell into app container
 shell:
-	$(COMPOSE) exec web /bin/bash
+	$(COMPOSE) exec web bin/bash
+
+# target: psql -> Give a psql shell
+psql: 
+	psql -h localhost -p 5432 -U postgres -W
 
 # target: logs -> Use to display containers logs 
 logs:
