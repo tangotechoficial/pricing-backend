@@ -128,7 +128,7 @@ class ModelDadosMestreVerbaTest(APITestCase):
   #checa o retorno de diretrizes estrategicas 
   def test_consumo_diretrizes_estrategicas_csv(self):
     self.client.login(username='eurico', password='tangoteste')
-    response = self.client.get('/api/diretrizesestrategicacsv/', format='json')
+    response = self.client.get('api/diretrizesestrategicacsv/', format='json')
     self.assertEqual(json.loads(response.content)['results'], [])
     self.assertEqual(len(json.loads(response.content)['results']), 0)
 
