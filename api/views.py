@@ -24,6 +24,69 @@ class CompradorViewSet(viewsets.ModelViewSet):
     queryset = models.Comprador.objects.all()
     serializer_class = serializers.CompradorSerializer
 
+class TabAuxGrpViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows TabAuxGrp to be viewed or edited.
+    """
+    queryset = models.TabAuxGrp.objects.all()
+    serializer_class = serializers.TabAuxGrpSerializer
+
+class RelacionamentoFilialRegiaoViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows RelacionamentoFilialRegiao to be viewed or edited.
+    """
+    queryset = models.RelacionamentoFilialRegiao.objects.all()
+    serializer_class = serializers.RelacionamentoFilialRegiaoSerializer
+
+class MercadoriaViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Mercadoria to be viewed or edited.
+    """
+    queryset = models.Mercadoria.objects.all()
+    serializer_class = serializers.MercadoriaSerializer
+
+class RepresentanteViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Representante to be viewed or edited.
+    """
+    queryset = models.Representante.objects.all()
+    serializer_class = serializers.RepresentanteSerializer
+
+class VendasViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Vendas to be viewed or edited.
+    """
+    queryset = models.Vendas.objects.all()
+    serializer_class = serializers.VendasSerializer
+
+class VerbaeBCViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows VerbaeBC to be viewed or edited.
+    """
+    queryset = models.VerbaeBC.objects.all()
+    serializer_class = serializers.VerbaeBCSerializer
+
+class ElasticidadeViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Elasticidade to be viewed or edited.
+    """
+    queryset = models.Elasticidade.objects.all()
+    serializer_class = serializers.ElasticidadeSerializer
+
+class EstoqueViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Estoque to be viewed or edited.
+    """
+    queryset = models.Estoque.objects.all()
+    serializer_class = serializers.EstoqueSerializer
+
+class CompetitividadeViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Competitividade to be viewed or edited.
+    """
+    queryset = models.Competitividade.objects.all()
+    serializer_class = serializers.CompetitividadeSerializer
+
 class DadosMestre_VerbaViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows DadosMestre to be viewed or edited.
@@ -105,3 +168,10 @@ class PlanoComprasViewSet(viewsets.ModelViewSet):
     """
     queryset = models.PlanoCompras.objects.all()
     serializer_class = serializers.PlanoComprasSerializer
+
+class OtimizadorViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.Otimizador.objects.all()
+    serializer_class = serializers.OtimizadorSerializer

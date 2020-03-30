@@ -20,6 +20,51 @@ class CompradorSerializer(serializers.HyperlinkedModelSerializer):
         model = models.Comprador
         fields = '__all__'
 
+class TabAuxGrpSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.TabAuxGrp
+        fields = '__all__'
+
+class RelacionamentoFilialRegiaoSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.RelacionamentoFilialRegiao
+        fields = '__all__'''
+
+class MercadoriaSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Mercadoria
+        fields = '__all__'
+
+class RepresentanteSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Representante
+        fields = '__all__'
+
+class VendasSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Vendas
+        fields = '__all__'
+
+class VerbaeBCSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.VerbaeBC
+        fields = '__all__'
+
+class ElasticidadeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Elasticidade
+        fields = '__all__'
+
+class EstoqueSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Estoque
+        fields = '__all__'
+
+class CompetitividadeSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Competitividade
+        fields = '__all__'
+
 class DadosMestre_VerbaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.DadosMestre_Verba
@@ -53,5 +98,10 @@ class DiretrizesEstrategicaCSVSerializer(serializers.HyperlinkedModelSerializer)
 class PlanoComprasSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.PlanoCompras
+        fields = '__all__'
+
+class OtimizadorSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Otimizador
         fields = '__all__'
 
