@@ -10,6 +10,16 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('id', 'is_superuser', 'username', 'first_name', 'last_name', 'email', 'groups')
 
+class FornecedorSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Fornecedor
+        fields = '__all__'
+
+class CompradorSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Comprador
+        fields = '__all__'
+
 class DadosMestre_VerbaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.DadosMestre_Verba

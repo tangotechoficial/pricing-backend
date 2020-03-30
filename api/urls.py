@@ -5,6 +5,8 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 from . import views
 
 router = routers.DefaultRouter()
+router.register(r'fornecedor', views.FornecedorViewSet)
+router.register(r'comprador', views.CompradorViewSet)
 router.register(r'dadosmestreverba', views.DadosMestre_VerbaViewSet)
 router.register(r'dadosmestreverbacsv', views.DadosMestre_VerbaCSVViewSet)
 router.register(r'dadosmestrecomposicao', views.DadosMestre_ComposicaoPrecoViewSet)

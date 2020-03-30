@@ -30,6 +30,36 @@ class LoginTest(TestCase):
         response = client.login(username='eurico', password='tango')
         self.assertFalse(response, False)
 
+"""
+teste da rota para fornecedor
+
+"""
+
+class FornecedorTest(TestCase):
+    databases = '__all__'
+
+    def setUp(self):
+        User.objects.create_user('eurico', password='tangoteste')
+
+    """
+
+    testa criação de novo objeto
+
+    """
+
+    def test_post_fornecedor(self):
+        data = {
+            "DESDIVFRN": "teste",
+            "CODGRPECOFRN": 1,
+            "NOMGRPECOFRN": "teste"
+        }
+        self.client.login(username='eurico', password='tangoteste')
+        print(data)
+        response = self.client.post(
+            '/api/fornecedor/', data, format='json')
+        self.assertEqual(response.status_code, 201)
+
+
 
 """
   teste da rota para DadosMestre_Verba

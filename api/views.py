@@ -10,6 +10,20 @@ from . import models
 from . import serializers
 from .utils import parse_csv_model
 
+class FornecedorViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Fornecedor to be viewed or edited.
+    """
+    queryset = models.Fornecedor.objects.all()
+    serializer_class = serializers.FornecedorSerializer
+
+class CompradorViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Comprador to be viewed or edited.
+    """
+    queryset = models.Comprador.objects.all()
+    serializer_class = serializers.CompradorSerializer
+
 class DadosMestre_VerbaViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows DadosMestre to be viewed or edited.
