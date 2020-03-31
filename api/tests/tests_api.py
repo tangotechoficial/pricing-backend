@@ -49,6 +49,7 @@ class FornecedorTest(TestCase):
 
     def test_post_fornecedor(self):
         data = {
+            "CODDIVFRN": 1,
             "DESDIVFRN": "teste",
             "CODGRPECOFRN": 1,
             "NOMGRPECOFRN": "teste"
