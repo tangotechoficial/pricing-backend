@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import datetime
 import os
 
+from decouple import config
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,10 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '1&qlf&8t5u6sgl6zibk@fh=dq4@$qqriv6+(^oah#ckr=*gjx$'
+#SECRET_KEY = '1&qlf&8t5u6sgl6zibk@fh=dq4@$qqriv6+(^oah#ckr=*gjx$'
+SECRET_KEY = config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False ,cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -38,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'drf_yasg',
     'corsheaders',
     'api',
     'dinamica'
@@ -82,11 +87,11 @@ WSGI_APPLICATION = 'tango_pricing.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'devpass',
-        'HOST': 'db',
-        'PORT': 5432,
+        'NAME': config('DB_NAME', default='postgres'),
+        'USER': config('DB_USER', default='postgres'),
+        'PASSWORD': config('DB_PASSWORD', default='devpass'),
+        'HOST': config('DB_HOST', default='db'),
+        'PORT': config('DB_PORT', default=5432),
     },
     'auth_db': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -105,7 +110,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100
+    'PAGE_SIZE': 100,
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
 JWT_AUTH = {
