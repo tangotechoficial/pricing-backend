@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import SEQ_CAMPO, SEQUENCIA, SEQ_AUX, CHAVE_CONTAS, TIPOVALOR, CAMADA, CONDICAO, CONDICAO_SEQUENCIA, ESQUEMA_DE_CALCULO, PRECO, CONDICAO_CAMADA_ESQUEMA, MERCADORIA, FILIAL, FATURAMENTO, ESTADO, REGION
-from .serializer import SEQ_CAMPOSerializer, SEQUENCIASerializer, SEQ_AUXSerializer, CHAVE_CONTASSerializer, TIPOVALORSerializer, CAMADASerializer, CONDICAOSerializer, CONDICAO_SEQUENCIASerializer, ESQUEMA_DE_CALCULOSerializer, PRECOSerializer, CONDICAO_CAMADA_ESQUEMASerializer, MERCADORIASerializer, FILIALSerializer, FATURAMENTOSerializer, ESTADOSerializer, REGIONSerializer, CONDICAOSEQSerializer, SEQUENCIACAMPOSerializer
+from .serializer import SEQ_CAMPOSerializer, SEQUENCIASerializer, SEQ_AUXSerializer, CHAVE_CONTASSerializer, TIPOVALORSerializer, CAMADASerializer, CONDICAOSerializer, CONDICAO_SEQUENCIASerializer, ESQUEMA_DE_CALCULOSerializer, PRECOSerializer, CONDICAO_CAMADA_ESQUEMASerializer, MERCADORIASerializer, FILIALSerializer, FATURAMENTOSerializer, ESTADOSerializer, REGIONSerializer, CONDICAOSEQSerializer, SEQUENCIACAMPOSerializer, CAMADACONDSerializer
 
 
 class SEQ_CAMPOViewSet(viewsets.ModelViewSet):
@@ -56,6 +56,10 @@ class TIPOVALORViewSet(viewsets.ModelViewSet):
 class CAMADAViewSet(viewsets.ModelViewSet):
     queryset = CAMADA.objects.all()
     serializer_class = CAMADASerializer
+
+class CAMADACONDViewSet(viewsets.ModelViewSet):
+    queryset = CAMADA.objects.all()
+    serializer_class = CAMADACONDSerializer
 
 class CONDICAOSEQViewSet(viewsets.ModelViewSet): 
     queryset = CONDICAO.objects.all()

@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .viewsets import SEQ_CAMPOViewSet, SEQUENCIAViewSet, SEQ_AUXViewSet, CHAVE_CONTASViewSet, TIPOVALORViewSet, CAMADAViewSet, CONDICAOViewSet, CONDICAO_SEQUENCIAViewSet, ESQUEMA_DE_CALCULOViewSet, PRECOViewSet, CONDICAO_CAMADA_ESQUEMAViewSet, MERCADORIAViewSet, FILIALViewSet, FATURAMENTOViewSet, ESTADOViewSet, REGIONViewSet, CONDICAOSEQViewSet, SEQUENCIACAMPOViewSet
+from .viewsets import SEQ_CAMPOViewSet, SEQUENCIAViewSet, SEQ_AUXViewSet, CHAVE_CONTASViewSet, TIPOVALORViewSet, CAMADAViewSet, CONDICAOViewSet, CONDICAO_SEQUENCIAViewSet, ESQUEMA_DE_CALCULOViewSet, PRECOViewSet, CONDICAO_CAMADA_ESQUEMAViewSet, MERCADORIAViewSet, FILIALViewSet, FATURAMENTOViewSet, ESTADOViewSet, REGIONViewSet, CONDICAOSEQViewSet, SEQUENCIACAMPOViewSet, CAMADACONDViewSet
 
 router = routers.SimpleRouter()
 router.register('seqcampo', SEQ_CAMPOViewSet)
@@ -8,6 +8,7 @@ router.register('seqaux', SEQ_AUXViewSet)
 router.register('chavecontas', CHAVE_CONTASViewSet)
 router.register('tipovalor', TIPOVALORViewSet)
 router.register('camada', CAMADAViewSet)
+router.register('camadacond', CAMADACONDViewSet)
 router.register('condicao', CONDICAOViewSet)
 router.register('condicaosequencia', CONDICAO_SEQUENCIAViewSet)
 router.register('esquemadecalculo', ESQUEMA_DE_CALCULOViewSet)

@@ -46,7 +46,6 @@ class CONDICAOSEQSerializer(serializers.ModelSerializer):
     sequencias = serializers.SerializerMethodField()
     chavecontas = serializers.SerializerMethodField()
     tipovalor = serializers.SerializerMethodField()
-    camada = serializers.SerializerMethodField()
 
     class Meta:
         model = CONDICAO
@@ -66,6 +65,11 @@ class CONDICAOSEQSerializer(serializers.ModelSerializer):
 
 
 class CAMADASerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CAMADA
+        fields = ['Cod_Camada', 'Nome_Camada', 'TIPO_BASE_VENDAS', 'condicaos']
+
+class CAMADACONDSerializer(serializers.ModelSerializer):
     condicaos = serializers.SerializerMethodField()
 
     class Meta:
@@ -75,8 +79,6 @@ class CAMADASerializer(serializers.ModelSerializer):
     def get_condicaos(self, obj):
         condicaos = CONDICAO.objects.filter(Cod_Camada=obj.Cod_Camada)
         return CONDICAOSEQSerializer(condicaos, many=True).data
-
-    
     
 class CONDICAO_SEQUENCIASerializer(serializers.ModelSerializer):
     class Meta:
