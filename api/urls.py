@@ -13,7 +13,7 @@ router.register(r'diretrizesestrategica', views.DiretrizesEstrategicaViewSet)
 router.register(r'diretrizesestrategicacsv', views.DiretrizesEstrategicaCSVViewSet)
 router.register(r'diretrizesestrategicacsv', views.DiretrizesEstrategicaCSVViewSet)
 router.register(r'planocompras', views.PlanoComprasViewSet)
-router.register(r'otimizador', views.PlanoComprasViewSet)
+router.register(r'otimizador', views.OtimizadorViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
