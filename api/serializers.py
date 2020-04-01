@@ -44,3 +44,8 @@ class PlanoComprasSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.PlanoCompras
         fields = '__all__'
+
+class OtimizadorSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Otimizador
+        fields = '__all__'
