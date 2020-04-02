@@ -17,32 +17,32 @@ Models test
 class FornecedorTest(TestCase):
     databases = '__all__'
 
-    """
-		verifica se o objeto criado é uma instância da classe desejada
-
-	"""
 
     def test_criacao_de_instancia_fornecedor(self):
+        """
+            verifica se o objeto criado é uma instância da classe desejada
+
+        """
         fornecedor = models.Fornecedor.objects.create(
-            CODDIVFRN=1,
-            DESDIVFRN='teste',
-            CODGRPECOFRN=1,
-            NOMGRPECOFRN='teste'
+            CODFRN=1,
+            NOMFRN='teste',
+            CODGRPFRN=1,
+            NOMGRPFRN='teste'
         )
         self.assertTrue(isinstance(fornecedor, models.Fornecedor))
-        self.assertTrue(hasattr(fornecedor, 'CODDIVFRN'))
-        self.assertTrue(hasattr(fornecedor, 'DESDIVFRN'))
-        self.assertTrue(hasattr(fornecedor, 'CODGRPECOFRN'))
-        self.assertTrue(hasattr(fornecedor, 'NOMGRPECOFRN'))
+        self.assertTrue(hasattr(fornecedor, 'CODFRN'))
+        self.assertTrue(hasattr(fornecedor, 'NOMFRN'))
+        self.assertTrue(hasattr(fornecedor, 'CODGRPFRN'))
+        self.assertTrue(hasattr(fornecedor, 'NOMGRPFRN'))
 
 
 class CompradorTest(TestCase):
     databases = '__all__'
-    """
-		cria uma instância de COMPRADOR
-	"""
 
     def create_comprador(self):
+        """
+            cria uma instância de COMPRADOR
+        """
         return models.Comprador.objects.create(
             CODCPRATU=1,
             NOMCPRATU='teste',
@@ -52,13 +52,13 @@ class CompradorTest(TestCase):
             DESDRTCLLATU='teste'
         )
 
-    """
-
-	verifica uma instância de comprador
-
-	"""
 
     def test_criacao_de_instancia_de_comprador(self):
+        """
+
+        verifica uma instância de comprador
+
+        """
         comprador = self.create_comprador()
         self.assertTrue(isinstance(comprador, models.Comprador))
 

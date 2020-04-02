@@ -22,10 +22,10 @@ def cria_mercadoria(self):
         self.client.login(username='eurico', password='tangoteste')
         self.client.post('/api/comprador/', novo_comprador, format='json')
         novo_fornecedor = {
-            "CODDIVFRN": 1,
-            "DESDIVFRN": "teste",
-            "CODGRPECOFRN": 1,
-            "NOMGRPECOFRN": "teste"
+            "CODFRN": 1,
+            "NOMFRN": "teste",
+            "CODGRPFRN": 1,
+            "NOMGRPFRN": "teste"
         }
         self.client.login(username='eurico', password='tangoteste')
         self.client.post('/api/fornecedor/', novo_fornecedor, format='json')
@@ -106,10 +106,10 @@ class FornecedorTest(TestCase):
 
         """
         novo_fornecedor = {
-            "CODDIVFRN": 1,
-            "DESDIVFRN": "teste",
-            "CODGRPECOFRN": 1,
-            "NOMGRPECOFRN": "teste"
+            "CODFRN": 1,
+            "NOMFRN": "teste",
+            "CODGRPFRN": 1,
+            "NOMGRPFRN": "teste"
         }
         self.client.login(username='eurico', password='tangoteste')
         response = self.client.post(

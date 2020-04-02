@@ -15,7 +15,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class FornecedorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Fornecedor
-        fields = ('CODDIVFRN', 'DESDIVFRN', 'CODGRPECOFRN', 'NOMGRPECOFRN')
+        fields = ('CODFRN', 'NOMFRN', 'CODGRPFRN', 'NOMGRPFRN')
 
 
 class CompradorSerializer(serializers.HyperlinkedModelSerializer):
@@ -29,21 +29,21 @@ class TabAuxGrpSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.TabAuxGrp
         fields = ("Id_Aux", "CODCLSMER", "DESCLSMER", "CODFMLMER",
-                  "DESGRPMER", "CODGRPMER", "DESGRPMER", "Linha_de_negocio")
+                  "DESGRPMER", "CODGRPMER", "DESGRPMER")
 
 
 class RelacionamentoFilialRegiaoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.RelacionamentoFilialRegiao
         fields = ("CODFILEPD", "NOMFILEPD", "CODFILFAT", "NOMFILFAT",
-                  "CODESTUNI", "NOMESTUNI", "TIPEDEREG", "CODEDEREG")
+                  "CODESTUNI", "CODEDEREG")
 
 
 class MercadoriaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Mercadoria
-        fields = ("CODPRD", "Id_Aux", "DESPRD", "CODDIVFRN",
-                  "CODCPRATU", "CODSML", "dessml", "ABC")
+        fields = ("CODMER", "DESMER", "CODFRNPCPMER",
+                  "CODCPRATU", "CODGRPMERSMR", "DESGRPMERSMR", "CLFCRVABCMER")
 
 
 class RepresentanteSerializer(serializers.HyperlinkedModelSerializer):
@@ -70,72 +70,72 @@ class ElasticidadeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Elasticidade
         fields = ("CODPRD", "CODESTUNI", "CODFILEPD", "CODFILFAT", "VLRVARVNDPCO",
-                  "DESMER", "CLFCRVABCMER", "CODGRPMERSMR", "DESGRPMERSMR")
+                  "DESMER", "CLFCRVABCMER", "CODGRPMERSMR", "DESGRPMERSMR", "DESFMLMER", "DESFMLMER", "DESDIVCMP")
 
 
 class EstoqueSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Estoque
-        fields = ("CODPRD", "CODFILEPD", "DATREF", "NUMSMNANO", "NOMDIASMN", "NOMMESANO", "NOMSMSANO", "NOMABVMESANO", "VLRUNTCSTSCO", "QDEITEETQ", "VLRVNDPDAFLTETQ", "VLRCSTCMPIDL", "VLRMEDPCOCMP", "CODSTAPRDETQ")
+        fields = ("CODPRD", "CODFILEPD", "DATREF", "NUMSMNANO", "NOMDIASMN", "NOMMESANO", "NOMSMSANO",
+                  "VLRUNTCSTSCO", "QDEITEETQ", "VLRVNDPDAFLTETQ", "VLRCSTCMPIDL", "VLRMEDPCOCMP", "CODSTAPRDETQ")
 
 
 class CompetitividadeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model=models.Competitividade
-        fields=("CODPRD", "COCODIDTCUR", "CODESTUNI", "CODESTUNIOR", "CODESTUNIDS", "NUMANO", "NUMANOMES", "NUMSMNANO",
-                "NOMMES", "DATREF", "CODSML", "DESGRPMERSMR", "CODTIPAPU", "VLRPCOMEDMCD", "VLRPCOBSEMER", "CLFCRVABCMER", "CODDIVFRN")
+        model = models.Competitividade
+        fields = ("CODPRD", "CODIDTCUR", "CODESTUNI", "CODESTUNIOR", "CODESTUNIDS", "NUMANO", "NUMANOMES", "NUMSMNANO",
+                  "NOMMES", "DATREF", "CODSML", "DESGRPMERSMR", "CODTIPAPU", "VLRPCOMEDMCD", "VLRPCOBSEMER", "CLFCRVABCMER", "CODDIVFRN")
 
 
 class DadosMestre_VerbaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model=models.DadosMestre_Verba
-        fields=("CODPRD", "CODSMLPCO", "CODFILEPD", "DATREF", "VLRSLDPCOMESANT",
-                "VLRCRDPCO", "VLRDBTPCO", "VLRSLDMRGMESANT", "VLRCRDMRG", "VLRCRDMRG")
-
+        model = models.DadosMestre_Verba
+        fields = ("CODPRD", "CODSMLPCO", "CODFILEPD", "DATREF", "VLRSLDPCOMESANT",
+                  "VLRCRDPCO", "VLRDBTPCO", "VLRSLDMRGMESANT", "VLRCRDMRG", "VLRCRDMRG")
 
 
 
 class DadosMestre_VerbaCSVSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model=models.DadosMestre_VerbaCSV
-        fields=['import_date']
+        model = models.DadosMestre_VerbaCSV
+        fields = ['import_date']
 
 
 class DadosMestre_ComposicaoPrecoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model=models.DadosMestre_ComposicaoPreco
-        fields=("CODPRD", "CODFILEPD", "CODFILFAT", "DATREF", "CODESTUNI", "TIPEDEREG", "VLRMRGBRT", "VLRVBA", "VLRFND", "VLRFNDRBTITE", "VLRICM", "VLRPIS",
-                "VLRDVL", "VLRUNTPCOALV", "VLRFLXCNS", "VLRCSTCAL", "VLRBNF", "VLRCPLCSTPCO", "VLRPCOBSEMER", "CODREGPCO", "NUMRLCCIDGIR", "TIPCALUTZPCOLIQ")
+        model = models.DadosMestre_ComposicaoPreco
+        fields = ("CODPRD", "CODFILEPD", "CODFILFAT", "DATREF", "CODESTUNI", "TIPEDEREG", "VLRMRGBRT", "VLRVBA", "VLRFND", "VLRFNDRBTITE", "VLRICM", "VLRPIS",
+                  "VLRDVL", "VLRUNTPCOALV", "VLRFLXCNS", "VLRCSTCAL", "VLRBNF", "VLRCPLCSTPCO", "VLRPCOBSEMER", "CODREGPCO", "NUMRLCCIDGIR", "TIPCALUTZPCOLIQ")
 
 
 class DadosMestre_ComposicaoPrecoCSVSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model=models.DadosMestre_ComposicaoPrecoCSV
-        fields=['import_date']
+        model = models.DadosMestre_ComposicaoPrecoCSV
+        fields = ['import_date']
 
 
 class DiretrizesEstrategicaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model=models.DiretrizesEstrategica
-        fields=("CODESTUNI", "CODDIVFRN", "DATREFPOD", "NOMMES", "NOMSMS", "NOMDIASMN", "NOMSMSANO", "CODUNDNGCCLI", "CODCLLCMPATU", "DESDRTCLLATU",
-                "CODSGMNGCCLI", "VLRVNDFATLIQ", "VLRRCTLIQAPU", "VLRMRGCRB", "VLRMRGBRT", "NOMCPR", "CODFIL", "CODCLSMER", "DESCLSMER", "CODFMLMER", "DESGRPMER", "CODGRPMER", "DESGRPMER", "DESDIVFRN", "CODGRPECOFRN", "NOMGRPECOFRN")
+        model = models.DiretrizesEstrategica
+        fields = ("CODESTUNI", "CODDIVFRN", "DATREFPOD", "NOMMES", "NOMSMS", "NOMDIASMN", "NOMSMSANO", "CODUNDNGCCLI", "CODCLLCMPATU", "DESDRTCLLATU",
+                  "CODSGMNGCCLI", "VLRVNDFATLIQ", "VLRRCTLIQAPU", "VLRMRGCRB", "VLRMRGBRT", "NOMCPR", "CODFIL", "CODCLSMER", "DESCLSMER", "CODFMLMER", "DESGRPMER", "CODGRPMER", "DESGRPMER")
 
 
 class DiretrizesEstrategicaCSVSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model=models.DiretrizesEstrategicaCSV
-        fields=['import_date']
+        model = models.DiretrizesEstrategicaCSV
+        fields = ['import_date']
 
 
 class PlanoComprasSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model=models.PlanoCompras
-        fields=("CODPRD", "CODFILEPD", "CODFILFAT", "CODESTUNI", "MONTH", "YEAR", "WEEK", "OLVNDSUG", "VOLVNDSUGALC", "MRGBRTPEROCD", "VLRPCOSUG", "VLRPCOBASESUG", 
+        model = models.PlanoCompras
+        fields = ("CODPRD", "CODFILEPD", "CODFILFAT", "CODESTUNI", "MONTH", "YEAR", "WEEK", "OLVNDSUG", "VOLVNDSUGALC", "MRGBRTPEROCD", "VLRPCOSUG", "VLRPCOBASESUG",
                   "VLRIMPTOTSUG", "VLRICMSSUG", "VLRPISCOFSUG", "VLRDEVSUG", "VLRFLXSUG", "VLRMRGBRTSUG", "VRBUNTSUGSUG", "VLRVRBPLAN", "VLRCMVPCOSUG", "VLRCMVPCOATU", "VLRCMVCMPATU", "VOLVNDPLN", "MRGBRTPEROCD", "VLRPCOPLN", "VLRPCOBASEPLN", "VLRIMPTOTPLN", "VLRICMSPLN", "VLRPISCOFPLN", "VLRDEVPLN", "VLRFLXPLN", "VLRMRGBRTPLN", "VRBUNTSUGPLN", "VLRVRBPLN", "VLRCMVPCOPLN", "VLRCMVCMPPLN")
 
 
 class OtimizadorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model=models.Otimizador
-        fields=("DATREF", "CODEFILEPD", "CODFILFAT", "CODPRD",
-                "VLRVBA", "VLRVBADIS", "VLRVBAINP", "VLRVBACAL", "VLRVBADEM")
+        model = models.Otimizador
+        fields = ("DATREF", "CODEFILEPD", "CODFILFAT", "CODPRD",
+                  "VLRVBA", "VLRVBADIS", "VLRVBAINP", "VLRVBACAL", "VLRVBADEM")

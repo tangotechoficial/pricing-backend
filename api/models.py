@@ -10,10 +10,10 @@ class Fornecedor(models.Model):
     class Meta:
         db_table = "fornecedor"
 
-    CODDIVFRN = models.IntegerField(primary_key=True)
-    DESDIVFRN = models.CharField(max_length=45)
-    CODGRPECOFRN = models.IntegerField()
-    NOMGRPECOFRN = models.CharField(max_length=45)
+    CODFRN = models.IntegerField(primary_key=True)
+    NOMFRN = models.CharField(max_length=45)
+    CODGRPFRN = models.IntegerField()
+    NOMGRPFRN = models.CharField(max_length=45)
 
 class Comprador(models.Model):
     """
@@ -32,23 +32,6 @@ class Comprador(models.Model):
     CODDRTCLLATU = models.IntegerField()
     DESDRTCLLATU = models.CharField(max_length=45)
 
-class TabAuxGrp(models.Model):
-    """
-    
-    Model for table TAB_AUX_GRP
-    """
-
-    class Meta:
-        db_table = "tab_aux_grp"
-
-    Id_Aux = models.IntegerField(primary_key=True)
-    CODCLSMER = models.IntegerField()
-    DESCLSMER = models.CharField(max_length=45)
-    CODFMLMER = models.IntegerField()
-    DESGRPMER = models.CharField(max_length=45)
-    CODGRPMER = models.IntegerField()
-    DESGRPMER = models.CharField(max_length=45)
-    Linha_de_negocio = models.CharField(max_length=45)
 
 class RelacionamentoFilialRegiao(models.Model):
     """
@@ -62,9 +45,8 @@ class RelacionamentoFilialRegiao(models.Model):
     NOMFILEPD = models.CharField(max_length=45)
     CODFILFAT = models.IntegerField()
     NOMFILFAT = models.CharField(max_length=45)
-    CODESTUNI = models.CharField(max_length=2)
-    NOMESTUNI = models.CharField(max_length=45)
     TIPEDEREG = models.IntegerField()
+    CODESTUNI = models.CharField(max_length=2)
     CODEDEREG = models.IntegerField()
 
 
@@ -77,13 +59,30 @@ class Mercadoria(models.Model):
         db_table = "mercadoria"
 
     CODMER = models.IntegerField(primary_key=True)
-    Id_Aux = models.ManyToManyField(TabAuxGrp)
     DESMER = models.CharField(max_length=45)
     CODFRNPCPMER = models.ForeignKey(Fornecedor, on_delete=models.DO_NOTHING)
     CODCPRATU = models.ForeignKey(Comprador, on_delete=models.DO_NOTHING)
     CODGRPMERSMR = models.IntegerField()
     DESGRPMERSMR = models.CharField(max_length=45)
     CLFCRVABCMER = models.CharField(max_length=1)
+
+class TabAuxGrp(models.Model):
+    """
+    
+    Model for table TAB_AUX_GRP
+    """
+
+    class Meta:
+        db_table = "tab_aux_grp"
+
+    Id_Aux = models.IntegerField(primary_key=True)
+    CODMER = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
+    CODCLSMER = models.IntegerField()
+    DESCLSMER = models.CharField(max_length=45)
+    CODFMLMER = models.IntegerField()
+    DESGRPMER = models.CharField(max_length=45)
+    CODGRPMER = models.IntegerField()
+    DESGRPMER = models.CharField(max_length=45)
 
 class Representante(models.Model):
     """
@@ -105,7 +104,7 @@ class Vendas(models.Model):
     class Meta:
         db_table = 'vendas'
 
-    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
+    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING, db_column="CODMER")
     CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     CODFILFAT = models.IntegerField()
     CODESTCLI = models.CharField(max_length=2)
@@ -132,6 +131,7 @@ class Vendas(models.Model):
 class VerbaeBC(models.Model):
     """
     Model for table VERBA_E_BC
+
     """
 
     class Meta:
@@ -140,7 +140,7 @@ class VerbaeBC(models.Model):
     CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
     CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     CODFILFAT = models.IntegerField()
-    CODECLI = models.IntegerField()
+    CODCLI = models.IntegerField()
     CODESTCLI = models.IntegerField()
     NUMANOMESDIA = models.DateTimeField()
     QDEITEPED = models.IntegerField()
@@ -179,9 +179,9 @@ class Elasticidade(models.Model):
     CLFCRVABCMER = models.CharField(max_length=1) 
     CODGRPMERSMR = models.IntegerField()
     DESGRPMERSMR = models.CharField(max_length=45)
-    # DESFMLMER
-    # DESCLSMER
-    # DESDIVCMP
+    DESFMLMER = models.IntegerField()
+    DESFMLMER = models.CharField(max_length=45)
+    DESDIVCMP = models.CharField(max_length=45)
     # DESDRTCLLATU
 
 class Estoque(models.Model):
@@ -199,22 +199,12 @@ class Estoque(models.Model):
     NOMDIASMN = models.DateTimeField()
     NOMMESANO = models.DateTimeField()
     NOMSMSANO = models.DateTimeField()
-    NOMABVMESANO = models.CharField(max_length=45)
     VLRUNTCSTSCO = models.DecimalField(decimal_places=2, max_digits=10)
     QDEITEETQ = models.IntegerField()
     VLRVNDPDAFLTETQ = models.DecimalField(decimal_places=2, max_digits=10)
     VLRCSTCMPIDL = models.DecimalField(decimal_places=2, max_digits=10)
     VLRMEDPCOCMP = models.DecimalField(decimal_places=2, max_digits=10)
     CODSTAPRDETQ = models.IntegerField()
-
-    """
-    verificar?
-    Verificar
-    mrt.T0112963.CODFILEMP
-    mrt.T0112863.DESABVFILEMP
-    mrt.T0112963.CODFILEMP
-
-    """
 
 class Competitividade(models.Model):
     """
@@ -225,7 +215,7 @@ class Competitividade(models.Model):
         db_table = 'competitividade'
 
     CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
-    COCODIDTCUR = models.IntegerField(primary_key=True)
+    CODIDTCUR = models.IntegerField(primary_key=True)
     CODESTUNI = models.CharField(max_length=2)
     CODESTUNIORI = models.CharField(max_length=2)
     CODESTUNIDSN = models.CharField(max_length=2)
@@ -251,7 +241,7 @@ class DadosMestre_Verba(models.Model):
         db_table = "verba_disponivel"
 
     CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
-    CODSMLPCO = models.CharField(max_length=150)
+    CODSMLPCO = models.IntegerField()
     CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     DATREF = models.DateTimeField()
     VLRSLDPCOMESANT = models.DecimalField(decimal_places=2, max_digits=10)
@@ -259,7 +249,7 @@ class DadosMestre_Verba(models.Model):
     VLRDBTPCO = models.DecimalField(decimal_places=2, max_digits=10)
     VLRSLDMRGMESANT = models.DecimalField(decimal_places=2, max_digits=10)
     VLRCRDMRG = models.DecimalField(decimal_places=2, max_digits=10)
-    VLRCRDMRG = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRDBTMRG = models.DecimalField(decimal_places=2, max_digits=10)
 
 class DadosMestre_VerbaCSV(models.Model):
     import_date = models.DateTimeField(auto_now=True)
@@ -295,7 +285,6 @@ class DadosMestre_ComposicaoPreco(models.Model):
     
     """
     codereg = verificar
-    mb_calculada = que cálculo é esse?
 
     """
 
@@ -312,8 +301,8 @@ class DiretrizesEstrategica(models.Model):
     class Meta:
         db_table = "diretriz_estrategica"
 
-    CODESTUNI = models.CharField(max_length=3)
-    CODDIVFRN = models.IntegerField()
+    CODESTUNI = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
+    CODDIVFRN = models.ForeignKey(Fornecedor, on_delete=models.DO_NOTHING)
     DATREFPOD = models.DateTimeField()
     NOMMES = models.DateTimeField() 
     NOMSMS = models.DateTimeField() 
@@ -328,22 +317,14 @@ class DiretrizesEstrategica(models.Model):
     VLRMRGCRB = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRMRGBRT = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     NOMCPR = models.CharField(max_length=45)
-    CODFIL = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
-    """
-    os seis campos estão iguais a TAB_AUX_GRP
-    """
+    CODFIL = models.IntegerField()
     CODCLSMER = models.IntegerField()
     DESCLSMER = models.CharField(max_length=45)
     CODFMLMER = models.IntegerField()
     DESGRPMER = models.CharField(max_length=45)
     CODGRPMER = models.IntegerField()
     DESGRPMER = models.CharField(max_length=45)
-    """
-    três campos abaixo estão relacionados a fornecedor
-    """
-    DESDIVFRN = models.CharField(max_length=45)
-    CODGRPECOFRN = models.IntegerField()
-    NOMGRPECOFRN = models.CharField(max_length=45)
+
 
 
 class DiretrizesEstrategicaCSV(models.Model):
