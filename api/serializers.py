@@ -76,7 +76,7 @@ class ElasticidadeSerializer(serializers.HyperlinkedModelSerializer):
 class EstoqueSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Estoque
-        fields = "CODPRD", "CODFILEPD", "DATREF", "NUMSMNANO", "NOMDIASMN", "NOMMESANO", "NOMSMSANO", "NOMABVMESANO", "VLRUNTCSTSCO", "QDEITEETQ", "VLRVNDPDAFLTETQ", "VLRCSTCMPIDL", "VLRMEDPCOCMP", "CODSTAPRDETQ")
+        fields = ("CODPRD", "CODFILEPD", "DATREF", "NUMSMNANO", "NOMDIASMN", "NOMMESANO", "NOMSMSANO", "NOMABVMESANO", "VLRUNTCSTSCO", "QDEITEETQ", "VLRVNDPDAFLTETQ", "VLRCSTCMPIDL", "VLRMEDPCOCMP", "CODSTAPRDETQ")
 
 
 class CompetitividadeSerializer(serializers.HyperlinkedModelSerializer):
