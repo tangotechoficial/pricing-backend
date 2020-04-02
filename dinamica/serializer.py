@@ -67,7 +67,7 @@ class CONDICAOSEQSerializer(serializers.ModelSerializer):
 class CAMADASerializer(serializers.ModelSerializer):
     class Meta:
         model = CAMADA
-        fields = ['Cod_Camada', 'Nome_Camada', 'TIPO_BASE_VENDAS', 'condicaos']
+        fields = ['Cod_Camada', 'Nome_Camada', 'TIPO_BASE_VENDAS']
 
 class CAMADACONDSerializer(serializers.ModelSerializer):
     condicaos = serializers.SerializerMethodField()
