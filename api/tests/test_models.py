@@ -157,7 +157,6 @@ class MercadoriaTest(TestCase):
             DESPRD='teste',
             CODDIVFRN=fornecedor,
             CODCPRATU=comprador,
-            CODFIL=filial,
             CODSML=1,
             dessml='teste',
             ABC='1'
@@ -207,7 +206,6 @@ class DadosMestreVerba(TestCase):
             DESPRD='teste',
             CODDIVFRN=fornecedor,
             CODCPRATU=comprador,
-            CODFIL=filial,
             CODSML=1,
             dessml='teste',
             ABC='1'
@@ -265,7 +263,6 @@ class DadosMestreComposicaoPrecoTest(TestCase):
             DESPRD='teste',
             CODDIVFRN=fornecedor,
             CODCPRATU=comprador,
-            CODFIL=filial,
             CODSML=1,
             dessml='teste',
             ABC='1'
@@ -318,11 +315,10 @@ class PlanoDeCompras(TestCase):
         )
         mercadoria = models.Mercadoria.objects.create(
             CODPRD=1,
-            # Id_Aux = instance.grupo.set(grupo),
+            # Id_Aux = ,
             DESPRD='teste',
             CODDIVFRN=fornecedor,
             CODCPRATU=comprador,
-            CODFIL=filial,
             CODSML=1,
             dessml='teste',
             ABC='1'
@@ -382,7 +378,6 @@ class ElasticidadeTest(TestCase):
             DESPRD='teste',
             CODDIVFRN=fornecedor,
             CODCPRATU=comprador,
-            CODFIL=filial,
             CODSML=1,
             dessml='teste',
             ABC='1'
@@ -443,7 +438,6 @@ class EstoqueTest(TestCase):
             DESPRD='teste',
             CODDIVFRN=fornecedor,
             CODCPRATU=comprador,
-            CODFIL=filial,
             CODSML=1,
             dessml='teste',
             ABC='1'
@@ -514,7 +508,6 @@ class CompetitividadeTest(TestCase):
             DESPRD='teste',
             CODDIVFRN=fornecedor,
             CODCPRATU=comprador,
-            CODFIL=filial,
             CODSML=1,
             dessml='teste',
             ABC='1'
@@ -596,7 +589,6 @@ class VendasTest(TestCase):
             DESPRD='teste',
             CODDIVFRN=fornecedor,
             CODCPRATU=comprador,
-            CODFIL=filial,
             CODSML=1,
             dessml='teste',
             ABC='1'
@@ -676,7 +668,6 @@ class VerbaeBCTest(TestCase):
             DESPRD='teste',
             CODDIVFRN=fornecedor,
             CODCPRATU=comprador,
-            CODFIL=filial,
             CODSML=1,
             dessml='teste',
             ABC='1'
@@ -799,7 +790,6 @@ class OtimizadorTest(TestCase):
             DESPRD='teste',
             CODDIVFRN=fornecedor,
             CODCPRATU=comprador,
-            CODFIL=filial,
             CODSML=1,
             dessml='teste',
             ABC='1'
