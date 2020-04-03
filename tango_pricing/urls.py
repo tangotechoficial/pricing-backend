@@ -36,5 +36,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^docs/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/', include('api.urls')),
-    path('api/', include('dinamica.urls'))
+    path('api/', include('dinamica.urls')),
+    path('api/', include('pricing_parsing.urls'))
 ]

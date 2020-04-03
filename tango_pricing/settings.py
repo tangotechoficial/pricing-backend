@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     'api',
-    'dinamica'
+    'dinamica',
+    'pricing_parsing'
 ]
 
 MIDDLEWARE = [
@@ -96,9 +97,17 @@ DATABASES = {
     'auth_db': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'usersdb.sqlite3',
+    },
+    'pricing_data_parsing': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('PARSING_DB_NAME', default='postgres'),
+        'USER': config('PARSING_DB_USER', default='postgres'),
+        'PASSWORD': config('PARSING_DB_PASSWORD', default='pass'),
+        'HOST': config('PARSING_DB_HOST', default='localhost'),
+        'PORT': config('PARSING_DB_PORT', default=5432),
     }
 }
-DATABASE_ROUTERS = ['api.authrouter.AuthRouter']
+DATABASE_ROUTERS = ['api.authrouter.AuthRouter', 'pricing_parsing.parsingrouter.ParsingRouter']
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
