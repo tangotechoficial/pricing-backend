@@ -47,7 +47,7 @@ class RelacionamentoFilialRegiao(models.Model):
     NOMFILFAT = models.CharField(max_length=45)
     TIPEDEREG = models.IntegerField()
     CODESTUNI = models.CharField(max_length=2)
-    CODEDEREG = models.IntegerField()
+    CODEDEREG = models.IntegerField()        
 
 
 class Mercadoria(models.Model):
@@ -80,7 +80,7 @@ class TabAuxGrp(models.Model):
     CODCLSMER = models.IntegerField()
     DESCLSMER = models.CharField(max_length=45)
     CODFMLMER = models.IntegerField()
-    DESGRPMER = models.CharField(max_length=45)
+    DESFMLMER = models.CharField(max_length=45)
     CODGRPMER = models.IntegerField()
     DESGRPMER = models.CharField(max_length=45)
 
@@ -180,7 +180,7 @@ class Elasticidade(models.Model):
     CODGRPMERSMR = models.IntegerField()
     DESGRPMERSMR = models.CharField(max_length=45)
     DESFMLMER = models.IntegerField()
-    DESFMLMER = models.CharField(max_length=45)
+    DESCLSMER = models.CharField(max_length=45)
     DESDIVCMP = models.CharField(max_length=45)
     # DESDRTCLLATU
 
@@ -323,7 +323,7 @@ class DiretrizesEstrategica(models.Model):
     CODFMLMER = models.IntegerField()
     DESGRPMER = models.CharField(max_length=45)
     CODGRPMER = models.IntegerField()
-    DESGRPMER = models.CharField(max_length=45)
+    DESFMLMER = models.CharField(max_length=45)
 
 
 
@@ -360,7 +360,6 @@ class PlanoCompras(models.Model):
     VLRCMVPCOATU = models.DecimalField(decimal_places=2, max_digits=10)
     VLRCMVCMPATU = models.CharField(max_length=10)
     VOLVNDPLN = models.DecimalField(decimal_places=2, max_digits=10)
-    MRGBRTPEROCD = models.DecimalField(decimal_places=2, max_digits=10)
     VLRPCOPLN = models.DecimalField(decimal_places=2, max_digits=10)
     VLRPCOBASEPLN = models.DecimalField(decimal_places=2, max_digits=10)
     VLRIMPTOTPLN = models.DecimalField(decimal_places=2, max_digits=10)
