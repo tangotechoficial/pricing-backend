@@ -247,3 +247,7 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+#mac problems
+.DS_Store
+api/.DS_Store

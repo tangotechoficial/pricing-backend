@@ -164,14 +164,14 @@ class DiretrizesEstrategicaCSVViewSet(viewsets.ModelViewSet):
 
 class PlanoComprasViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    API endpoint that allows PlanoCompras to be viewed or edited.
     """
     queryset = models.PlanoCompras.objects.all()
     serializer_class = serializers.PlanoComprasSerializer
 
 class OtimizadorViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    API endpoint that allows Otimizador to be viewed or edited.
     """
     queryset = models.Otimizador.objects.all()
     serializer_class = serializers.OtimizadorSerializer
