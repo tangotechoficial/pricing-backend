@@ -1,132 +1,103 @@
 from django.db import models
 
+class Camada(models.Model):
+    cod_camada = models.CharField(primary_key=True, max_length=10)
+    nome_camada = models.CharField(max_length=50)
+    tipo_base_vendas = models.CharField(max_length=1)
+
+    class Meta:
+        managed = False
+        db_table = 'CAMADA'
+
+
 class Campo(models.Model):
-    Cod_Campo = models.CharField(db_column='cod_campo', primary_key=True, max_length=10)  # Field name made lowercase.
-    Nome_Campo = models.CharField(db_column='nome_campo', unique=True, max_length=50)  # Field name made lowercase.
+    cod_campo = models.CharField(primary_key=True, max_length=10)
+    nome_campo = models.CharField(unique=True, max_length=50)
 
     class Meta:
         managed = False
         db_table = 'CAMPO'
 
-class SEQ_CAMPO(models.Model):
-    Cod_Campo = models.CharField(max_length=10, primary_key=True)
-    Nome_Campo = models.CharField(max_length=50, unique=True)
 
-    def __str__(self):
-        return self.Nome_Campo
+class CampoSequencia(models.Model):
+    cod_campo = models.OneToOneField(Campo, models.DO_NOTHING, db_column='cod_campo', primary_key=True)
+    cod_sequencia = models.ForeignKey('Sequencia', models.DO_NOTHING, db_column='cod_sequencia')
 
-class SEQUENCIA(models.Model):
-    Cod_Sequencia = models.CharField(max_length=10, primary_key=True)
-    Nome_Sequencia = models.CharField(max_length=50, unique=True)
-    campos = models.ManyToManyField(SEQ_CAMPO)
+    class Meta:
+        managed = False
+        db_table = 'CAMPO_SEQUENCIA'
+        unique_together = (('cod_campo', 'cod_sequencia'),)
 
-    def __str__(self):
-        return self.Nome_Sequencia
 
-class SEQ_AUX(models.Model):
-    Cod_Sequencia = models.ForeignKey(SEQUENCIA, on_delete=models.CASCADE)
-    Cod_Campo = models.ForeignKey(SEQ_CAMPO, on_delete=models.CASCADE)
+class ChaveContas(models.Model):
+    cod_chavecontas = models.CharField(primary_key=True, max_length=10)
+    desc_chavecontas = models.CharField(unique=True, max_length=50)
 
-class CHAVE_CONTAS(models.Model):
-    Cod_ChaveContas = models.CharField(max_length=10, primary_key=True)
-    Desc_ChaveContas = models.CharField(max_length=50)
+    class Meta:
+        managed = False
+        db_table = 'CHAVE_CONTAS'
 
-    def __str__(self):
-        return self.Desc_ChaveContas
 
-class TIPOVALOR(models.Model):
-    Cod_TipoValor = models.CharField(max_length=10, primary_key=True)
-    Desc_TipoValor = models.CharField(max_length=50)
+class Condicao(models.Model):
+    cod_condicao = models.CharField(primary_key=True, max_length=10)
+    desc_condicao = models.CharField(max_length=30)
+    cod_camada = models.ForeignKey(Camada, models.DO_NOTHING, db_column='cod_camada')
+    cod_chavecontas = models.ForeignKey(ChaveContas, models.DO_NOTHING, db_column='cod_chavecontas')
+    cod_tipovalor = models.ForeignKey('TipoValor', models.DO_NOTHING, db_column='cod_tipovalor')
+    escala_qtde = models.IntegerField()
+    pos_neg = models.CharField(max_length=1)
+    tip_base_vendas = models.CharField(max_length=1)
+    mandatoria = models.IntegerField()
+    estatistica = models.IntegerField()
 
-    def __str__(self):
-        return self.Desc_TipoValor
+    class Meta:
+        managed = False
+        db_table = 'CONDICAO'
 
-class CAMADA(models.Model):
-    Cod_Camada = models.CharField(max_length=10, primary_key=True)
-    Nome_Camada = models.CharField(max_length=50)
-    TIPO_BASE_VENDAS = models.CharField(max_length=1)
 
-    def __str__(self):
-        return self.Nome_Camada
+class CondicaoCamadaEsquema(models.Model):
+    cod_esquema_calculo = models.CharField(primary_key=True, max_length=10)
+    cod_condicao = models.CharField(max_length=10)
+    cod_camada = models.CharField(max_length=10)
 
-class CONDICAO(models.Model):
-    Cod_Condicao = models.CharField(max_length=10, primary_key=True)
-    Desc_Condicao = models.CharField(max_length=50)
-    Cod_Camada = models.ForeignKey(CAMADA, on_delete=models.CASCADE)
-    Cod_ChaveContas = models.ForeignKey(CHAVE_CONTAS, on_delete=models.CASCADE)
-    Cod_TipoValor = models.ForeignKey(TIPOVALOR, on_delete=models.CASCADE)
-    Escala_Qtde = models.IntegerField()
-    POS_NEG = models.CharField(max_length=1)
-    TIP_BASE_VENDAS = models.CharField(max_length=1)
-    MANDATORIA = models.IntegerField()  
-    ESTATISTICA = models.IntegerField()
-    sequencias = models.ManyToManyField(SEQUENCIA)
-    value = models.TextField(null=True)
+    class Meta:
+        managed = False
+        db_table = 'CONDICAO_CAMADA_ESQUEMA'
+        unique_together = (('cod_esquema_calculo', 'cod_condicao', 'cod_camada'),)
 
-    def __str__(self):
-        return self.Desc_Condicao
 
-class CONDICAO_SEQUENCIA(models.Model):
-    Cod_Condicao = models.ForeignKey(CONDICAO, on_delete=models.CASCADE)
-    Cod_Sequencia = models.ForeignKey(SEQUENCIA, on_delete=models.CASCADE)
+class EsquemaDeCalculo(models.Model):
+    cod_esquema_calculo = models.CharField(primary_key=True, max_length=10)
+    tipo_base_vendas = models.CharField(max_length=1)
 
-class ESQUEMA_DE_CALCULO(models.Model):
-    Cod_Esquema_Calculo = models.CharField(max_length=10, primary_key=True)
-    TIP_BASE_VENDAS = models.CharField(max_length=1)
+    class Meta:
+        managed = False
+        db_table = 'ESQUEMA_DE_CALCULO'
 
-class PRECO(models.Model):
-    Chave = models.IntegerField()
-    Data = models.DateTimeField()
-    Cod_Esquema_Calculo = models.ForeignKey(ESQUEMA_DE_CALCULO, on_delete=models.CASCADE)
-    Valor = models.FloatField()
-    Tipo_Base_Venda = models.CharField(max_length=1)
 
-class CONDICAO_CAMADA_ESQUEMA(models.Model):
-    Cod_Condicao = models.ForeignKey(CONDICAO, on_delete=models.CASCADE)
-    Cod_Camada = models.ForeignKey(CAMADA, on_delete=models.CASCADE)
-    Cod_Esquema_Calculo = models.ForeignKey(ESQUEMA_DE_CALCULO, on_delete=models.CASCADE)
+class Sequencia(models.Model):
+    cod_sequencia = models.CharField(primary_key=True, max_length=10)
+    nome_sequencia = models.CharField(unique=True, max_length=50)
 
-class MERCADORIA(models.Model):
-    DESTIPCRT = models.CharField(max_length=3)
-    CODPRD = models.CharField(max_length=10)
-    DESPRD = models.CharField(max_length=50)
-    CODGRPPRD = models.CharField(max_length=10)
-    CODCLSPRD = models.CharField(max_length=10)
-    DESCLSPRD = models.CharField(max_length=50)
-    CODSUBCTGPRD = models.CharField(max_length=5)
-    DESSUBCTGPRD = models.CharField(max_length=50)
-    CODSMR = models.IntegerField()
-    DESSMR = models.CharField(max_length=50)
+    class Meta:
+        managed = False
+        db_table = 'SEQUENCIA'
 
-class ESTADO(models.Model):
-    Cod_Estado = models.CharField(max_length=2, primary_key=True)
-    Desc_Estado = models.CharField(max_length=50)
 
-class FILIAL(models.Model):
-    Cod_Filial = models.IntegerField()
-    Desc_Filial = models.CharField(max_length=50)
-    Cod_Faturamento = models.CharField(max_length=10)
-    Cod_Estado = models.ForeignKey(ESTADO, on_delete=models.CASCADE)
+class SequenciaCondicao(models.Model):
+    cod_sequencia = models.OneToOneField(Sequencia, models.DO_NOTHING, db_column='cod_sequencia', primary_key=True)
+    cod_condicao = models.ForeignKey(Condicao, models.DO_NOTHING, db_column='cod_condicao')
 
-class FATURAMENTO(models.Model):
-    Cod_Faturamento = models.CharField(max_length=10, primary_key=True)
-    Desc_Faturamento = models.CharField(max_length=50)
-    Cod_Filial = models.ForeignKey(FILIAL, on_delete=models.CASCADE)
+    class Meta:
+        managed = False
+        db_table = 'SEQUENCIA_CONDICAO'
+        unique_together = (('cod_sequencia', 'cod_condicao'),)
 
-class REGION(models.Model):
-    Cod_Region = models.CharField(max_length=10, primary_key=True)
-    Tipo_Region = models.CharField(max_length=50)
-    Cod_Estado = models.ForeignKey(ESTADO, on_delete=models.CASCADE)
 
-class FILIAL_MERCADORIA(models.Model):
-    Cod_Filial_Mercadoria = models.CharField(max_length=20, primary_key=True)
-    Cod_Filial = models.ForeignKey(FILIAL, on_delete=models.CASCADE)
-    Cod_Faturamento = models.ForeignKey(FATURAMENTO, on_delete=models.CASCADE)
-    Cod_Estado = models.ForeignKey(ESTADO, on_delete=models.CASCADE)
-    Cod_Region = models.ForeignKey(REGION, on_delete=models.CASCADE)
-    Tipo_Region = models.IntegerField()
-    id_Mercadoria = models.ForeignKey(MERCADORIA, on_delete=models.CASCADE)
+class TipoValor(models.Model):
+    cod_tipovalor = models.CharField(primary_key=True, max_length=10)
+    desc_tipovalor = models.CharField(unique=True, max_length=50)
 
-class ESQUEMA_FILIAL_MERCADORIA(models.Model):
-    Cod_Esquema_Calculo = models.ForeignKey(ESQUEMA_DE_CALCULO, on_delete=models.CASCADE)
-    Cod_Filial_Mercadoria = models.ForeignKey(FILIAL_MERCADORIA, on_delete=models.CASCADE)
+    class Meta:
+        managed = False
+        db_table = 'TIPO_VALOR'

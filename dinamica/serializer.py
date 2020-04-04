@@ -1,31 +1,51 @@
-from .models import Campo, SEQ_CAMPO, SEQUENCIA, SEQ_AUX, CHAVE_CONTAS, TIPOVALOR, CAMADA, CONDICAO, CONDICAO_SEQUENCIA, ESQUEMA_DE_CALCULO, PRECO, CONDICAO_CAMADA_ESQUEMA, MERCADORIA, FILIAL, FATURAMENTO, ESTADO, REGION
+from .models import Campo, Sequencia, TipoValor, ChaveContas, Camada, Condicao, EsquemaDeCalculo
 from rest_framework import serializers
-
-class SEQ_CAMPOSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SEQ_CAMPO
-        fields = '__all__'
 
 class CampoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Campo
         fields = '__all__'
 
-class SEQUENCIASerializer(serializers.ModelSerializer):
+class SequenciaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SEQUENCIA
+        model = Sequencia
         fields = '__all__'
 
-class SEQUENCIACAMPOSerializer(serializers.ModelSerializer):
+class TipoValorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoValor
+        fields = '__all__'
+
+class ChaveContasSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ChaveContas
+        fields = '__all__'
+
+class CamadaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Camada
+        fields = '__all__'
+
+class CondicaoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Condicao
+        fields = '__all__'
+
+class EsquemaDeCalculoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EsquemaDeCalculo
+        fields = '__all__'
+
+""" class SEQUENCIACAMPOSerializer(serializers.ModelSerializer):
     campos = serializers.SerializerMethodField()
 
     class Meta:
-        model = SEQUENCIA
+        model = Sequencia
         fields = '__all__'
 
     def get_campos(self, obj):
-        campos = SEQ_CAMPO.objects.filter(sequencia=obj)
-        return SEQ_CAMPOSerializer(campos, many=True).data
+        campos = Campo.objects.filter(sequencia=obj)
+        return CampoSerializer(campos, many=True).data
 
 class SEQ_AUXSerializer(serializers.ModelSerializer):
     class Meta:
@@ -128,4 +148,4 @@ class ESTADOSerializer(serializers.ModelSerializer):
 class REGIONSerializer(serializers.ModelSerializer):
     class Meta:
         model = REGION
-        fields = '__all__'
+        fields = '__all__' """

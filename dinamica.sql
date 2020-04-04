@@ -39,10 +39,40 @@ CREATE TABLE test."CAMADA" (
    TIPO_BASE_VENDAS VARCHAR(1) not null
 );
 
+DROP TABLE IF EXISTS test.CONDICAO;
+CREATE TABLE test."CONDICAO" (
+   Cod_Condicao VARCHAR(10) PRIMARY KEY,
+   Desc_Condicao VARCHAR(30) NOT NULL,
+   Cod_Camada VARCHAR(10) references test."CAMADA"(cod_camada) NOT NULL,
+   Cod_ChaveContas VARCHAR(10) references test."CHAVE_CONTAS"(cod_chavecontas) NOT NULL,
+   Cod_TipoValor VARCHAR(10) references test."TIPO_VALOR"(cod_tipovalor) NOT NULL,
+   Escala_Qtde INTEGER NOT NULL,
+   POS_NEG CHAR(1) NOT NULL,
+   TIP_BASE_VENDAS CHAR(1) NOT NULL,
+   MANDATORIA INTEGER NOT NULL,
+   ESTATISTICA INTEGER NOT NULL
+);
 
+DROP TABLE IF EXISTS test.CAMPO_SEQUENCIA;
+CREATE TABLE test."SEQUENCIA_CONDICAO" (
+   Cod_Sequencia VARCHAR(10) references test."SEQUENCIA"(Cod_Sequencia),
+   Cod_Condicao VARCHAR(10) references test."CONDICAO"(Cod_Condicao),
+   primary key (Cod_Sequencia, Cod_Condicao)
+);
 
+DROP TABLE IF EXISTS test.ESQUEMA_DE_CALCULO;
+CREATE TABLE test."ESQUEMA_DE_CALCULO" (
+   Cod_Esquema_Calculo VARCHAR(10) PRIMARY KEY,
+   TIPO_BASE_VENDAS VARCHAR(1) not null
+);
 
-
+DROP TABLE IF EXISTS test.CONDICAO_CAMADA_ESQUEMA;
+CREATE TABLE test."CONDICAO_CAMADA_ESQUEMA" (
+   Cod_Esquema_Calculo VARCHAR(10),
+   Cod_Condicao VARCHAR(10) NOT NULL,
+   Cod_Camada VARCHAR(10) NOT NULL,
+   primary key (Cod_Esquema_Calculo, Cod_Condicao, Cod_Camada)
+);
 
 INSERT INTO test."CAMPO" (cod_campo, nome_campo) VALUES('CP000', 'CODTERCHV');
 INSERT INTO test."CAMPO" (cod_campo, nome_campo) VALUES('CP001', 'CODCNL');
@@ -55,14 +85,19 @@ INSERT INTO test."CHAVE_CONTAS" (cod_chavecontas, desc_chavecontas) VALUES('CC00
 INSERT INTO test."TIPO_VALOR" (cod_tipovalor, desc_tipovalor) VALUES('TV000', 'PERCENTUAL');
 INSERT INTO test."TIPO_VALOR" (cod_tipovalor, desc_tipovalor) VALUES('TV001', 'VALOR');
 INSERT INTO test."TIPO_VALOR" (cod_tipovalor, desc_tipovalor) VALUES('TV002', 'CALCULADO');
-INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CC000', 'CMV', 'B');
-INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CC001', 'MARGEM', 'B');
-INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CC002', 'VERBA', 'B');
-INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CC003', 'OPERACIONAL', 'B');
-INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CC004', 'REGULATORIO', 'B');
-INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CC006', 'ADICIONAL', 'B');
-INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CC007', 'PRECO_BASE', 'V');
-INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CC008', 'MARGEM', 'V');
-INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CC009', 'OPERACIONAL', 'V');
-INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CC010', 'FINANCEIRO', 'V');
-INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CC011', 'DESCONTO', 'V');
+INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA000', 'CMV', 'B');
+INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA001', 'MARGEM', 'B');
+INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA002', 'VERBA', 'B');
+INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA003', 'OPERACIONAL', 'B');
+INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA004', 'REGULATORIO', 'B');
+INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA006', 'ADICIONAL', 'B');
+INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA007', 'PRECO_BASE', 'V');
+INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA008', 'MARGEM', 'V');
+INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA009', 'OPERACIONAL', 'V');
+INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA010', 'FINANCEIRO', 'V');
+INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA011', 'DESCONTO', 'V');
+INSERT INTO test."CONDICAO" (cod_condicao, desc_condicao, cod_camada, cod_chavecontas, cod_tipovalor, escala_qtde, pos_neg, tip_base_vendas, mandatoria, estatistica) VALUES('CO000', 'MARGEM_CANAL', 'CA001', 'CC001', 'TV001', 0, 'P', 'V', 0, 0);
+INSERT INTO test."ESQUEMA_DE_CALCULO" (cod_esquema_calculo, tipo_base_vendas) VALUES('EC000', 'B');
+INSERT INTO test."ESQUEMA_DE_CALCULO" (cod_esquema_calculo, tipo_base_vendas) VALUES('EC001', 'V');
+INSERT INTO test."CONDICAO_CAMADA_ESQUEMA" (cod_esquema_calculo, cod_condicao, cod_camada) VALUES('EC001', 'CO000', 'CA001');
+
