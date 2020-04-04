@@ -1,4 +1,13 @@
 from django.db import models
+
+class Campo(models.Model):
+    Cod_Campo = models.CharField(db_column='cod_campo', primary_key=True, max_length=10)  # Field name made lowercase.
+    Nome_Campo = models.CharField(db_column='nome_campo', unique=True, max_length=50)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'CAMPO'
+
 class SEQ_CAMPO(models.Model):
     Cod_Campo = models.CharField(max_length=10, primary_key=True)
     Nome_Campo = models.CharField(max_length=50, unique=True)

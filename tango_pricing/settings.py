@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False ,cast=bool)
+DEBUG = config('DEBUG', default=True ,cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -98,16 +98,19 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'usersdb.sqlite3',
     },
-    'pricing_data_parsing': {
+    'pricing_analitica2': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('PARSING_DB_NAME', default='postgres'),
-        'USER': config('PARSING_DB_USER', default='postgres'),
-        'PASSWORD': config('PARSING_DB_PASSWORD', default='pass'),
-        'HOST': config('PARSING_DB_HOST', default='localhost'),
-        'PORT': config('PARSING_DB_PORT', default=5432),
-    }
+        'NAME': config('DB_NAME', default='postgres'),
+        'USER': config('DB_USER', default='postgres'),
+        'PASSWORD': config('DB_PASSWORD', default='devpass'),
+        'HOST': config('DB_HOST', default='db'),
+        'PORT': config('DB_PORT', default=5432),
+        'OPTIONS': {
+            'options': '-c search_path=test'
+        },
+    },
 }
-DATABASE_ROUTERS = ['api.authrouter.AuthRouter', 'pricing_parsing.parsingrouter.ParsingRouter']
+DATABASE_ROUTERS = ['api.authrouter.AuthRouter', 'pricing_parsing.parsingrouter.ParsingRouter', 'dinamica.dinamicarouter.DinamicaRouter']
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (

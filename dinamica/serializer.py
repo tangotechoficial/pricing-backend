@@ -1,9 +1,14 @@
-from .models import SEQ_CAMPO, SEQUENCIA, SEQ_AUX, CHAVE_CONTAS, TIPOVALOR, CAMADA, CONDICAO, CONDICAO_SEQUENCIA, ESQUEMA_DE_CALCULO, PRECO, CONDICAO_CAMADA_ESQUEMA, MERCADORIA, FILIAL, FATURAMENTO, ESTADO, REGION
+from .models import Campo, SEQ_CAMPO, SEQUENCIA, SEQ_AUX, CHAVE_CONTAS, TIPOVALOR, CAMADA, CONDICAO, CONDICAO_SEQUENCIA, ESQUEMA_DE_CALCULO, PRECO, CONDICAO_CAMADA_ESQUEMA, MERCADORIA, FILIAL, FATURAMENTO, ESTADO, REGION
 from rest_framework import serializers
 
 class SEQ_CAMPOSerializer(serializers.ModelSerializer):
     class Meta:
         model = SEQ_CAMPO
+        fields = '__all__'
+
+class CampoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Campo
         fields = '__all__'
 
 class SEQUENCIASerializer(serializers.ModelSerializer):

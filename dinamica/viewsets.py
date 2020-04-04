@@ -2,8 +2,8 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from .models import SEQ_CAMPO, SEQUENCIA, SEQ_AUX, CHAVE_CONTAS, TIPOVALOR, CAMADA, CONDICAO, CONDICAO_SEQUENCIA, ESQUEMA_DE_CALCULO, PRECO, CONDICAO_CAMADA_ESQUEMA, MERCADORIA, FILIAL, FATURAMENTO, ESTADO, REGION
-from .serializer import SEQ_CAMPOSerializer, SEQUENCIASerializer, SEQ_AUXSerializer, CHAVE_CONTASSerializer, TIPOVALORSerializer, CAMADASerializer, CONDICAOSerializer, CONDICAO_SEQUENCIASerializer, ESQUEMA_DE_CALCULOSerializer, PRECOSerializer, CONDICAO_CAMADA_ESQUEMASerializer, MERCADORIASerializer, FILIALSerializer, FATURAMENTOSerializer, ESTADOSerializer, REGIONSerializer, CONDICAOSEQSerializer, SEQUENCIACAMPOSerializer, CAMADACONDSerializer
+from .models import Campo, SEQ_CAMPO, SEQUENCIA, SEQ_AUX, CHAVE_CONTAS, TIPOVALOR, CAMADA, CONDICAO, CONDICAO_SEQUENCIA, ESQUEMA_DE_CALCULO, PRECO, CONDICAO_CAMADA_ESQUEMA, MERCADORIA, FILIAL, FATURAMENTO, ESTADO, REGION
+from .serializer import CampoSerializer, SEQ_CAMPOSerializer, SEQUENCIASerializer, SEQ_AUXSerializer, CHAVE_CONTASSerializer, TIPOVALORSerializer, CAMADASerializer, CONDICAOSerializer, CONDICAO_SEQUENCIASerializer, ESQUEMA_DE_CALCULOSerializer, PRECOSerializer, CONDICAO_CAMADA_ESQUEMASerializer, MERCADORIASerializer, FILIALSerializer, FATURAMENTOSerializer, ESTADOSerializer, REGIONSerializer, CONDICAOSEQSerializer, SEQUENCIACAMPOSerializer, CAMADACONDSerializer
 
 
 class SEQ_CAMPOViewSet(viewsets.ModelViewSet):
@@ -17,6 +17,21 @@ class SEQ_CAMPOViewSet(viewsets.ModelViewSet):
         url_name='last',
     )
     def get_last_seqcampo(self, request, *args, **kwargs):
+        last_pk = self.queryset.all().last().pk
+        self.kwargs.update(pk=last_pk)
+        return self.retrieve(request, *args, **kwargs)
+
+class CampoViewSet(viewsets.ModelViewSet):
+    queryset = Campo.objects.all()
+    serializer_class = CampoSerializer
+
+    @action(
+        methods=['get'],
+        detail=False,
+        url_path='last',
+        url_name='last',
+    )
+    def get_last_campo(self, request, *args, **kwargs):
         last_pk = self.queryset.all().last().pk
         self.kwargs.update(pk=last_pk)
         return self.retrieve(request, *args, **kwargs)
