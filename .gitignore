@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 #ignore any sqlitedb
-#*.sqlite3
+*.sqlite3
 
 # Distribution / packaging
 .Python
