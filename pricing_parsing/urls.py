@@ -5,6 +5,7 @@ from . import views
 
 router = routers.SimpleRouter()
 
+router.register('BasePreco', views.BasePrecoViewSet)
 router.register('movplncmpcal', views.MovplncmpcalViewSet)
 
 urlpatterns = router.urls
