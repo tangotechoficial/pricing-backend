@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .viewsets import CampoViewSet, SequenciaViewSet, TipoValorViewSet, ChaveContasViewSet, CamadaViewSet, CondicaoViewSet, EsquemaDeCalculoViewSet, CondicaoCamadaEsquemaViewSet
+from .viewsets import CampoViewSet, SequenciaViewSet, TipoValorViewSet, ChaveContasViewSet, CamadaViewSet, CondicaoViewSet, EsquemaDeCalculoViewSet, CondicaoCamadaEsquemaViewSet, SequenciaCondicaoViewSet
 
 router = routers.SimpleRouter()
 router.register('campo', CampoViewSet)
@@ -10,5 +10,6 @@ router.register('camada', CamadaViewSet)
 router.register('condicao', CondicaoViewSet)
 router.register('esquemadecalculo', EsquemaDeCalculoViewSet)
 router.register('condicaocamadaesquema', CondicaoCamadaEsquemaViewSet)
+router.register('sequenciacondicao', SequenciaCondicaoViewSet)
 
 urlpatterns = router.urls

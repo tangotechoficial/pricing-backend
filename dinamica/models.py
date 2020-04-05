@@ -20,13 +20,13 @@ class Campo(models.Model):
 
 
 class CampoSequencia(models.Model):
-    cod_campo = models.OneToOneField(Campo, models.DO_NOTHING, db_column='cod_campo', primary_key=True)
-    cod_sequencia = models.ForeignKey('Sequencia', models.DO_NOTHING, db_column='cod_sequencia')
+    id = models.CharField(primary_key=True, max_length=20)
+    cod_campo = models.ForeignKey(Campo, models.DO_NOTHING, db_column='cod_campo', blank=True, null=True)
+    cod_sequencia = models.ForeignKey('Sequencia', models.DO_NOTHING, db_column='cod_sequencia', blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'CAMPO_SEQUENCIA'
-        unique_together = (('cod_campo', 'cod_sequencia'),)
 
 
 class ChaveContas(models.Model):
@@ -56,14 +56,14 @@ class Condicao(models.Model):
 
 
 class CondicaoCamadaEsquema(models.Model):
-    cod_esquema_calculo = models.CharField(primary_key=True, max_length=10)
+    id = models.CharField(primary_key=True, max_length=30)
+    cod_esquema_calculo = models.CharField(max_length=10, blank=True, null=True)
     cod_condicao = models.CharField(max_length=10)
     cod_camada = models.CharField(max_length=10)
 
     class Meta:
         managed = False
         db_table = 'CONDICAO_CAMADA_ESQUEMA'
-        unique_together = (('cod_esquema_calculo', 'cod_condicao', 'cod_camada'),)
 
 
 class EsquemaDeCalculo(models.Model):
@@ -85,13 +85,13 @@ class Sequencia(models.Model):
 
 
 class SequenciaCondicao(models.Model):
-    cod_sequencia = models.OneToOneField(Sequencia, models.DO_NOTHING, db_column='cod_sequencia', primary_key=True)
+    id = models.CharField(primary_key=True, max_length=20)
+    cod_sequencia = models.ForeignKey(Sequencia, models.DO_NOTHING, db_column='cod_sequencia')
     cod_condicao = models.ForeignKey(Condicao, models.DO_NOTHING, db_column='cod_condicao')
 
     class Meta:
         managed = False
         db_table = 'SEQUENCIA_CONDICAO'
-        unique_together = (('cod_sequencia', 'cod_condicao'),)
 
 
 class TipoValor(models.Model):

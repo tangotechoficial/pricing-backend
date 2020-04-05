@@ -28,6 +28,10 @@ class SequenciaSerializer(serializers.ModelSerializer):
             vals.append(campo)
         return CampoSerializer(vals, many=True).data
 
+class SequenciaCondicaoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SequenciaCondicao
+        fields = '__all__'
 
 class TipoValorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -53,11 +57,11 @@ class CondicaoSerializer(serializers.ModelSerializer):
 
     def get_sequencias(self, obj):
         vals = []
-        campossequencia = SequenciaCondicao.objects.filter(cod_sequencia=obj.cod_sequencia)
-        for c in campossequencia:
-            campo = Sequencia.objects.get(cod_campo=c.cod_campo_id)
-            vals.append(campo)
-        return CampoSerializer(vals, many=True).data
+        sequenciascondicao = SequenciaCondicao.objects.filter(cod_condicao=obj.cod_condicao)
+        for s in sequenciascondicao:
+            sequencia = Sequencia.objects.get(cod_sequencia=s.cod_sequencia_id)
+            vals.append(sequencia)
+        return SequenciaSerializer(vals, many=True).data
 
 class EsquemaDeCalculoSerializer(serializers.ModelSerializer):
     class Meta:
