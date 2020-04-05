@@ -301,8 +301,8 @@ class DiretrizesEstrategica(models.Model):
     class Meta:
         db_table = "diretriz_estrategica"
 
-    CODESTUNI = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
-    CODDIVFRN = models.ForeignKey(Fornecedor, on_delete=models.DO_NOTHING)
+    CODESTUNI = models.CharField(max_length=2)
+    CODDIVFRN = models.IntegerField()
     DATREFPOD = models.DateTimeField()
     NOMMES = models.DateTimeField() 
     NOMSMS = models.DateTimeField() 
