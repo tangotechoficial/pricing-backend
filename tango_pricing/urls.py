@@ -37,5 +37,5 @@ urlpatterns = [
     url(r'^docs/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/analitica/', include('api.urls')),
     path('api/dinamica/', include('dinamica.urls')),
-    path('api/pricing_parsing/', include('pricing_parsing.urls'))
+    path('api/pricing_parsing/', include('pricing_parsing.urls')),
 ]

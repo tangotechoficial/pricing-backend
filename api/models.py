@@ -105,7 +105,7 @@ class Vendas(models.Model):
         db_table = 'vendas'
 
     CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING, db_column="CODMER")
-    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
+    CODFILEPD = models.IntegerField()
     CODFILFAT = models.IntegerField()
     CODESTCLI = models.CharField(max_length=2)
     CODREPCMC = models.ForeignKey(Representante, on_delete=models.DO_NOTHING)
@@ -240,9 +240,9 @@ class DadosMestre_Verba(models.Model):
     class Meta:
         db_table = "verba_disponivel"
 
-    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
+    CODPRD = models.IntegerField()
     CODSMLPCO = models.IntegerField()
-    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
+    CODFILEPD = models.IntegerField()
     DATREF = models.DateTimeField()
     VLRSLDPCOMESANT = models.DecimalField(decimal_places=2, max_digits=10)
     VLRCRDPCO = models.DecimalField(decimal_places=2, max_digits=10)
