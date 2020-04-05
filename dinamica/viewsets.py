@@ -2,8 +2,8 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from .models import Campo, Sequencia, Camada, TipoValor, ChaveContas, Condicao, EsquemaDeCalculo
-from .serializer import CampoSerializer, SequenciaSerializer, CamadaSerializer, TipoValorSerializer, ChaveContasSerializer, CondicaoSerializer, EsquemaDeCalculoSerializer
+from .models import Campo, Sequencia, Camada, TipoValor, ChaveContas, Condicao, EsquemaDeCalculo, CondicaoCamadaEsquema
+from .serializer import CampoSerializer, SequenciaSerializer, CamadaSerializer, TipoValorSerializer, ChaveContasSerializer, CondicaoSerializer, EsquemaDeCalculoSerializer, CondicaoCamadaEsquemaSerializer
 
 
 """ class SEQ_CAMPOViewSet(viewsets.ModelViewSet):
@@ -84,6 +84,9 @@ class EsquemaDeCalculoViewSet(viewsets.ModelViewSet):
     queryset = EsquemaDeCalculo.objects.all()
     serializer_class = EsquemaDeCalculoSerializer
 
+class CondicaoCamadaEsquemaViewSet(viewsets.ModelViewSet):
+    queryset = CondicaoCamadaEsquema.objects.all()
+    serializer_class = CondicaoCamadaEsquemaSerializer
 """
 class CAMADACONDViewSet(viewsets.ModelViewSet):
     queryset = CAMADA.objects.all()

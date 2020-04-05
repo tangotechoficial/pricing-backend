@@ -1,15 +1,33 @@
-from .models import Campo, Sequencia, TipoValor, ChaveContas, Camada, Condicao, EsquemaDeCalculo
+from .models import Campo, Sequencia, CampoSequencia, TipoValor, ChaveContas, Camada, Condicao, SequenciaCondicao, EsquemaDeCalculo, CondicaoCamadaEsquema
 from rest_framework import serializers
+from pprint import pprint
+## pprint(vars(OBJ))
 
 class CampoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Campo
         fields = '__all__'
 
+class CampoSequenciaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CampoSequencia
+        fields = '__all__'
+
 class SequenciaSerializer(serializers.ModelSerializer):
+    campos = serializers.SerializerMethodField()
+
     class Meta:
         model = Sequencia
         fields = '__all__'
+    
+    def get_campos(self, obj):
+        vals = []
+        campossequencia = CampoSequencia.objects.filter(cod_sequencia=obj.cod_sequencia)
+        for c in campossequencia:
+            campo = Campo.objects.get(cod_campo=c.cod_campo_id)
+            vals.append(campo)
+        return CampoSerializer(vals, many=True).data
+
 
 class TipoValorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,13 +45,28 @@ class CamadaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CondicaoSerializer(serializers.ModelSerializer):
+    sequencias = serializers.SerializerMethodField()
+
     class Meta:
         model = Condicao
         fields = '__all__'
 
+    def get_sequencias(self, obj):
+        vals = []
+        campossequencia = SequenciaCondicao.objects.filter(cod_sequencia=obj.cod_sequencia)
+        for c in campossequencia:
+            campo = Sequencia.objects.get(cod_campo=c.cod_campo_id)
+            vals.append(campo)
+        return CampoSerializer(vals, many=True).data
+
 class EsquemaDeCalculoSerializer(serializers.ModelSerializer):
     class Meta:
         model = EsquemaDeCalculo
+        fields = '__all__'
+
+class CondicaoCamadaEsquemaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CondicaoCamadaEsquema
         fields = '__all__'
 
 """ class SEQUENCIACAMPOSerializer(serializers.ModelSerializer):
