@@ -15,9 +15,9 @@ CREATE TABLE test."SEQUENCIA" (
 
 DROP TABLE IF EXISTS test.CAMPO_SEQUENCIA;
 CREATE TABLE test."CAMPO_SEQUENCIA" (
+   id VARCHAR(20) unique primary key,
    Cod_Campo VARCHAR(10) references test."CAMPO"(Cod_Campo),
-   Cod_Sequencia VARCHAR(10) references test."SEQUENCIA"(Cod_Sequencia),
-   primary key (Cod_Campo, Cod_Sequencia)
+   Cod_Sequencia VARCHAR(10) references test."SEQUENCIA"(Cod_Sequencia)
 );
 
 DROP TABLE IF EXISTS test.CHAVE_CONTAS;
@@ -53,11 +53,11 @@ CREATE TABLE test."CONDICAO" (
    ESTATISTICA INTEGER NOT NULL
 );
 
-DROP TABLE IF EXISTS test.CAMPO_SEQUENCIA;
+DROP TABLE IF EXISTS test.SEQUENCIA_CONDICAO;
 CREATE TABLE test."SEQUENCIA_CONDICAO" (
+   id VARCHAR(20) unique primary key,
    Cod_Sequencia VARCHAR(10) references test."SEQUENCIA"(Cod_Sequencia),
-   Cod_Condicao VARCHAR(10) references test."CONDICAO"(Cod_Condicao),
-   primary key (Cod_Sequencia, Cod_Condicao)
+   Cod_Condicao VARCHAR(10) references test."CONDICAO"(Cod_Condicao)
 );
 
 DROP TABLE IF EXISTS test.ESQUEMA_DE_CALCULO;
@@ -68,17 +68,17 @@ CREATE TABLE test."ESQUEMA_DE_CALCULO" (
 
 DROP TABLE IF EXISTS test.CONDICAO_CAMADA_ESQUEMA;
 CREATE TABLE test."CONDICAO_CAMADA_ESQUEMA" (
-   Cod_Esquema_Calculo VARCHAR(10),
-   Cod_Condicao VARCHAR(10) NOT NULL,
-   Cod_Camada VARCHAR(10) NOT NULL,
-   primary key (Cod_Esquema_Calculo, Cod_Condicao, Cod_Camada)
+   id VARCHAR(30) unique primary key,
+   Cod_Esquema_Calculo VARCHAR(10) NOT null references test."ESQUEMA_DE_CALCULO"(Cod_Esquema_Calculo),
+   Cod_Condicao VARCHAR(10) NOT null references test."CONDICAO"(Cod_Condicao),
+   Cod_Camada VARCHAR(10) NOT null references test."CAMADA"(Cod_Camada)
 );
 
 INSERT INTO test."CAMPO" (cod_campo, nome_campo) VALUES('CP000', 'CODTERCHV');
 INSERT INTO test."CAMPO" (cod_campo, nome_campo) VALUES('CP001', 'CODCNL');
 INSERT INTO test."SEQUENCIA" (cod_sequencia, nome_sequencia) VALUES('SQ000', 'CODTERCHV/CODCNL');
-INSERT INTO test."CAMPO_SEQUENCIA" (cod_campo, cod_sequencia) VALUES('CP000', 'SQ000');
-INSERT INTO test."CAMPO_SEQUENCIA" (cod_campo, cod_sequencia) VALUES('CP001', 'SQ000');
+INSERT INTO test."CAMPO_SEQUENCIA" (id, cod_campo, cod_sequencia) VALUES('SQ000CP000', 'CP000', 'SQ000');
+INSERT INTO test."CAMPO_SEQUENCIA" (id, cod_campo, cod_sequencia) VALUES('SQ000CP001', 'CP001', 'SQ000');
 INSERT INTO test."CHAVE_CONTAS" (cod_chavecontas, desc_chavecontas) VALUES('CC000', 'Chave 1');
 INSERT INTO test."CHAVE_CONTAS" (cod_chavecontas, desc_chavecontas) VALUES('CC001', 'Chave 2');
 INSERT INTO test."CHAVE_CONTAS" (cod_chavecontas, desc_chavecontas) VALUES('CC002', 'Chave 3');
@@ -97,7 +97,8 @@ INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA
 INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA010', 'FINANCEIRO', 'V');
 INSERT INTO test."CAMADA" (cod_camada, nome_camada, tipo_base_vendas) VALUES('CA011', 'DESCONTO', 'V');
 INSERT INTO test."CONDICAO" (cod_condicao, desc_condicao, cod_camada, cod_chavecontas, cod_tipovalor, escala_qtde, pos_neg, tip_base_vendas, mandatoria, estatistica) VALUES('CO000', 'MARGEM_CANAL', 'CA001', 'CC001', 'TV001', 0, 'P', 'V', 0, 0);
+INSERT INTO test."SEQUENCIA_CONDICAO" (id, cod_sequencia, cod_condicao) VALUES('CO000SQ000', 'SQ000', 'CO000');
 INSERT INTO test."ESQUEMA_DE_CALCULO" (cod_esquema_calculo, tipo_base_vendas) VALUES('EC000', 'B');
 INSERT INTO test."ESQUEMA_DE_CALCULO" (cod_esquema_calculo, tipo_base_vendas) VALUES('EC001', 'V');
-INSERT INTO test."CONDICAO_CAMADA_ESQUEMA" (cod_esquema_calculo, cod_condicao, cod_camada) VALUES('EC001', 'CO000', 'CA001');
+INSERT INTO test."CONDICAO_CAMADA_ESQUEMA" (id, cod_esquema_calculo, cod_condicao, cod_camada) VALUES('EC001CO000CA001', 'EC001', 'CO000', 'CA001');
 
