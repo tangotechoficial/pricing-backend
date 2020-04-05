@@ -821,7 +821,24 @@ class OtimizadorTest(TestCase):
             VLRVBADIS = 1.0,
             VLRVBAINP = 1.0,
             VLRVBACAL = 1.0,
-            VLRVBADEM = 1.0
+            VLRVBADEM = 1.0,
+            VLRCSTMERVND = 0.0,
+            CODESTUNI = 'SP',
+            VLRMRGBRTCAL = 0.0,
+            VLRMRGBRTOCD = 0.0,
+            VLRMRGBRTRLZ = 0.0,
+            VLRRCTLIQAPUCAL = 0.0,
+            VLRRCTLIQAPUOCD = 0.0,
+            VLRRCTLIQAPURLZ = 0.0,
+            VLRCMVCAL = 0.0,
+            VLRMCDCAL = 0.0,
+            VLRMCDOCD = 0.0,
+            VLRPCOBSECAL = 0.0,
+            VLRPCOBSEOCD = 0.0,
+            VLRPCOBSEMER = 0.0,
+            VLRVNDLIQOCD = 0.0,
+            VLRVNDLIQCAL = 0.0,
+            VLRVNDLIQRLZ = 0.0,
 
         )
         self.assertTrue(isinstance(otimizador, models.Otimizador))
