@@ -170,7 +170,7 @@ class Elasticidade(models.Model):
     class Meta:
         db_table = 'elasticidade'
 
-    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
+    CODPRD = models.IntegerField()
     CODESTUNI = models.CharField(max_length=2)
     CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
     CODFILFAT = models.IntegerField()
@@ -240,9 +240,9 @@ class DadosMestre_Verba(models.Model):
     class Meta:
         db_table = "verba_disponivel"
 
-    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
+    CODPRD = models.IntegerField()
     CODSMLPCO = models.IntegerField()
-    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
+    CODFILEPD = models.IntegerField()
     DATREF = models.DateTimeField()
     VLRSLDPCOMESANT = models.DecimalField(decimal_places=2, max_digits=10)
     VLRCRDPCO = models.DecimalField(decimal_places=2, max_digits=10)
@@ -301,8 +301,8 @@ class DiretrizesEstrategica(models.Model):
     class Meta:
         db_table = "diretriz_estrategica"
 
-    CODESTUNI = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
-    CODDIVFRN = models.ForeignKey(Fornecedor, on_delete=models.DO_NOTHING)
+    CODESTUNI = models.CharField(max_length=2)
+    CODDIVFRN = models.IntegerField()
     DATREFPOD = models.DateTimeField()
     NOMMES = models.DateTimeField() 
     NOMSMS = models.DateTimeField() 
@@ -337,7 +337,7 @@ class PlanoCompras(models.Model):
         db_table = "planocompras"
 
     CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
-    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
+    CODFILEPD = models.CharField(max_length=2)
     CODFILFAT = models.IntegerField()
     CODESTUNI = models.CharField(max_length=2)
     MONTH = models.CharField(max_length=10)

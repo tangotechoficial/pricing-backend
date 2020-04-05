@@ -19,6 +19,7 @@ from django.conf.urls import url
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 
 schema_view = get_schema_view(
@@ -32,10 +33,14 @@ schema_view = get_schema_view(
 )
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^docs/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/analitica/', include('api.urls')),
     path('api/dinamica/', include('dinamica.urls')),
-    path('api/pricing_parsing/', include('pricing_parsing.urls'))
+    path('api/pricing_parsing/', include('pricing_parsing.urls')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^login/', obtain_jwt_token),
+    url(r'^api-token-refresh/', refresh_jwt_token)
 ]
