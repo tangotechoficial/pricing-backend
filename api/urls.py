@@ -25,7 +25,7 @@ router.register(r'planocompras', views.PlanoComprasViewSet)
 router.register(r'otimizador', views.OtimizadorViewSet)
 router.register(r'planejado', views.PlanejadoViewSet, basename='planejado')
 router.register(r'sugerido', views.SugeridoViewSet, basename='sugerido')
-
+router.register(r'optimizer', views.OptimizerViewSet, basename='optimizer')
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [

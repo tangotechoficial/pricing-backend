@@ -12,6 +12,7 @@ from pricing_parsing.models import Movplncmpcal
 from .utils import parse_csv_model
 from data_scripts.plano_compras_planejado import run_planejado
 from data_scripts.plano_compras_sugerido import run_sugerido
+from data_scripts.otimizador_disponivel import run_disp
 
 class FornecedorViewSet(viewsets.ModelViewSet):
     """
@@ -260,3 +261,20 @@ class SugeridoViewSet(viewsets.ViewSet):
         estados = request.data.get('estados', ['MG', 'SC', 'PA'])
         run_sugerido(plan_month=2, plan_year=2020, filepd=1, filfat=1, estados=estados)
         return Response({'status': 'Sugerido calculado com sucesso'})
+
+class OptimizerViewSet(viewsets.ViewSet):
+    """
+    API endpoint that returns Otimizador
+    """
+    serializer_class = serializers.OptimizerSerializer
+    def create(self, request):
+        date = datetime(2020, 2, 14)
+        verba_disp = request.data.get('verba_disp')
+        grpprd = request.data.get('grpprd')
+        ctg = request.data.get('ctg')
+        subctg = request.data.get('subctg')
+        divfrn = request.data.get('divfrn')
+        print(verba_disp)
+        test = run_disp(process_date=date, verba_disp=verba_disp, grpprd=43, ctg=3, subctg=1, divfrn=7480)
+
+        print(test)
