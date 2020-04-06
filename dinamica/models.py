@@ -101,3 +101,88 @@ class TipoValor(models.Model):
     class Meta:
         managed = False
         db_table = 'TIPO_VALOR'
+
+class FilialExpedicao(models.Model):
+    codfilemp = models.IntegerField(primary_key=True)
+    desfilemp = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'FILIAL_EXPEDICAO'
+
+class FilialFaturamento(models.Model):
+    codfilempfat = models.IntegerField(primary_key=True)
+    desfilempfat = models.CharField(max_length=50, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'FILIAL_FATURAMENTO'
+
+class Estado(models.Model):
+    codestuni = models.CharField(primary_key=True, max_length=2)
+    desestuni = models.CharField(max_length=20, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'ESTADO'
+
+class Regiao(models.Model):
+    codedereg = models.IntegerField(primary_key=True)
+    codestuni = models.ForeignKey(Estado, models.DO_NOTHING, db_column='codestuni', blank=True, null=True)
+    tipedereg = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'REGIAO'
+
+class Mercadoria(models.Model):
+    codprd = models.IntegerField(primary_key=True)
+    desprd = models.CharField(max_length=50, blank=True, null=True)
+    coddrtcllatu = models.IntegerField()
+    desdrtcllatu = models.CharField(max_length=50, blank=True, null=True)
+    codgrpprd = models.IntegerField()
+    desgrpprd = models.CharField(max_length=50, blank=True, null=True)
+    codclsprd = models.IntegerField()
+    desclsprd = models.CharField(max_length=50, blank=True, null=True)
+    codsubctgprd = models.IntegerField()
+    dessubctgprd = models.CharField(max_length=50, blank=True, null=True)
+    codsmr = models.IntegerField()
+    dessmr = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'MERCADORIA'
+
+class ChavePrecificao(models.Model):
+    id = models.CharField(primary_key=True, max_length=20)
+    codmer = models.ForeignKey('Mercadoria', models.DO_NOTHING, db_column='codmer', blank=True, null=True)
+    codfilemp = models.ForeignKey('FilialExpedicao', models.DO_NOTHING, db_column='codfilemp', blank=True, null=True)
+    codfilempfat = models.ForeignKey('FilialFaturamento', models.DO_NOTHING, db_column='codfilempfat', blank=True, null=True)
+    tipedereg = models.IntegerField(blank=True, null=True)
+    codedereg = models.ForeignKey('Regiao', models.DO_NOTHING, db_column='codedereg', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'CHAVE_PRECIFICAO'
+
+class Preco(models.Model):
+    id = models.IntegerField(primary_key=True)
+    cod_esquema_calculo = models.ForeignKey(EsquemaDeCalculo, models.DO_NOTHING, db_column='cod_esquema_calculo', blank=True, null=True)
+    tipo_base_vendas = models.CharField(max_length=1)
+    datainicio = models.DateField(blank=True, null=True)
+    valor = models.FloatField(blank=True, null=True)
+    chave = models.ForeignKey(ChavePrecificao, models.DO_NOTHING, db_column='chave', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'PRECO'
+
+class CodterchvCodcnl(models.Model):
+    id = models.CharField(primary_key=True, max_length=20)
+    codterchv = models.CharField(max_length=10)
+    codcnl = models.CharField(max_length=10)
+    permrgadicnlvnd = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'CODTERCHV_CODCNL'

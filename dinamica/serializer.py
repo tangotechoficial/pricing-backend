@@ -1,4 +1,4 @@
-from .models import Campo, Sequencia, CampoSequencia, TipoValor, ChaveContas, Camada, Condicao, SequenciaCondicao, EsquemaDeCalculo, CondicaoCamadaEsquema
+from .models import Campo, Sequencia, CampoSequencia, TipoValor, ChaveContas, Camada, Condicao, SequenciaCondicao, EsquemaDeCalculo, CondicaoCamadaEsquema, FilialExpedicao, FilialFaturamento, Estado, Regiao, Mercadoria, ChavePrecificao, Preco, CodterchvCodcnl
 from rest_framework import serializers
 from pprint import pprint
 ## pprint(vars(OBJ))
@@ -73,116 +73,63 @@ class CondicaoCamadaEsquemaSerializer(serializers.ModelSerializer):
         model = CondicaoCamadaEsquema
         fields = '__all__'
 
-""" class SEQUENCIACAMPOSerializer(serializers.ModelSerializer):
-    campos = serializers.SerializerMethodField()
-
+class FilialExpedicaoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Sequencia
+        model = FilialExpedicao
         fields = '__all__'
 
-    def get_campos(self, obj):
-        campos = Campo.objects.filter(sequencia=obj)
-        return CampoSerializer(campos, many=True).data
-
-class SEQ_AUXSerializer(serializers.ModelSerializer):
+class FilialFaturamentoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SEQ_AUX
+        model = FilialFaturamento
         fields = '__all__'
 
-class CHAVE_CONTASSerializer(serializers.ModelSerializer):
+class EstadoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CHAVE_CONTAS
+        model = Estado
         fields = '__all__'
 
-class TIPOVALORSerializer(serializers.ModelSerializer):
+class RegiaoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TIPOVALOR
+        model = Regiao
         fields = '__all__'
 
-class CONDICAOSerializer(serializers.ModelSerializer):
+class MercadoriaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CONDICAO
+        model = Mercadoria
         fields = '__all__'
 
-class CONDICAOSEQSerializer(serializers.ModelSerializer):
-    sequencias = serializers.SerializerMethodField()
-    chavecontas = serializers.SerializerMethodField()
-    tipovalor = serializers.SerializerMethodField()
-
+class ChavePrecificaoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CONDICAO
+        model = ChavePrecificao
         fields = '__all__'
 
-    def get_sequencias(self, obj):
-        sequencias = SEQUENCIA.objects.filter(condicao=obj)
-        return SEQUENCIACAMPOSerializer(sequencias, many=True).data
-    
-    def get_chavecontas(self, obj):
-        chavecontas = CHAVE_CONTAS.objects.filter(condicao=obj)
-        return CHAVE_CONTASSerializer(chavecontas, many=True).data
-    
-    def get_tipovalor(self, obj):
-        tipovalor = TIPOVALOR.objects.filter(condicao=obj)
-        return TIPOVALORSerializer(tipovalor, many=True).data
-
-
-class CAMADASerializer(serializers.ModelSerializer):
+class PrecoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CAMADA
-        fields = ['Cod_Camada', 'Nome_Camada', 'TIPO_BASE_VENDAS']
+        model = Preco
+        fields = '__all__'
 
-class CAMADACONDSerializer(serializers.ModelSerializer):
+class CamadaCondicaoSerializer(serializers.ModelSerializer):
     condicaos = serializers.SerializerMethodField()
-
     class Meta:
-        model = CAMADA
-        fields = ['Cod_Camada', 'Nome_Camada', 'TIPO_BASE_VENDAS', 'condicaos']
+        model = Camada
+        fields = '__all__'
 
     def get_condicaos(self, obj):
-        condicaos = CONDICAO.objects.filter(Cod_Camada=obj.Cod_Camada)
-        return CONDICAOSEQSerializer(condicaos, many=True).data
-    
-class CONDICAO_SEQUENCIASerializer(serializers.ModelSerializer):
+        condicaos = Condicao.objects.filter(cod_camada=obj.cod_camada)
+        return CondicaoSerializer(condicaos, many=True).data
+
+class EsquemaRelationSerializer(serializers.ModelSerializer):
+    camadas = serializers.SerializerMethodField()
+
     class Meta:
-        model = CONDICAO_SEQUENCIA
+        model = EsquemaDeCalculo
         fields = '__all__'
 
-class ESQUEMA_DE_CALCULOSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ESQUEMA_DE_CALCULO
-        fields = '__all__'
+    def get_camadas(self, obj):
+        camadas = Camada.objects.filter(tipo_base_vendas=obj.tipo_base_vendas)
+        return CamadaCondicaoSerializer(camadas, many=True).data
 
-class PRECOSerializer(serializers.ModelSerializer):
+class CodterchvCodcnlSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PRECO
+        model = CodterchvCodcnl
         fields = '__all__'
-
-class CONDICAO_CAMADA_ESQUEMASerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CONDICAO_CAMADA_ESQUEMA
-        fields = '__all__'
-
-class MERCADORIASerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MERCADORIA
-        fields = '__all__'
-
-class FILIALSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FILIAL
-        fields = '__all__'
-
-class FATURAMENTOSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FATURAMENTO
-        fields = '__all__'
-
-class ESTADOSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ESTADO
-        fields = '__all__'
-
-class REGIONSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = REGION
-        fields = '__all__' """
