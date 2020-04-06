@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "connectionTimeout": 3000,
+            "database": "postgres",
+            "dialect": "PostgreSQL",
+            "name": "pgLocal",
+            "password": "devpass",
+            "port": 5432,
+            "server": "localhost",
+            "username": "postgres"
+        }
+    ]
+}

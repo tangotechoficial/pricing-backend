@@ -2,11 +2,11 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from .models import SEQ_CAMPO, SEQUENCIA, SEQ_AUX, CHAVE_CONTAS, TIPOVALOR, CAMADA, CONDICAO, CONDICAO_SEQUENCIA, ESQUEMA_DE_CALCULO, PRECO, CONDICAO_CAMADA_ESQUEMA, MERCADORIA, FILIAL, FATURAMENTO, ESTADO, REGION
-from .serializer import SEQ_CAMPOSerializer, SEQUENCIASerializer, SEQ_AUXSerializer, CHAVE_CONTASSerializer, TIPOVALORSerializer, CAMADASerializer, CONDICAOSerializer, CONDICAO_SEQUENCIASerializer, ESQUEMA_DE_CALCULOSerializer, PRECOSerializer, CONDICAO_CAMADA_ESQUEMASerializer, MERCADORIASerializer, FILIALSerializer, FATURAMENTOSerializer, ESTADOSerializer, REGIONSerializer, CONDICAOSEQSerializer, SEQUENCIACAMPOSerializer, CAMADACONDSerializer
+from .models import Campo, Sequencia, Camada, TipoValor, ChaveContas, Condicao, EsquemaDeCalculo, CondicaoCamadaEsquema, SequenciaCondicao, FilialExpedicao, FilialFaturamento, Regiao, Estado, Mercadoria, ChavePrecificao, Preco, CodterchvCodcnl
+from .serializer import CampoSerializer, SequenciaSerializer, CamadaSerializer, TipoValorSerializer, ChaveContasSerializer, CondicaoSerializer, EsquemaDeCalculoSerializer, CondicaoCamadaEsquemaSerializer, SequenciaCondicaoSerializer, FilialExpedicaoSerializer, FilialFaturamentoSerializer, RegiaoSerializer, EstadoSerializer, MercadoriaSerializer, ChavePrecificaoSerializer, PrecoSerializer, EsquemaRelationSerializer, CodterchvCodcnlSerializer
 
 
-class SEQ_CAMPOViewSet(viewsets.ModelViewSet):
+""" class SEQ_CAMPOViewSet(viewsets.ModelViewSet):
     queryset = SEQ_CAMPO.objects.all()
     serializer_class = SEQ_CAMPOSerializer
 
@@ -19,12 +19,27 @@ class SEQ_CAMPOViewSet(viewsets.ModelViewSet):
     def get_last_seqcampo(self, request, *args, **kwargs):
         last_pk = self.queryset.all().last().pk
         self.kwargs.update(pk=last_pk)
+        return self.retrieve(request, *args, **kwargs) """
+
+class CampoViewSet(viewsets.ModelViewSet):
+    queryset = Campo.objects.all()
+    serializer_class = CampoSerializer
+
+    @action(
+        methods=['get'],
+        detail=False,
+        url_path='last',
+        url_name='last',
+    )
+    def get_last_campo(self, request, *args, **kwargs):
+        last_pk = self.queryset.all().last().pk
+        self.kwargs.update(pk=last_pk)
         return self.retrieve(request, *args, **kwargs)
 
 
-class SEQUENCIAViewSet(viewsets.ModelViewSet):
-    queryset = SEQUENCIA.objects.all()
-    serializer_class = SEQUENCIASerializer
+class SequenciaViewSet(viewsets.ModelViewSet):
+    queryset = Sequencia.objects.all()
+    serializer_class = SequenciaSerializer
 
     @action(
         methods=['get'],
@@ -37,37 +52,22 @@ class SEQUENCIAViewSet(viewsets.ModelViewSet):
         self.kwargs.update(pk=last_pk)
         return self.retrieve(request, *args, **kwargs)
 
-class SEQUENCIACAMPOViewSet(viewsets.ModelViewSet):
-    queryset = SEQUENCIA.objects.all()
-    serializer_class = SEQUENCIACAMPOSerializer
+class ChaveContasViewSet(viewsets.ModelViewSet):
+    queryset = ChaveContas.objects.all()
+    serializer_class = ChaveContasSerializer
 
-class SEQ_AUXViewSet(viewsets.ModelViewSet):
-    queryset = SEQ_AUX.objects.all()
-    serializer_class = SEQ_AUXSerializer
+class TipoValorViewSet(viewsets.ModelViewSet):
+    queryset = TipoValor.objects.all()
+    serializer_class = TipoValorSerializer
 
-class CHAVE_CONTASViewSet(viewsets.ModelViewSet):
-    queryset = CHAVE_CONTAS.objects.all()
-    serializer_class = CHAVE_CONTASSerializer
 
-class TIPOVALORViewSet(viewsets.ModelViewSet):
-    queryset = TIPOVALOR.objects.all()
-    serializer_class = TIPOVALORSerializer
+class CamadaViewSet(viewsets.ModelViewSet):
+    queryset = Camada.objects.all()
+    serializer_class = CamadaSerializer
 
-class CAMADAViewSet(viewsets.ModelViewSet):
-    queryset = CAMADA.objects.all()
-    serializer_class = CAMADASerializer
-
-class CAMADACONDViewSet(viewsets.ModelViewSet):
-    queryset = CAMADA.objects.all()
-    serializer_class = CAMADACONDSerializer
-
-class CONDICAOSEQViewSet(viewsets.ModelViewSet): 
-    queryset = CONDICAO.objects.all()
-    serializer_class = CONDICAOSEQSerializer
-
-class CONDICAOViewSet(viewsets.ModelViewSet):
-    queryset = CONDICAO.objects.all()
-    serializer_class = CONDICAOSerializer
+class CondicaoViewSet(viewsets.ModelViewSet): 
+    queryset = Condicao.objects.all()
+    serializer_class = CondicaoSerializer
 
     @action(
         methods=['get'],
@@ -79,40 +79,51 @@ class CONDICAOViewSet(viewsets.ModelViewSet):
         last_pk = self.queryset.all().last().pk
         self.kwargs.update(pk=last_pk)
         return self.retrieve(request, *args, **kwargs)
-    
 
-class CONDICAO_SEQUENCIAViewSet(viewsets.ModelViewSet):
-    queryset = CONDICAO_SEQUENCIA.objects.all()
-    serializer_class = CONDICAO_SEQUENCIASerializer
+class SequenciaCondicaoViewSet(viewsets.ModelViewSet):
+    queryset = SequenciaCondicao.objects.all()
+    serializer_class = SequenciaCondicaoSerializer
 
-class ESQUEMA_DE_CALCULOViewSet(viewsets.ModelViewSet):
-    queryset = ESQUEMA_DE_CALCULO.objects.all()
-    serializer_class = ESQUEMA_DE_CALCULOSerializer
+class EsquemaDeCalculoViewSet(viewsets.ModelViewSet):
+    queryset = EsquemaDeCalculo.objects.all()
+    serializer_class = EsquemaDeCalculoSerializer
 
-class PRECOViewSet(viewsets.ModelViewSet):
-    queryset = PRECO.objects.all()
-    serializer_class = PRECOSerializer
+class CondicaoCamadaEsquemaViewSet(viewsets.ModelViewSet):
+    queryset = CondicaoCamadaEsquema.objects.all()
+    serializer_class = CondicaoCamadaEsquemaSerializer
 
-class CONDICAO_CAMADA_ESQUEMAViewSet(viewsets.ModelViewSet):
-    queryset = CONDICAO_CAMADA_ESQUEMA.objects.all()
-    serializer_class = CONDICAO_CAMADA_ESQUEMASerializer
+class FilialExpedicaoViewSet(viewsets.ModelViewSet):
+    queryset = FilialExpedicao.objects.all()
+    serializer_class = FilialExpedicaoSerializer
 
-class MERCADORIAViewSet(viewsets.ModelViewSet):
-    queryset = MERCADORIA.objects.all()
-    serializer_class = MERCADORIASerializer
+class FilialFaturamentoViewSet(viewsets.ModelViewSet):
+    queryset = FilialFaturamento.objects.all()
+    serializer_class = FilialFaturamentoSerializer
 
-class FILIALViewSet(viewsets.ModelViewSet):
-    queryset = FILIAL.objects.all()
-    serializer_class = FILIALSerializer
+class RegiaoViewSet(viewsets.ModelViewSet):
+    queryset = Regiao.objects.all()
+    serializer_class = RegiaoSerializer
 
-class FATURAMENTOViewSet(viewsets.ModelViewSet):
-    queryset = FATURAMENTO.objects.all()
-    serializer_class = FATURAMENTOSerializer
+class EstadoViewSet(viewsets.ModelViewSet):
+    queryset = Estado.objects.all()
+    serializer_class = EstadoSerializer
 
-class ESTADOViewSet(viewsets.ModelViewSet):
-    queryset = ESTADO.objects.all()
-    serializer_class = ESTADOSerializer
+class MercadoriaViewSet(viewsets.ModelViewSet):
+    queryset = Mercadoria.objects.all()
+    serializer_class = MercadoriaSerializer
 
-class REGIONViewSet(viewsets.ModelViewSet):
-    queryset = REGION.objects.all()
-    serializer_class = REGIONSerializer
+class ChavePrecificaoViewSet(viewsets.ModelViewSet):
+    queryset = ChavePrecificao.objects.all()
+    serializer_class = ChavePrecificaoSerializer
+
+class PrecoViewSet(viewsets.ModelViewSet):
+    queryset = Preco.objects.all()
+    serializer_class = PrecoSerializer
+
+class EsquemaRelationViewSet(viewsets.ModelViewSet):
+    queryset = EsquemaDeCalculo.objects.all()
+    serializer_class = EsquemaRelationSerializer
+
+class CodterchvCodcnlViewSet(viewsets.ModelViewSet):
+    queryset = CodterchvCodcnl.objects.all()
+    serializer_class = CodterchvCodcnlSerializer  
