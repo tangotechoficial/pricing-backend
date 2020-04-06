@@ -108,11 +108,11 @@ DATABASES = {
     },
     'martins_postgres': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='postgres'),
-        'USER': config('DB_USER', default='postgres'),
-        'PASSWORD': config('DB_PASSWORD', default='devpass'),
-        'HOST': config('DB_HOST', default='db'),
-        'PORT': config('DB_PORT', default=5432),
+        'NAME': 'pricing_analitica2',
+        'USER': 'postgres',
+        'PASSWORD': 'Martins*2020',
+        'HOST': 'pricing-data-parsing.cq8kmgnsewpt.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
         'OPTIONS': {
             'options': '-c search_path=test'
         },

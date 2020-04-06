@@ -11,7 +11,7 @@ services:
     build: .
     environment: 
       - SECRET_KEY="asekretkey"
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:3700
     volumes:
       - .:/code
     ports:
