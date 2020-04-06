@@ -11,7 +11,7 @@ from . import serializers
 from pricing_parsing.models import Movplncmpcal
 from .utils import parse_csv_model
 from data_scripts.plano_compras_planejado import run_planejado
-
+from data_scripts.plano_compras_sugerido import run_sugerido
 
 class FornecedorViewSet(viewsets.ModelViewSet):
     """
@@ -250,3 +250,13 @@ class PlanejadoViewSet(viewsets.ViewSet):
             movplncmpcal.save()
 
         return Response({'status': 'Planejado calculado com sucesso'})
+
+class SugeridoViewSet(viewsets.ViewSet):
+    """
+    API endpoint that adds plano de compras sugerido
+    """
+    serializer_class = serializers.SugeridoSerializer
+    def create(self, request):
+        estados = request.data.get('estados', ['MG', 'SC', 'PA'])
+        run_sugerido(plan_month=2, plan_year=2020, filepd=1, filfat=1, estados=estados)
+        return Response({'status': 'Sugerido calculado com sucesso'})

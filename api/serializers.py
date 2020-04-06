@@ -158,3 +158,10 @@ class PlanejadoSerializer(serializers.Serializer):
     CMVCMP_WEEK3 = serializers.DecimalField(decimal_places=10, max_digits=10)
     CMVCMP_WEEK4 = serializers.DecimalField(decimal_places=10, max_digits=10)
     CMVCMP_WEEK5 = serializers.DecimalField(decimal_places=10, max_digits=10)
+
+class SugeridoSerializer(serializers.Serializer):
+    plan_month = serializers.IntegerField()
+    plan_year = serializers.IntegerField()
+    filepd = serializers.IntegerField()
+    filfat = serializers.IntegerField()
+    estados = serializers.ListField()
