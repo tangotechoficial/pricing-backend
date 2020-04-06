@@ -435,7 +435,6 @@ def calculate_unt_fund(base, nesc, verba_disp, week):
 
             df_nesc['VLRVRBPLN'] = df_nesc['VLRVRBPLNI'] + proposed_fund/df_nesc['QTDOTMI']
 
-
             df_nesc = base_price_composition_opt(df_nesc)
 
             df_nesc = base_price_to_sales_price(df_nesc)

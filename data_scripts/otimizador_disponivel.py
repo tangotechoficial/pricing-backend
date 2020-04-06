@@ -7,12 +7,14 @@ import sqlalchemy
 import boto3
 import io
 
-conn_string = 'postgres://postgres:Martins*2020@pricing-data-parsing.cq8kmgnsewpt.us-east-1.rds.amazonaws.com/pricing_analitica2'
-db = sqlalchemy.create_engine(conn_string)
 
 
 
 def run_disp(process_date, verba_disp, grpprd, ctg, subctg, divfrn, filepd=1, filfat=1):
+    
+    conn_string = 'postgres://postgres:Martins*2020@pricing-data-parsing.cq8kmgnsewpt.us-east-1.rds.amazonaws.com/pricing_analitica2'
+    db = sqlalchemy.create_engine(conn_string)
+
     
     filt = {}
     filt['filepd'] = filepd
@@ -47,7 +49,7 @@ def run_disp(process_date, verba_disp, grpprd, ctg, subctg, divfrn, filepd=1, fi
 
     query_base = '''
                  SELECT   *
-                 FROM     "OUTPUT_OTM"
+                 FROM     "OUTPUT_OTM1"
                  WHERE    "CODFILEPD" = {filepd} AND
                           "CODFILFAT" = {filfat} AND
                           "CODGRPPRD" = {grpprd} AND

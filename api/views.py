@@ -269,12 +269,12 @@ class OptimizerViewSet(viewsets.ViewSet):
     serializer_class = serializers.OptimizerSerializer
     def create(self, request):
         date = datetime(2020, 2, 14)
-        verba_disp = request.data.get('verba_disp')
+        verba_disp = float(request.data.get('verba_disp'))
         grpprd = request.data.get('grpprd')
         ctg = request.data.get('ctg')
         subctg = request.data.get('subctg')
         divfrn = request.data.get('divfrn')
-        print(verba_disp)
-        test = run_disp(process_date=date, verba_disp=verba_disp, grpprd=43, ctg=3, subctg=1, divfrn=7480)
 
-        print(test)
+        otimizado = run_disp(process_date=date, verba_disp=verba_disp, grpprd=grpprd, ctg=ctg, subctg=subctg, divfrn=divfrn)
+        otimizado = otimizado.fillna('')
+        return Response(otimizado.to_dict())
