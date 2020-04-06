@@ -106,7 +106,7 @@ DATABASES = {
         'HOST': config('PARSING_DB_HOST', default='localhost'),
         'PORT': config('PARSING_DB_PORT', default=5432),
     },
-    'martins_postgres': {
+    'martins_postgres':{
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pricing_analitica2',
         'USER': 'postgres',
