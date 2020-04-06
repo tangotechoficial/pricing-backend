@@ -144,3 +144,25 @@ class OtimizadorSerializer(serializers.HyperlinkedModelSerializer):
         model = models.Otimizador
         fields = ("DATREF", "CODEFILEPD", "CODFILFAT", "CODPRD",
                   "VLRVBA", "VLRVBADIS", "VLRVBAINP", "VLRVBACAL", "VLRVBADEM")
+
+class PlanejadoSerializer(serializers.Serializer):
+    CODPRD = serializers.IntegerField()
+    CODFILEPD = serializers.IntegerField()
+    CODFILFAT = serializers.IntegerField()
+    CODESTUNI = serializers.CharField()
+    MONTH = serializers.IntegerField()
+    YEAR = serializers.IntegerField()
+    WEEK = serializers.IntegerField()
+    VOLVNDSUG = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VOLVNDSUGALC = serializers.DecimalField(decimal_places=10, max_digits=10)
+    MRGBRTPEROCD = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VLRICMSPLN = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VLRPISCOFPLN = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VLRDEVPLN = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VLRFLXPLN = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VLRMRGBRTPLN = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VRBUNTSUGPLN = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VLRVRBPLN = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VLRCMVPCOPLN = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VLRCMVCMPPLN = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VLRCOMPPLN = serializers.DecimalField(decimal_places=10, max_digits=10)

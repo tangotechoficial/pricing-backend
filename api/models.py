@@ -374,7 +374,6 @@ class PlanoCompras(models.Model):
     VLRCMVCMPPLN = models.DecimalField(decimal_places=2, max_digits=10)
 
 
-
 class Otimizador(models.Model):
     """
         Model for table Otimizador
