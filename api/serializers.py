@@ -144,3 +144,17 @@ class OtimizadorSerializer(serializers.HyperlinkedModelSerializer):
         model = models.Otimizador
         fields = ("DATREF", "CODEFILEPD", "CODFILFAT", "CODPRD",
                   "VLRVBA", "VLRVBADIS", "VLRVBAINP", "VLRVBACAL", "VLRVBADEM")
+
+class PlanejadoSerializer(serializers.Serializer):
+    CODPRD = serializers.IntegerField()
+    CODESTUNI = serializers.CharField()
+    VERBA_WEEK1 = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VERBA_WEEK2 = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VERBA_WEEK3 = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VERBA_WEEK4 = serializers.DecimalField(decimal_places=10, max_digits=10)
+    VERBA_WEEK5 = serializers.DecimalField(decimal_places=10, max_digits=10)
+    CMVCMP_WEEK1 = serializers.DecimalField(decimal_places=10, max_digits=10)
+    CMVCMP_WEEK2 = serializers.DecimalField(decimal_places=10, max_digits=10)
+    CMVCMP_WEEK3 = serializers.DecimalField(decimal_places=10, max_digits=10)
+    CMVCMP_WEEK4 = serializers.DecimalField(decimal_places=10, max_digits=10)
+    CMVCMP_WEEK5 = serializers.DecimalField(decimal_places=10, max_digits=10)

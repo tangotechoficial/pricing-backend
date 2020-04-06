@@ -3,7 +3,6 @@ from . import models
 from . import serializers
 from . import pagination
 
-
 class BasePrecoViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows BasePreco to be viewed or edited.
