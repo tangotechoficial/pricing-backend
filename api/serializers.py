@@ -165,11 +165,3 @@ class SugeridoSerializer(serializers.Serializer):
     filepd = serializers.IntegerField()
     filfat = serializers.IntegerField()
     estados = serializers.ListField()
-
-
-class OptimizerSerializer(serializers.Serializer):
-    verba_disp = serializers.DecimalField(decimal_places=10, max_digits=10)
-    grpprd = serializers.IntegerField()
-    ctg = serializers.IntegerField()
-    subctg = serializers.IntegerField()
-    divfrn = serializers.IntegerField()
