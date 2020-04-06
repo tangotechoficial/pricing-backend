@@ -1,6 +1,6 @@
 import pandas as pd
-import plano_compras_final
-import functions_planocompras_final as fpc
+from . import plano_compras_final
+from . import functions_planocompras_final as fpc
 import sqlite3
 import sqlalchemy
 import boto3
@@ -72,8 +72,8 @@ def run_sugerido(plan_month, plan_year, filepd=1, filfat=1, estados=['MG','SC','
                 planejado_base, planejado= plano_compras_final.planejado(user_input, sugerido)
                 
                 print('Gravando dados no banco.')
-#                 planejado_base.to_sql(name='MOVPLNCMPCAL', con=db, index=False, if_exists='append')
-#                 planejado.to_sql(name='OUTPUT_PLN', con=db, index=False, if_exists='append')
+                planejado_base.to_sql(name='MOVPLNCMPCAL', con=db, index=False, if_exists='append')
+                planejado.to_sql(name='OUTPUT_PLN', con=db, index=False, if_exists='append')
 
 
             except:
