@@ -3,12 +3,15 @@ from datetime import datetime
 import io
 
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, views
 from rest_framework.response import Response
 
 from . import models
 from . import serializers
+from pricing_parsing.models import Movplncmpcal
 from .utils import parse_csv_model
+from data_scripts.plano_compras_planejado import run_planejado
+from data_scripts.plano_compras_sugerido import run_sugerido
 
 class FornecedorViewSet(viewsets.ModelViewSet):
     """
@@ -175,3 +178,85 @@ class OtimizadorViewSet(viewsets.ModelViewSet):
     """
     queryset = models.Otimizador.objects.all()
     serializer_class = serializers.OtimizadorSerializer
+
+class PlanejadoViewSet(viewsets.ViewSet):
+    """
+    API endpoint that adds plano de compras planejado
+    """
+    serializer_class = serializers.PlanejadoSerializer
+    def create(self, request):
+        """
+        Insert register in plano de compras using data scripts
+        """
+        CODPRD = request.data.get('CODPRD')
+        CODESTUNI = request.data.get('CODESTUNI')
+        user_input = {
+            'VERBA_WEEK1': request.data.get('VERBA_WEEK1'),
+            'VERBA_WEEK2': request.data.get('VERBA_WEEK2'),
+            'VERBA_WEEK3': request.data.get('VERBA_WEEK3'),
+            'VERBA_WEEK4': request.data.get('VERBA_WEEK4'),
+            'VERBA_WEEK5': request.data.get('VERBA_WEEK5'),
+            'CMVCMP_WEEK1': request.data.get('CMVCMP_WEEK1'),
+            'CMVCMP_WEEK2': request.data.get('CMVCMP_WEEK2'),
+            'CMVCMP_WEEK3': request.data.get('CMVCMP_WEEK3'),
+            'CMVCMP_WEEK4': request.data.get('CMVCMP_WEEK4'),
+            'CMVCMP_WEEK5': request.data.get('CMVCMP_WEEK5')
+        }
+        planejado = run_planejado(CODPRD, CODESTUNI, plan_month=2, plan_year=2020, user_input=user_input, filepd=1, filfat=1)
+        planejado = planejado.to_dict()
+        for week in range(0, 5):
+            movplncmpcal = Movplncmpcal()
+            movplncmpcal.codprd = planejado['CODPRD'][week]
+            movplncmpcal.codfilepd = planejado['CODFILEPD'][week]
+            movplncmpcal.codfilfat = planejado['CODFILFAT'][week]
+            movplncmpcal.codestuni = planejado['CODESTUNI'][week]
+            movplncmpcal.month = planejado['MONTH'][week]
+            movplncmpcal.year = planejado['YEAR'][week]
+            movplncmpcal.week = planejado['WEEK'][week]
+            movplncmpcal.volvndsug = planejado['VOLVNDSUG'][week]
+            movplncmpcal.volvndsugalc = planejado['VOLVNDSUGALC'][week]
+            movplncmpcal.mrgbrtperocd = planejado['MRGBRTPEROCD'][week]
+            movplncmpcal.vlrpcosug = planejado['VLRPCOSUG'][week]
+            movplncmpcal.mrgbrtperocd = planejado['MRGBRTPEROCD'][week]
+            movplncmpcal.vlrpcobasesug = planejado['VLRPCOBASESUG'][week]
+            movplncmpcal.vlrimptotsug = planejado['VLRIMPTOTSUG'][week]
+            movplncmpcal.vlricmssug = planejado['VLRICMSSUG'][week]
+            movplncmpcal.vlrpiscofsug = planejado['VLRPISCOFSUG'][week]
+            movplncmpcal.vlrdevsug = planejado['VLRDEVSUG'][week]
+            movplncmpcal.vlrflxsug = planejado['VLRFLXSUG'][week]
+            movplncmpcal.vlrmrgbrtsug = planejado['VLRMRGBRTSUG'][week]
+            movplncmpcal.vrbuntsugsug = planejado['VRBUNTSUGSUG'][week]
+            movplncmpcal.vlrvrbplan = planejado['VLRVRBPLAN'][week]
+            movplncmpcal.vlrcmvpcosug = planejado['VLRCMVPCOSUG'][week]
+            movplncmpcal.vlrcmvpcoatu = planejado['VLRCMVPCOATU'][week]
+            movplncmpcal.vlrcmvcmpatu = planejado['VLRCMVCMPATU'][week]
+            movplncmpcal.vlrpcomrc = planejado['VLRPCOMRC'][week]
+            movplncmpcal.vlrcompsug = planejado['VLRCOMPSUG'][week]
+            movplncmpcal.volvndpln = planejado['VOLVNDPLN'][week]
+            movplncmpcal.vlrpcopln = planejado['VLRPCOPLN'][week]
+            movplncmpcal.vlrpcobasepln = planejado['VLRPCOBASEPLN'][week]
+            movplncmpcal.vlrimptotpln = planejado['VLRIMPTOTPLN'][week]
+            movplncmpcal.vlricmspln = planejado['VLRICMSPLN'][week]
+            movplncmpcal.vlrpiscofpln = planejado['VLRPISCOFPLN'][week]
+            movplncmpcal.vlrdevpln = planejado['VLRDEVPLN'][week]
+            movplncmpcal.vlrflxpln = planejado['VLRFLXPLN'][week]
+            movplncmpcal.vlrmrgbrtpln = planejado['VLRMRGBRTPLN'][week]
+            movplncmpcal.vrbuntsugpln = planejado['VRBUNTSUGPLN'][week]
+            movplncmpcal.vlrvrbpln = planejado['VLRVRBPLN'][week]
+            movplncmpcal.vlrcmvpcopln = planejado['VLRCMVPCOPLN'][week]
+            movplncmpcal.vlrcmvcmppln = planejado['VLRCMVCMPPLN'][week]
+            movplncmpcal.vlrcomppln = planejado['VLRCOMPPLN'][week]
+
+            movplncmpcal.save()
+
+        return Response({'status': 'Planejado calculado com sucesso'})
+
+class SugeridoViewSet(viewsets.ViewSet):
+    """
+    API endpoint that adds plano de compras sugerido
+    """
+    serializer_class = serializers.SugeridoSerializer
+    def create(self, request):
+        estados = request.data.get('estados', ['MG', 'SC', 'PA'])
+        run_sugerido(plan_month=2, plan_year=2020, filepd=1, filfat=1, estados=estados)
+        return Response({'status': 'Sugerido calculado com sucesso'})

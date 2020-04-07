@@ -172,42 +172,10 @@ class DadosMestreVerba(TestCase):
         cria uma instância de dados_mestre_verba
 
         """
-        comprador = models.Comprador.objects.create(
-            CODCPR=1,
-            NOMCPR='teste',
-            CODDIVCMP=1,
-            DESDIVCMP='teste',
-            CODDRTCLLATU=1,
-            DESDRTCLLATU='teste'
-        )
-        fornecedor = models.Fornecedor.objects.create(
-            CODFRN=1,
-            NOMFRN='teste',
-            CODGRPFRN=1,
-            NOMGRPFRN='teste'
-        )
-        mercadoria = models.Mercadoria.objects.create(
-            CODMER=1,
-            DESMER='teste',
-            CODFRNPCPMER=fornecedor,
-            CODCPRATU=comprador,
-            CODGRPMERSMR=1,
-            DESGRPMERSMR='teste',
-            CLFCRVABCMER='1'
-        )
-        filial = models.RelacionamentoFilialRegiao.objects.create(
-            CODFILEPD=1,
-            NOMFILEPD='teste',
-            CODFILFAT=1,
-            NOMFILFAT='teste',
-            CODESTUNI='SP',
-            TIPEDEREG=1,
-            CODEDEREG=1
-        )
         return models.DadosMestre_Verba.objects.create(
-                CODPRD = mercadoria,
+                CODPRD = 1,
                 CODSMLPCO = 1,
-                CODFILEPD = filial,
+                CODFILEPD = 1,
                 DATREF = make_aware(datetime.now()),
                 VLRSLDPCOMESANT = 1.0,
                 VLRCRDPCO = 1.0,
@@ -225,9 +193,7 @@ class DadosMestreVerba(TestCase):
         """
         dado = self.create_dados_mestre_verba()
         self.assertTrue(isinstance(dado, models.DadosMestre_Verba))
-        self.assertTrue(isinstance(dado.CODPRD, models.Mercadoria))
-        self.assertTrue(isinstance(
-            dado.CODFILEPD, models.RelacionamentoFilialRegiao))
+
 
 
 class DadosMestreComposicaoPrecoTest(TestCase):
@@ -772,32 +738,12 @@ class DiretrizesEstrategicaTeste(TestCase):
     def test_diretriz_estrategica(self):
         """
 
-        cria instâncias de chaves estrangeiras
-
-        """
-        fornecedor = models.Fornecedor.objects.create(
-            CODFRN=1,
-            NOMFRN='teste',
-            CODGRPFRN=1,
-            NOMGRPFRN='teste'
-        )
-        filial = models.RelacionamentoFilialRegiao.objects.create(
-            CODFILEPD=1,
-            NOMFILEPD='teste',
-            CODFILFAT=1,
-            NOMFILFAT='teste',
-            CODESTUNI='SP',
-            TIPEDEREG=1,
-            CODEDEREG=1
-        )
-        """
-
         cria a instância principal
 
         """
         diretriz_estrategica = models.DiretrizesEstrategica.objects.create(
-            CODESTUNI = filial,
-            CODDIVFRN = fornecedor,
+            CODESTUNI = 1,
+            CODDIVFRN = 1,
             DATREFPOD = make_aware(datetime.now()),
             NOMMES = make_aware(datetime.now()), 
             NOMSMS = make_aware(datetime.now()), 
@@ -822,8 +768,7 @@ class DiretrizesEstrategicaTeste(TestCase):
         )
         self.assertTrue(isinstance(
             diretriz_estrategica, models.DiretrizesEstrategica))
-        self.assertTrue(isinstance(
-            diretriz_estrategica.CODDIVFRN, models.Fornecedor))
+
 
 
 """
@@ -876,7 +821,24 @@ class OtimizadorTest(TestCase):
             VLRVBADIS = 1.0,
             VLRVBAINP = 1.0,
             VLRVBACAL = 1.0,
-            VLRVBADEM = 1.0
+            VLRVBADEM = 1.0,
+            VLRCSTMERVND = 0.0,
+            CODESTUNI = 'SP',
+            VLRMRGBRTCAL = 0.0,
+            VLRMRGBRTOCD = 0.0,
+            VLRMRGBRTRLZ = 0.0,
+            VLRRCTLIQAPUCAL = 0.0,
+            VLRRCTLIQAPUOCD = 0.0,
+            VLRRCTLIQAPURLZ = 0.0,
+            VLRCMVCAL = 0.0,
+            VLRMCDCAL = 0.0,
+            VLRMCDOCD = 0.0,
+            VLRPCOBSECAL = 0.0,
+            VLRPCOBSEOCD = 0.0,
+            VLRPCOBSEMER = 0.0,
+            VLRVNDLIQOCD = 0.0,
+            VLRVNDLIQCAL = 0.0,
+            VLRVNDLIQRLZ = 0.0,
 
         )
         self.assertTrue(isinstance(otimizador, models.Otimizador))

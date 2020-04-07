@@ -3,7 +3,7 @@ from django.urls import include, path
 from rest_framework import routers
 from . import views
 
-router = routers.SimpleRouter()
+router = routers.DefaultRouter()
 
 router.register('BasePreco', views.BasePrecoViewSet)
 router.register('Competitividade', views.CompetitividadeViewSet)
