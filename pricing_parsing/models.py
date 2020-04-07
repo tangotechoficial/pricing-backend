@@ -666,11 +666,11 @@ class DiretrizesEstrategica(models.Model):
 
     CODESTUNI = models.CharField(max_length=2)
     CODDIVFRN = models.IntegerField()
-    DATREFPOD = models.DateTimeField(blank=True, null=True)
-    NOMMES = models.DateTimeField(blank=True, null=True) 
-    NOMSMS = models.DateTimeField(blank=True, null=True) 
-    NOMDIASMN = models.DateTimeField(blank=True, null=True) 
-    NOMSMSANO = models.DateTimeField(blank=True, null=True) 
+    DATREFPOD = models.CharField(max_length=10, blank=True, null=True)
+    NOMMES = models.CharField(max_length=15, blank=True, null=True) 
+    NOMSMS = models.CharField(max_length=15, blank=True, null=True) 
+    NOMDIASMN = models.CharField(max_length=15, blank=True, null=True) 
+    NOMSMSANO = models.CharField(max_length=15, blank=True, null=True) 
     CODCLLCMPATU = models.IntegerField()
     DESCLLCMPATU = models.CharField(max_length=50, blank=True, null=True)
     CODDRTCLLATU = models.IntegerField()
@@ -689,8 +689,13 @@ class DiretrizesEstrategica(models.Model):
     CODCLSMER = models.IntegerField(blank=True, null=True)
     DESCLSMER = models.CharField(max_length=45)
     CODDRTCLLATU = models.IntegerField()
+    CODGRPFRN = models.IntegerField()
     NOMGRPFRN = models.CharField(max_length=150)
     NOMFRN = models.CharField(max_length=150)
+    
+
+
+
 
 
 
