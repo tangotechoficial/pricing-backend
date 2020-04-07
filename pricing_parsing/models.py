@@ -681,6 +681,7 @@ class DiretrizesEstrategica(models.Model):
     VLRMRGBRT = models.CharField(max_length=45)
     NOMCPR = models.CharField(max_length=45)
     CODFIL = models.IntegerField(blank=True, null=True)
+    INDCTGTOP = models.TextField(blank=True, null=True)  # Field name made lowercase.
     CODGRPMER = models.IntegerField(blank=True, null=True)
     DESGRPMER = models.CharField(max_length=45)
     CODFMLMER = models.IntegerField(blank=True, null=True)
