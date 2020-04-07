@@ -16,5 +16,10 @@ router.register('Movvndhstfim', views.MovetqViewSet)
 router.register('OutputPln', views.MovetqViewSet)
 router.register('Prdsml', views.MovetqViewSet)
 router.register('movplncmpcal', views.MovplncmpcalViewSet)
+router.register('dadosmestreverba', views.DadosMestre_VerbaViewSet)
+router.register('elasticidade', views.ElasticidadeViewSet)
+router.register('verbaebc', views.VerbaeBCViewSet)
+router.register('vendas', views.VendasViewSet)
+
 
 urlpatterns = router.urls

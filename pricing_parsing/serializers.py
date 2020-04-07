@@ -55,3 +55,23 @@ class PrdsmlSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Prdsml
         fields = '__all__'
+
+class DadosMestre_VerbaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DadosMestre_Verba
+        fields = '__all__'
+
+class ElasticidadeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Elasticidade
+        fields = '__all__'
+        
+class VerbaeBCSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.VerbaeBC
+        fields = '__all__'
+
+class VendasSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Vendas
+        fields = '__all__'

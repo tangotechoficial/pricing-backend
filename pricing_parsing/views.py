@@ -80,3 +80,31 @@ class PrdsmlViewSet(viewsets.ModelViewSet):
     """
     queryset = models.Prdsml.objects.all()
     serializer_class = serializers.PrdsmlSerializer
+
+class DadosMestre_VerbaViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DadosMestre_Verba to be viewed or edited.
+    """
+    queryset = models.DadosMestre_Verba.objects.all()
+    serializer_class = serializers.DadosMestre_VerbaSerializer
+
+class ElasticidadeViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Elasticidade to be viewed or edited.
+    """
+    queryset = models.Elasticidade.objects.all()
+    serializer_class = serializers.ElasticidadeSerializer
+
+class VerbaeBCViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows VerbaeBC to be viewed or edited.
+    """
+    queryset = models.VerbaeBC.objects.all()
+    serializer_class = serializers.VerbaeBCSerializer
+
+class VendasViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows VendasBC to be viewed or edited.
+    """
+    queryset = models.Vendas.objects.all()
+    serializer_class = serializers.VendasSerializer
