@@ -87,6 +87,7 @@ class DadosMestre_VerbaViewSet(viewsets.ModelViewSet):
     """
     queryset = models.DadosMestre_Verba.objects.all()
     serializer_class = serializers.DadosMestre_VerbaSerializer
+    pagination_class = pagination.StandardResultsSetPagination
 
 class ElasticidadeViewSet(viewsets.ModelViewSet):
     """
