@@ -116,6 +116,7 @@ class DadosMestre_ComposicaoPrecoViewSet(viewsets.ModelViewSet):
     """
     queryset = models.DadosMestre_ComposicaoPreco.objects.all()
     serializer_class = serializers.DadosMestre_ComposicaoPrecoSerializer
+    pagination_class = pagination.StandardResultsSetPagination
 
 # class DiretrizesEstrategicaViewSet(viewsets.ModelViewSet):
 #     """

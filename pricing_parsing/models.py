@@ -639,7 +639,7 @@ class DadosMestre_ComposicaoPreco(models.Model):
     CODPRD = models.IntegerField()
     CODFILEPD = models.IntegerField(blank=True, null=True)
     CODFILFAT = models.IntegerField()
-    DATREF = models.DateTimeField(blank=True, null=True)
+    DATREF = models.CharField(max_length=20, blank=True, null=True)
     CODESTUNI = models.CharField(max_length=2)
     TIPEDEREG = models.IntegerField()
     VLRMRGBRT = models.DecimalField(decimal_places=2, max_digits=10, null=True)
@@ -651,13 +651,13 @@ class DadosMestre_ComposicaoPreco(models.Model):
     VLRDVL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRUNTPCOALV = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRFLXCNS = models.DecimalField(decimal_places=2, max_digits=10, null=True)
-    VLRCSTCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRCSTCAL = models.CharField(max_length=100, null=True)
     VLRBNF = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRCPLCSTPCO = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRPCOBSEMER = models.DecimalField(decimal_places=2, max_digits=10, null=True)
-    CODREGPCO = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    CODREGPCO = models.CharField(max_length=20, null=True)
     NUMRLCCIDGIR = models.DecimalField(decimal_places=2, max_digits=10, null=True)
-    TIPCALUTZPCOLIQ = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    TIPCALUTZPCOLIQ = models.CharField(max_length=100, null=True)
     
 # class DiretrizesEstrategica(models.Model):
 
