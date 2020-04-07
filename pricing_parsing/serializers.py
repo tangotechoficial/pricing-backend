@@ -75,3 +75,13 @@ class VendasSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Vendas
         fields = '__all__'
+
+class DadosMestre_ComposicaoPrecoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DadosMestre_ComposicaoPreco
+        fields = '__all__'
+
+# class DiretrizesEstrategicaSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = models.DiretrizesEstrategica
+#         fields = '__all__'

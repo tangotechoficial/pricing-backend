@@ -506,7 +506,6 @@ class DadosMestre_Verba(models.Model):
         db_table = "mrt.MOVVBADISCAL"
 
     CODPRD = models.IntegerField()
-    CODSMLPCO = models.IntegerField(blank=True, null=True)
     CODFILEPD = models.IntegerField()
     DATREF = models.DateTimeField(blank=True, null=True)
     VLRSLDPCOMESANT = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
@@ -597,6 +596,9 @@ class VerbaeBC(models.Model):
     VLRRBTCAL = models.DecimalField(decimal_places=2, max_digits=10)
 
 
+
+
+
 class Vendas(models.Model):
     """
     Model for table VENDAS
@@ -627,6 +629,64 @@ class Vendas(models.Model):
     VLRCSTDTB = models.DecimalField(decimal_places=2, max_digits=10)
     VLRCSTARG = models.DecimalField(decimal_places=2, max_digits=10)
     VLRMRGCRB = models.DecimalField(decimal_places=2, max_digits=10)
+
+
+class DadosMestre_ComposicaoPreco(models.Model):
+
+    class Meta:
+        db_table = "mrt.MOVPCOBSECAL"
+
+    CODPRD = models.IntegerField()
+    CODFILEPD = models.IntegerField(blank=True, null=True)
+    CODFILFAT = models.IntegerField()
+    DATREF = models.DateTimeField(blank=True, null=True)
+    CODESTUNI = models.CharField(max_length=2)
+    TIPEDEREG = models.IntegerField()
+    VLRMRGBRT = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRVBA = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRFND = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRFNDRBTITE = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRICM = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPIS = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRDVL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRUNTPCOALV = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRFLXCNS = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRCSTCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRBNF = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRCPLCSTPCO = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPCOBSEMER = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    CODREGPCO = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    NUMRLCCIDGIR = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    TIPCALUTZPCOLIQ = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    
+# class DiretrizesEstrategica(models.Model):
+
+#     class Meta:
+#         db_table = "mrt.CADDTZETT"
+
+#     CODESTUNI = models.CharField(max_length=2)
+#     CODDIVFRN = models.IntegerField()
+#     DATREFPOD = models.DateTimeField(blank=True, null=True)
+#     NOMMES = models.DateTimeField(blank=True, null=True) 
+#     NOMSMS = models.DateTimeField(blank=True, null=True) 
+#     NOMDIASMN = models.DateTimeField(blank=True, null=True) 
+#     NOMSMSANO = models.DateTimeField(blank=True, null=True) 
+#     CODUNDNGCCLI = models.IntegerField(blank=True, null=True)
+#     CODCLLCMPATU = models.IntegerField()
+#     DESDRTCLLATU = models.CharField(max_length=150)
+#     CODSGMNGCCLI = models.IntegerField(blank=True, null=True)
+#     VLRVNDFATLIQ = models.CharField(max_length=45)
+#     VLRRCTLIQAPU = models.CharField(max_length=45)
+#     VLRMRGCRB = models.CharField(max_length=45)
+#     VLRMRGBRT = models.CharField(max_length=45)
+#     NOMCPR = models.CharField(max_length=45)
+#     CODFIL = models.IntegerField(blank=True, null=True)
+#     CODCLSMER = models.IntegerField(blank=True, null=True)
+#     DESCLSMER = models.CharField(max_length=45)
+#     CODFMLMER = models.IntegerField(blank=True, null=True)
+#     DESGRPMER = models.CharField(max_length=45)
+#     CODGRPMER = models.IntegerField(blank=True, null=True)
+#     DESFMLMER = models.CharField(max_length=45)
 
 
 
