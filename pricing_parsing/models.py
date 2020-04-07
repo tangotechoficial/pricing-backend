@@ -507,7 +507,7 @@ class DadosMestre_Verba(models.Model):
 
     CODPRD = models.IntegerField()
     CODFILEPD = models.IntegerField()
-    DATREF = models.DateTimeField(blank=True, null=True)
+    DATREF = models.IntegerField(blank=True, null=True)
     VLRSLDPCOMESANT = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
     VLRCRDPCO = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
     VLRDBTPCO = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
@@ -525,18 +525,18 @@ class Competitividade(models.Model):
 
     CODPRD = models.IntegerField()
     CODIDTCUR = models.IntegerField(primary_key=True)
-    CODESTUNI = models.CharField(max_length=2)
+    CODESTUNI = models.CharField(max_length=2, blank=True, null=True)
     NUMANO = models.DateTimeField()
     NUMANOMES = models.DateTimeField()
     NUMSMNANO = models.DateTimeField()
     NOMMES = models.DateTimeField()
     DATREF = models.DateTimeField()
     CODSML = models.IntegerField()
-    DESGRPMERSMR = models.CharField(max_length=45)
-    CODTIPAPU = models.CharField(max_length=45)
+    DESGRPMERSMR = models.CharField(max_length=45, blank=True, null=True)
+    CODTIPAPU = models.CharField(max_length=45, blank=True, null=True)
     VLRPCOMEDMCD = models.DecimalField(decimal_places=2, max_digits=10)
     VLRPCOBSEMER = models.DecimalField(decimal_places=2, max_digits=10)
-    CLFCRVABCMER = models.CharField(max_length=1)
+    CLFCRVABCMER = models.CharField(max_length=1, blank=True, null=True)
 
 class Elasticidade(models.Model):
     """
