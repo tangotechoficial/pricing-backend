@@ -240,16 +240,17 @@ class DadosMestre_Verba(models.Model):
     class Meta:
         db_table = "verba_disponivel"
 
+    NUMANOMES = models.IntegerField()
     CODPRD = models.IntegerField()
-    CODSMLPCO = models.IntegerField(blank=True, null=True)
+    DESPRD = models.CharField(max_length=150)
     CODFILEPD = models.IntegerField()
-    DATREF = models.DateTimeField(blank=True, null=True)
-    VLRSLDPCOMESANT = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
-    VLRCRDPCO = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
-    VLRDBTPCO = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
-    VLRSLDMRGMESANT = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
-    VLRCRDMRG = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
-    VLRDBTMRG = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
+    CODDIVFRN = models.IntegerField()
+    VLRPRECOSALDOMESANTERIOR = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRPRECOCREDITO = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRPRECODEBITO = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRMARGEMSALDOMESANTERIOR = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRMARGEMCREDITO = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRMARGEMDEBITO = models.DecimalField(decimal_places=2, max_digits=10)
 
 class DadosMestre_VerbaCSV(models.Model):
     import_date = models.DateTimeField(auto_now=True)
