@@ -118,9 +118,10 @@ class DadosMestre_ComposicaoPrecoViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.DadosMestre_ComposicaoPrecoSerializer
     pagination_class = pagination.StandardResultsSetPagination
 
-# class DiretrizesEstrategicaViewSet(viewsets.ModelViewSet):
-#     """
-#     API endpoint that allows DiretrizesEstrategicaBC to be viewed or edited.
-#     """
-#     queryset = models.DiretrizesEstrategica.objects.all()
-#     serializer_class = serializers.DiretrizesEstrategicaSerializer
+class DiretrizesEstrategicaViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategicaBC to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.all()
+    serializer_class = serializers.DiretrizesEstrategicaSerializer
+    pagination_class = pagination.StandardResultsSetPagination

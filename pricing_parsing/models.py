@@ -659,34 +659,37 @@ class DadosMestre_ComposicaoPreco(models.Model):
     NUMRLCCIDGIR = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     TIPCALUTZPCOLIQ = models.CharField(max_length=100, null=True)
     
-# class DiretrizesEstrategica(models.Model):
+class DiretrizesEstrategica(models.Model):
 
-#     class Meta:
-#         db_table = "mrt.CADDTZETT"
+    class Meta:
+        db_table = "mrt.CADDTZETT"
 
-#     CODESTUNI = models.CharField(max_length=2)
-#     CODDIVFRN = models.IntegerField()
-#     DATREFPOD = models.DateTimeField(blank=True, null=True)
-#     NOMMES = models.DateTimeField(blank=True, null=True) 
-#     NOMSMS = models.DateTimeField(blank=True, null=True) 
-#     NOMDIASMN = models.DateTimeField(blank=True, null=True) 
-#     NOMSMSANO = models.DateTimeField(blank=True, null=True) 
-#     CODUNDNGCCLI = models.IntegerField(blank=True, null=True)
-#     CODCLLCMPATU = models.IntegerField()
-#     DESDRTCLLATU = models.CharField(max_length=150)
-#     CODSGMNGCCLI = models.IntegerField(blank=True, null=True)
-#     VLRVNDFATLIQ = models.CharField(max_length=45)
-#     VLRRCTLIQAPU = models.CharField(max_length=45)
-#     VLRMRGCRB = models.CharField(max_length=45)
-#     VLRMRGBRT = models.CharField(max_length=45)
-#     NOMCPR = models.CharField(max_length=45)
-#     CODFIL = models.IntegerField(blank=True, null=True)
-#     CODCLSMER = models.IntegerField(blank=True, null=True)
-#     DESCLSMER = models.CharField(max_length=45)
-#     CODFMLMER = models.IntegerField(blank=True, null=True)
-#     DESGRPMER = models.CharField(max_length=45)
-#     CODGRPMER = models.IntegerField(blank=True, null=True)
-#     DESFMLMER = models.CharField(max_length=45)
+    CODESTUNI = models.CharField(max_length=2)
+    CODDIVFRN = models.IntegerField()
+    DATREFPOD = models.DateTimeField(blank=True, null=True)
+    NOMMES = models.DateTimeField(blank=True, null=True) 
+    NOMSMS = models.DateTimeField(blank=True, null=True) 
+    NOMDIASMN = models.DateTimeField(blank=True, null=True) 
+    NOMSMSANO = models.DateTimeField(blank=True, null=True) 
+    CODCLLCMPATU = models.IntegerField()
+    DESCLLCMPATU = models.CharField(max_length=50, blank=True, null=True)
+    CODDRTCLLATU = models.IntegerField()
+    DESDRTCLLATU = models.CharField(max_length=150)
+    VLRVNDFATLIQ = models.CharField(max_length=45)
+    VLRRCTLIQAPU = models.CharField(max_length=45)
+    VLRMRGCRB = models.CharField(max_length=45)
+    VLRMRGBRT = models.CharField(max_length=45)
+    NOMCPR = models.CharField(max_length=45)
+    CODFIL = models.IntegerField(blank=True, null=True)
+    CODGRPMER = models.IntegerField(blank=True, null=True)
+    DESGRPMER = models.CharField(max_length=45)
+    CODFMLMER = models.IntegerField(blank=True, null=True)
+    DESFMLMER = models.CharField(max_length=45)
+    CODCLSMER = models.IntegerField(blank=True, null=True)
+    DESCLSMER = models.CharField(max_length=45)
+    CODDRTCLLATU = models.IntegerField()
+    NOMGRPFRN = models.CharField(max_length=150)
+    NOMFRN = models.CharField(max_length=150)
 
 
 
