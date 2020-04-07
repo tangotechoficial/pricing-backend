@@ -408,3 +408,4 @@ class Otimizador(models.Model):
     VLRVNDLIQOCD = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
     VLRVNDLIQCAL = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
     VLRVNDLIQRLZ = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
+
