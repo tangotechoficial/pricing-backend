@@ -570,8 +570,8 @@ class VerbaeBC(models.Model):
     class Meta:
         db_table = 'mrt.MOVVBAHST'
 
-    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
-    CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
+    CODPRD = models.IntegerField()
+    CODFILEPD = models.IntegerField()
     CODFILFAT = models.IntegerField()
     CODCLI = models.IntegerField()
     CODESTCLI = models.IntegerField()
@@ -605,7 +605,7 @@ class Vendas(models.Model):
     class Meta:
         db_table = 'mrt.MOVVNDHSTCAL'
 
-    CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING, db_column="CODMER")
+    CODPRD = models.IntegerField()
     CODFILEPD = models.IntegerField()
     CODFILFAT = models.IntegerField()
     CODESTCLI = models.CharField(max_length=2)
