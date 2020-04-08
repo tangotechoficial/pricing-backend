@@ -31,6 +31,13 @@ class EttprdViewSet(viewsets.ModelViewSet):
     queryset = models.Ettprd.objects.all()
     serializer_class = serializers.EttprdSerializer
 
+class EttprdFilterViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Ettprd to be viewed or edited.
+    """
+    queryset = models.Ettprd.objects.all()
+    serializer_class = serializers.EttprdFilterSerializer
+
 class MetasdiariasViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Metasdiarias to be viewed or edited.

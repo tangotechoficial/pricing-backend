@@ -21,6 +21,11 @@ class EttprdSerializer(serializers.ModelSerializer):
         model = models.Ettprd
         fields = '__all__'
 
+class EttprdFilterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Ettprd
+        fields = ['desprd', 'codprd']
+
 class MetasdiariasSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Metasdiarias
@@ -88,5 +93,5 @@ class DiretrizesEstrategicaSerializer(serializers.ModelSerializer):
 
 class PlanoComprasSerializer(serializers.ModelSerializer):
     class Meta:
-        model = models.PlanoComprasViewSet
+        model = models.PlanoCompras
         fields = '__all__'

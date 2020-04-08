@@ -693,7 +693,7 @@ class DiretrizesEstrategica(models.Model):
     NOMGRPFRN = models.CharField(max_length=150)
     NOMFRN = models.CharField(max_length=150)
 
-class PlanoComprasViewSet(models.Model):
+class PlanoCompras(models.Model):
 
     class Meta: 
         db_table: 'mrt.MOVPLNCMPCAL'
