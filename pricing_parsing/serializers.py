@@ -21,6 +21,11 @@ class EttprdSerializer(serializers.ModelSerializer):
         model = models.Ettprd
         fields = '__all__'
 
+class EttprdFilterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Ettprd
+        fields = ['desprd', 'codprd']
+
 class MetasdiariasSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Metasdiarias
@@ -84,4 +89,9 @@ class DadosMestre_ComposicaoPrecoSerializer(serializers.ModelSerializer):
 class DiretrizesEstrategicaSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.DiretrizesEstrategica
+        fields = '__all__'
+
+class PlanoComprasSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.PlanoCompras
         fields = '__all__'

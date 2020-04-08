@@ -9,6 +9,7 @@ router.register('BasePreco', views.BasePrecoViewSet)
 router.register('Competitividade', views.CompetitividadeViewSet)
 router.register('ElasticidadeDemanda', views.ElasticidadeDemandaViewSet)
 router.register('Ettprd', views.EttprdViewSet)
+router.register('Ettprdfilter', views.EttprdFilterViewSet)
 router.register('Metasdiarias', views.MetasdiariasViewSet)
 router.register('Movetq', views.MovetqViewSet)
 router.register('Movvbs', views.MovetqViewSet)
@@ -22,6 +23,7 @@ router.register('verbaebc', views.VerbaeBCViewSet)
 router.register('vendas', views.VendasViewSet)
 router.register('dadosmestrecomposicao', views.DadosMestre_ComposicaoPrecoViewSet)
 router.register('diretrizesestrategicas', views.DiretrizesEstrategicaViewSet)
+router.register('planocompras', views.PlanoComprasViewSet)
 
 
 urlpatterns = router.urls
