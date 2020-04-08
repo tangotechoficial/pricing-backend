@@ -105,14 +105,14 @@ class VerbaeBCViewSet(viewsets.ModelViewSet):
 
 class VendasViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows VendasBC to be viewed or edited.
+    API endpoint that allows Vendas to be viewed or edited.
     """
     queryset = models.Vendas.objects.all()
     serializer_class = serializers.VendasSerializer
 
 class DadosMestre_ComposicaoPrecoViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows DadosMestre_ComposicaoPrecoBC to be viewed or edited.
+    API endpoint that allows DadosMestre_ComposicaoPreco to be viewed or edited.
     """
     queryset = models.DadosMestre_ComposicaoPreco.objects.all()
     serializer_class = serializers.DadosMestre_ComposicaoPrecoSerializer
@@ -120,8 +120,16 @@ class DadosMestre_ComposicaoPrecoViewSet(viewsets.ModelViewSet):
 
 class DiretrizesEstrategicaViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows DiretrizesEstrategicaBC to be viewed or edited.
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
     """
     queryset = models.DiretrizesEstrategica.objects.all()
     serializer_class = serializers.DiretrizesEstrategicaSerializer
     pagination_class = pagination.StandardResultsSetPagination
+
+class PlanoComprasViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows PlanoCompras to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.all()
+    serializer_class = serializers.DiretrizesEstrategicaSerializer
+

@@ -334,7 +334,7 @@ class DiretrizesEstrategicaCSV(models.Model):
 class PlanoCompras(models.Model):
 
     class Meta:
-        db_table = "planocompras"
+        db_table = "mrt.MOVPLNCMPCAL"
 
     CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
     CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)

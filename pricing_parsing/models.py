@@ -140,8 +140,8 @@ class Ettprd(models.Model):
     descllcmpatu = models.TextField(db_column='DESCLLCMPATU', blank=True, null=True)  # Field name made lowercase.
     codcpratu = models.BigIntegerField(db_column='CODCPRATU', blank=True, null=True)  # Field name made lowercase.
     nomcpratu = models.TextField(db_column='NOMCPRATU', blank=True, null=True)  # Field name made lowercase.
-    codigo_linha_negocio = models.BigIntegerField(db_column='CODIGO_LINHA_NEGOCIO', blank=True, null=True)  # Field name made lowercase.
-    descricao_linha_negocio = models.TextField(db_column='DESCRICAO_LINHA_NEGOCIO', blank=True, null=True)  # Field name made lowercase.
+    # codigo_linha_negocio = models.BigIntegerField(db_column='CODIGO_LINHA_NEGOCIO', blank=True, null=True)  # Field name made lowercase.
+    # descricao_linha_negocio = models.TextField(db_column='DESCRICAO_LINHA_NEGOCIO', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -692,6 +692,55 @@ class DiretrizesEstrategica(models.Model):
     CODGRPFRN = models.IntegerField()
     NOMGRPFRN = models.CharField(max_length=150)
     NOMFRN = models.CharField(max_length=150)
+
+class PlanoComprasViewSet(models.Model):
+
+    class Meta: 
+        db_table: 'mrt.MOVPLNCMPCAL'
+
+    CODESTUNI = models.IntegerField()
+    CODFILEPD = models.IntegerField()
+    CODFILFAT = models.IntegerField()
+    CODPRD = models.IntegerField()
+    NUMANOMESSMN = models.CharField(max_length=50)
+    MRGBRTOCD = models.TextField()
+    VLRRCTLIQCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRCSTCMPMER = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRCSTCMPIDL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRCMVOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRCMVCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRDVLOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRVLDCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRFLXPLN = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRFLXSUG = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRICMOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRICMCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRIMPTOTOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRIMPTOTCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRMRGBRTOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRMRGBRTCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPCOBSEOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPCOBSECAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRMCDOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRMCDCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRDVLCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPISOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPISCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPCOMEDMCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRVNDLIQOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRVNDLIQCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRVNDPRVCTR = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPCOVNDLIQOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPCOVNDLIQCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRVBAOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRRBTCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRRBTOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+
+
+
+
+
+
     
 
 

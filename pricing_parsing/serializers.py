@@ -85,3 +85,8 @@ class DiretrizesEstrategicaSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.DiretrizesEstrategica
         fields = '__all__'
+
+class PlanoComprasSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.PlanoComprasViewSet
+        fields = '__all__'
