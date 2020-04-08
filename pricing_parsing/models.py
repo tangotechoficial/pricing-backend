@@ -40,62 +40,62 @@ class BasePreco(models.Model):
         db_table = 'BASE_PRECO'
 
 
-class Competitividade(models.Model):
-    #id = models.TextField(db_column='Id', blank=True, null=True)  # Field name made lowercase.
-    chave = models.TextField(blank=True, null=True)
-    data_emissao = models.TextField(blank=True, null=True)
-    natop = models.TextField(db_column='natOp', blank=True, null=True)  # Field name made lowercase.
-    cfop = models.FloatField(blank=True, null=True)
-    opcao = models.TextField(blank=True, null=True)
-    tipo = models.TextField(blank=True, null=True)
-    cnpj_emitente = models.FloatField(db_column='CNPJ_Emitente', blank=True, null=True)  # Field name made lowercase.
-    xnome_emitente = models.TextField(db_column='xNome_Emitente', blank=True, null=True)  # Field name made lowercase.
-    uf_emitente_emitente = models.TextField(db_column='UF_Emitente_Emitente', blank=True, null=True)  # Field name made lowercase.
-    uf_destino = models.TextField(db_column='UF_Destino', blank=True, null=True)  # Field name made lowercase.
-    cprod = models.TextField(db_column='cProd', blank=True, null=True)  # Field name made lowercase.
-    xprod = models.TextField(db_column='xProd', blank=True, null=True)  # Field name made lowercase.
-    ncm = models.FloatField(db_column='NCM', blank=True, null=True)  # Field name made lowercase.
-    ceantrib = models.BigIntegerField(db_column='cEANTrib', blank=True, null=True)  # Field name made lowercase.
-    codprd = models.BigIntegerField(db_column='CODPRD', blank=True, null=True)  # Field name made lowercase.
-    codsml = models.BigIntegerField(db_column='CODSML', blank=True, null=True)  # Field name made lowercase.
-    unicx = models.FloatField(blank=True, null=True)
-    embcxa = models.FloatField(db_column='EmbCxa', blank=True, null=True)  # Field name made lowercase.
-    mrt_unidvda = models.BigIntegerField(db_column='mrt_unidVda', blank=True, null=True)  # Field name made lowercase.
-    mrt_unidcxfrn = models.BigIntegerField(db_column='mrt_unidCxFrn', blank=True, null=True)  # Field name made lowercase.
-    qtrib = models.FloatField(db_column='qTrib', blank=True, null=True)  # Field name made lowercase.
-    vuntrib = models.TextField(db_column='vUnTrib', blank=True, null=True)  # Field name made lowercase.
-    pc_mrt = models.TextField(blank=True, null=True)
-    pc_psq = models.FloatField(blank=True, null=True)
-    status = models.TextField(blank=True, null=True)
-    diretoria_compras = models.TextField(blank=True, null=True)
-    celula = models.TextField(blank=True, null=True)
-    codfrn = models.BigIntegerField(blank=True, null=True)
-    fornecedor = models.TextField(blank=True, null=True)
-    grupo_produto = models.TextField(blank=True, null=True)
-    categoria = models.TextField(blank=True, null=True)
-    subcategoria = models.TextField(blank=True, null=True)
-    produto = models.TextField(blank=True, null=True)
-    descricao_similar = models.TextField(blank=True, null=True)
-    mix = models.TextField(db_column='Mix', blank=True, null=True)  # Field name made lowercase.
-    latitude = models.FloatField(blank=True, null=True)
-    longitude = models.FloatField(blank=True, null=True)
-    estado = models.TextField(blank=True, null=True)
-    regiao = models.TextField(blank=True, null=True)
-    pc_psq_pond = models.FloatField(blank=True, null=True)
-    pc_mrt_pond = models.FloatField(blank=True, null=True)
-    abc = models.TextField(db_column='ABC', blank=True, null=True)  # Field name made lowercase.
-    categorizado = models.TextField(blank=True, null=True)
-    status_fornecedor = models.TextField(db_column='Status_Fornecedor', blank=True, null=True)  # Field name made lowercase.
-    comp = models.FloatField(db_column='Comp', blank=True, null=True)  # Field name made lowercase.
-    tipopesquisa = models.TextField(db_column='TipoPesquisa', blank=True, null=True)  # Field name made lowercase.
-    numano = models.BigIntegerField(db_column='NUMANO', blank=True, null=True)  # Field name made lowercase.
-    numanomes = models.BigIntegerField(db_column='NUMANOMES', blank=True, null=True)  # Field name made lowercase.
-    numsmnano = models.BigIntegerField(db_column='NUMSMNANO', blank=True, null=True)  # Field name made lowercase.
-    nommes = models.TextField(db_column='NOMMES', blank=True, null=True)  # Field name made lowercase.
+# class Competitividade(models.Model):
+#     #id = models.TextField(db_column='Id', blank=True, null=True)  # Field name made lowercase.
+#     chave = models.TextField(blank=True, null=True)
+#     data_emissao = models.TextField(blank=True, null=True)
+#     natop = models.TextField(db_column='natOp', blank=True, null=True)  # Field name made lowercase.
+#     cfop = models.FloatField(blank=True, null=True)
+#     opcao = models.TextField(blank=True, null=True)
+#     tipo = models.TextField(blank=True, null=True)
+#     cnpj_emitente = models.FloatField(db_column='CNPJ_Emitente', blank=True, null=True)  # Field name made lowercase.
+#     xnome_emitente = models.TextField(db_column='xNome_Emitente', blank=True, null=True)  # Field name made lowercase.
+#     uf_emitente_emitente = models.TextField(db_column='UF_Emitente_Emitente', blank=True, null=True)  # Field name made lowercase.
+#     uf_destino = models.TextField(db_column='UF_Destino', blank=True, null=True)  # Field name made lowercase.
+#     cprod = models.TextField(db_column='cProd', blank=True, null=True)  # Field name made lowercase.
+#     xprod = models.TextField(db_column='xProd', blank=True, null=True)  # Field name made lowercase.
+#     ncm = models.FloatField(db_column='NCM', blank=True, null=True)  # Field name made lowercase.
+#     ceantrib = models.BigIntegerField(db_column='cEANTrib', blank=True, null=True)  # Field name made lowercase.
+#     codprd = models.BigIntegerField(db_column='CODPRD', blank=True, null=True)  # Field name made lowercase.
+#     codsml = models.BigIntegerField(db_column='CODSML', blank=True, null=True)  # Field name made lowercase.
+#     unicx = models.FloatField(blank=True, null=True)
+#     embcxa = models.FloatField(db_column='EmbCxa', blank=True, null=True)  # Field name made lowercase.
+#     mrt_unidvda = models.BigIntegerField(db_column='mrt_unidVda', blank=True, null=True)  # Field name made lowercase.
+#     mrt_unidcxfrn = models.BigIntegerField(db_column='mrt_unidCxFrn', blank=True, null=True)  # Field name made lowercase.
+#     qtrib = models.FloatField(db_column='qTrib', blank=True, null=True)  # Field name made lowercase.
+#     vuntrib = models.TextField(db_column='vUnTrib', blank=True, null=True)  # Field name made lowercase.
+#     pc_mrt = models.TextField(blank=True, null=True)
+#     pc_psq = models.FloatField(blank=True, null=True)
+#     status = models.TextField(blank=True, null=True)
+#     diretoria_compras = models.TextField(blank=True, null=True)
+#     celula = models.TextField(blank=True, null=True)
+#     codfrn = models.BigIntegerField(blank=True, null=True)
+#     fornecedor = models.TextField(blank=True, null=True)
+#     grupo_produto = models.TextField(blank=True, null=True)
+#     categoria = models.TextField(blank=True, null=True)
+#     subcategoria = models.TextField(blank=True, null=True)
+#     produto = models.TextField(blank=True, null=True)
+#     descricao_similar = models.TextField(blank=True, null=True)
+#     mix = models.TextField(db_column='Mix', blank=True, null=True)  # Field name made lowercase.
+#     latitude = models.FloatField(blank=True, null=True)
+#     longitude = models.FloatField(blank=True, null=True)
+#     estado = models.TextField(blank=True, null=True)
+#     regiao = models.TextField(blank=True, null=True)
+#     pc_psq_pond = models.FloatField(blank=True, null=True)
+#     pc_mrt_pond = models.FloatField(blank=True, null=True)
+#     abc = models.TextField(db_column='ABC', blank=True, null=True)  # Field name made lowercase.
+#     categorizado = models.TextField(blank=True, null=True)
+#     status_fornecedor = models.TextField(db_column='Status_Fornecedor', blank=True, null=True)  # Field name made lowercase.
+#     comp = models.FloatField(db_column='Comp', blank=True, null=True)  # Field name made lowercase.
+#     tipopesquisa = models.TextField(db_column='TipoPesquisa', blank=True, null=True)  # Field name made lowercase.
+#     numano = models.BigIntegerField(db_column='NUMANO', blank=True, null=True)  # Field name made lowercase.
+#     numanomes = models.BigIntegerField(db_column='NUMANOMES', blank=True, null=True)  # Field name made lowercase.
+#     numsmnano = models.BigIntegerField(db_column='NUMSMNANO', blank=True, null=True)  # Field name made lowercase.
+#     nommes = models.TextField(db_column='NOMMES', blank=True, null=True)  # Field name made lowercase.
 
-    class Meta:
-        managed = False
-        db_table = 'COMPETITIVIDADE'
+    # class Meta:
+    #     managed = False
+    #     db_table = 'COMPETITIVIDADE'
 
 
 class ElasticidadeDemanda(models.Model):
@@ -496,3 +496,208 @@ class Prdsml(models.Model):
     class Meta:
         managed = False
         db_table = 'prdsml'
+
+class DadosMestre_Verba(models.Model):
+    """
+        Modelo de Tabela Dados Mestre
+    """
+
+    class Meta:
+        db_table = "mrt.MOVVBADISCAL"
+
+    CODPRD = models.IntegerField()
+    CODFILEPD = models.IntegerField()
+    DATREF = models.IntegerField(blank=True, null=True)
+    VLRSLDPCOMESANT = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
+    VLRCRDPCO = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
+    VLRDBTPCO = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
+    VLRSLDMRGMESANT = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
+    VLRCRDMRG = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
+    VLRDBTMRG = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
+
+class Competitividade(models.Model):
+    """
+    Model for table COMPETITIVIDADE
+    """
+
+    class Meta:
+        db_table = 'mrt.MOVPCOMCD'
+
+    CODPRD = models.IntegerField()
+    CODIDTCUR = models.IntegerField(primary_key=True)
+    CODESTUNI = models.CharField(max_length=2, blank=True, null=True)
+    NUMANO = models.DateTimeField()
+    NUMANOMES = models.DateTimeField()
+    NUMSMNANO = models.DateTimeField()
+    NOMMES = models.DateTimeField()
+    DATREF = models.DateTimeField()
+    CODSML = models.IntegerField()
+    DESGRPMERSMR = models.CharField(max_length=45, blank=True, null=True)
+    CODTIPAPU = models.CharField(max_length=45, blank=True, null=True)
+    VLRPCOMEDMCD = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRPCOBSEMER = models.DecimalField(decimal_places=2, max_digits=10)
+    CLFCRVABCMER = models.CharField(max_length=1, blank=True, null=True)
+
+class Elasticidade(models.Model):
+    """
+    Model for table ELASTICIDADE
+    """
+
+    class Meta:
+        db_table = 'mrt.MOVVARVNDPCO'
+
+    CODPRD = models.IntegerField()
+    CODESTUNI = models.CharField(max_length=2)
+    CODFILEPD = models.IntegerField(default=1)
+    CODFILFAT = models.IntegerField()
+    VLRVARVNDPCO = models.DecimalField(decimal_places=2, max_digits=10)
+    DESMER = models.CharField(max_length=45)
+    CLFCRVABCMER = models.CharField(max_length=1) 
+    CODGRPMERSMR = models.IntegerField()
+    DESGRPMERSMR = models.CharField(max_length=45)
+    DESFMLMER = models.IntegerField()
+    DESCLSMER = models.CharField(max_length=45)
+    DESDIVCMP = models.CharField(max_length=45)
+    DESDRTCLLATU = models.CharField(max_length=150)
+
+class VerbaeBC(models.Model):
+    """
+    Model for table VERBA_E_BC
+
+    """
+
+    class Meta:
+        db_table = 'mrt.MOVVBAHST'
+
+    CODPRD = models.IntegerField()
+    CODFILEPD = models.IntegerField()
+    CODFILFAT = models.IntegerField()
+    CODCLI = models.IntegerField()
+    CODESTCLI = models.IntegerField()
+    NUMPED = models.IntegerField()
+    NUMANOMESDIA = models.DateTimeField()
+    QDEITEPED = models.IntegerField()
+    VLRVNDLIQ = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRUNTCSTMER = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRCSTMER = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRUNTFNDMER = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRFND = models.DecimalField(decimal_places=2, max_digits=10)
+    QDEITEPMC = models.IntegerField()
+    QDEITEBFC = models.IntegerField()
+    VLRUNTFNDPMCVND = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRUNTDSCBFCITE = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRUNTFNDPCO = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRUNTFNDMRG = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRRLZPMC = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRBFC = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRFNDPCOVND = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRFNDPCOCST = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRMNSFNDRCBFRN = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRRBTCAL = models.DecimalField(decimal_places=2, max_digits=10)
+
+
+
+
+
+class Vendas(models.Model):
+    """
+    Model for table VENDAS
+    """
+
+    class Meta:
+        db_table = 'mrt.MOVVNDHSTCAL'
+
+    CODPRD = models.IntegerField()
+    CODFILEPD = models.IntegerField()
+    CODFILFAT = models.IntegerField()
+    CODESTCLI = models.CharField(max_length=2)
+    CODREPCMC = models.IntegerField()
+    NUMPED = models.IntegerField()
+    NUMANOMESSMN = models.DateTimeField()
+    NUMANOMESDIA = models.DateTimeField()
+    VLRVNDLIQ = models.DecimalField(decimal_places=2, max_digits=10)
+    QDEITE = models.IntegerField()
+    VLRDSCFLXCNS = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRSUPFLX = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRIMPTOT = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRRCTLIQAPU = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRCSTMEDPRD = models.DecimalField(decimal_places=2, max_digits=10)
+    PERMRGADICNLVND = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRFND = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRMRGBRT = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRCSTTRNTNLCUB = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRCSTDTB = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRCSTARG = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRMRGCRB = models.DecimalField(decimal_places=2, max_digits=10)
+
+
+class DadosMestre_ComposicaoPreco(models.Model):
+
+    class Meta:
+        db_table = "mrt.MOVPCOBSECAL"
+
+    CODPRD = models.IntegerField()
+    CODFILEPD = models.IntegerField(blank=True, null=True)
+    CODFILFAT = models.IntegerField()
+    DATREF = models.CharField(max_length=20, blank=True, null=True)
+    CODESTUNI = models.CharField(max_length=2)
+    TIPEDEREG = models.IntegerField()
+    VLRMRGBRT = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRVBA = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRFND = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRFNDRBTITE = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRICM = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPIS = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRDVL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRUNTPCOALV = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRFLXCNS = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRCSTCAL = models.CharField(max_length=100, null=True)
+    VLRBNF = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRCPLCSTPCO = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPCOBSEMER = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    CODREGPCO = models.CharField(max_length=20, null=True)
+    NUMRLCCIDGIR = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    TIPCALUTZPCOLIQ = models.CharField(max_length=100, null=True)
+    
+class DiretrizesEstrategica(models.Model):
+
+    class Meta:
+        db_table = "mrt.CADDTZETT"
+
+    CODESTUNI = models.CharField(max_length=2)
+    CODDIVFRN = models.IntegerField()
+    DATREFPOD = models.CharField(max_length=20, blank=True, null=True)
+    NOMMES = models.CharField(max_length=20, blank=True, null=True) 
+    NOMSMS = models.CharField(max_length=150, blank=True, null=True) 
+    NOMDIASMN = models.CharField(max_length=150, blank=True, null=True) 
+    NOMSMSANO = models.CharField(max_length=150, blank=True, null=True) 
+    CODCLLCMPATU = models.IntegerField()
+    DESCLLCMPATU = models.CharField(max_length=50, blank=True, null=True)
+    CODDRTCLLATU = models.IntegerField()
+    DESDRTCLLATU = models.CharField(max_length=150)
+    VLRVNDFATLIQ = models.CharField(max_length=45)
+    VLRRCTLIQAPU = models.CharField(max_length=45)
+    VLRMRGCRB = models.CharField(max_length=45)
+    VLRMRGBRT = models.CharField(max_length=45)
+    NOMCPR = models.CharField(max_length=45)
+    CODFIL = models.IntegerField(blank=True, null=True)
+    INDCTGTOP = models.TextField(blank=True, null=True)  # Field name made lowercase.
+    CODGRPMER = models.IntegerField(blank=True, null=True)
+    DESGRPMER = models.CharField(max_length=45)
+    CODFMLMER = models.IntegerField(blank=True, null=True)
+    DESFMLMER = models.CharField(max_length=45)
+    CODCLSMER = models.IntegerField(blank=True, null=True)
+    DESCLSMER = models.CharField(max_length=45)
+    CODDRTCLLATU = models.IntegerField()
+    CODGRPFRN = models.IntegerField()
+    NOMGRPFRN = models.CharField(max_length=150)
+    NOMFRN = models.CharField(max_length=150)
+    
+
+
+
+
+
+
+
+

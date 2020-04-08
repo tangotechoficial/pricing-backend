@@ -2,24 +2,11 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from .models import Campo, Sequencia, Camada, TipoValor, ChaveContas, Condicao, EsquemaDeCalculo, CondicaoCamadaEsquema, SequenciaCondicao, FilialExpedicao, FilialFaturamento, Regiao, Estado, Mercadoria, ChavePrecificao, Preco, CodterchvCodcnl
-from .serializer import CampoSerializer, SequenciaSerializer, CamadaSerializer, TipoValorSerializer, ChaveContasSerializer, CondicaoSerializer, EsquemaDeCalculoSerializer, CondicaoCamadaEsquemaSerializer, SequenciaCondicaoSerializer, FilialExpedicaoSerializer, FilialFaturamentoSerializer, RegiaoSerializer, EstadoSerializer, MercadoriaSerializer, ChavePrecificaoSerializer, PrecoSerializer, EsquemaRelationSerializer, CodterchvCodcnlSerializer
+from .models import Campo, Sequencia, Camada, TipoValor, ChaveContas, Condicao, EsquemaDeCalculo, CondicaoCamadaEsquema, SequenciaCondicao, FilialExpedicao, FilialFaturamento, Regiao, Estado, Mercadoria, ChavePrecificao, Preco, CodterchvCodcnl, CampoSequencia
+from .serializer import CampoSerializer, SequenciaSerializer, CamadaSerializer, TipoValorSerializer, ChaveContasSerializer, CondicaoSerializer, EsquemaDeCalculoSerializer, CondicaoCamadaEsquemaSerializer, SequenciaCondicaoSerializer, FilialExpedicaoSerializer, FilialFaturamentoSerializer, RegiaoSerializer, EstadoSerializer, MercadoriaSerializer, ChavePrecificaoSerializer, PrecoSerializer, EsquemaRelationSerializer, CodterchvCodcnlSerializer, CampoSequenciaSerializer
 
 
-""" class SEQ_CAMPOViewSet(viewsets.ModelViewSet):
-    queryset = SEQ_CAMPO.objects.all()
-    serializer_class = SEQ_CAMPOSerializer
 
-    @action(
-        methods=['get'],
-        detail=False,
-        url_path='last',
-        url_name='last',
-    )
-    def get_last_seqcampo(self, request, *args, **kwargs):
-        last_pk = self.queryset.all().last().pk
-        self.kwargs.update(pk=last_pk)
-        return self.retrieve(request, *args, **kwargs) """
 
 class CampoViewSet(viewsets.ModelViewSet):
     queryset = Campo.objects.all()
@@ -83,6 +70,11 @@ class CondicaoViewSet(viewsets.ModelViewSet):
 class SequenciaCondicaoViewSet(viewsets.ModelViewSet):
     queryset = SequenciaCondicao.objects.all()
     serializer_class = SequenciaCondicaoSerializer
+
+
+class CampoSequenciaViewSet(viewsets.ModelViewSet):
+    queryset = CampoSequencia.objects.all()
+    serializer_class = CampoSequenciaSerializer
 
 class EsquemaDeCalculoViewSet(viewsets.ModelViewSet):
     queryset = EsquemaDeCalculo.objects.all()
