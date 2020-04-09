@@ -2,6 +2,7 @@ from rest_framework import viewsets, mixins
 from . import models
 from . import serializers
 from . import pagination
+from django_filters.rest_framework import DjangoFilterBackend
 
 class BasePrecoViewSet(viewsets.ModelViewSet):
     """
@@ -139,4 +140,7 @@ class PlanoComprasViewSet(viewsets.ModelViewSet):
     """
     queryset = models.DiretrizesEstrategica.objects.all()
     serializer_class = serializers.DiretrizesEstrategicaSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODESTUNI', 'CODFIL', 'DESCLSMER']
+
 
