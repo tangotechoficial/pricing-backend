@@ -138,9 +138,9 @@ class PlanoComprasViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows PlanoCompras to be viewed or edited.
     """
-    queryset = models.DiretrizesEstrategica.objects.all()
-    serializer_class = serializers.DiretrizesEstrategicaSerializer
+    queryset = models.PlanoCompras.objects.all()
+    serializer_class = serializers.PlanoComprasSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['CODESTUNI', 'CODFIL', 'DESCLSMER']
+    filterset_fields = ['CODESTUNI', 'CODFILEPD', 'CODPRD']
 
 
