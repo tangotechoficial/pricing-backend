@@ -703,13 +703,13 @@ class PlanoCompras(models.Model):
     CODFILFAT = models.IntegerField()
     CODPRD = models.IntegerField()
     NUMANOMESSMN = models.CharField(max_length=50)
-    MRGBRTOCD = models.TextField()
-    VLRRCTLIQCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    MRGBRTOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    # VLRRCTLIQCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRCSTCMPMER = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRCSTCMPIDL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRCMVOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRCMVOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRCMVCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
-    VLRDVLOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     # VLRVLDCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRFLXPLN = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRFLXSUG = models.DecimalField(decimal_places=2, max_digits=10, null=True)
@@ -719,8 +719,8 @@ class PlanoCompras(models.Model):
     VLRIMPTOTCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRMRGBRTOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRMRGBRTCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
-    VLRPCOBSEOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRPCOBSECAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    VLRPCOBSEOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRMCDOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRMCDCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRDVLCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
@@ -735,21 +735,6 @@ class PlanoCompras(models.Model):
     VLRVBAOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRRBTCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRRBTOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
-    
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
+    VLRCMVPCOATU = models.DecimalField(decimal_places=2, max_digits=10, null=True)   
+    VLRRCTLIQOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True) 
+    VLRDVLOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True) 
