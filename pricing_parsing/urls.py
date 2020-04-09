@@ -23,7 +23,7 @@ router.register('verbaebc', views.VerbaeBCViewSet)
 router.register('vendas', views.VendasViewSet)
 router.register('dadosmestrecomposicao', views.DadosMestre_ComposicaoPrecoViewSet)
 router.register('diretrizesestrategicas', views.DiretrizesEstrategicaViewSet)
-router.register(r'planocompras', views.PlanoComprasViewSet)
+router.register('planocompras', views.PlanoComprasViewSet)
 
 
 urlpatterns = router.urls

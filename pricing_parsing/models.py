@@ -696,9 +696,9 @@ class DiretrizesEstrategica(models.Model):
 class PlanoCompras(models.Model):
 
     class Meta: 
-        db_table: 'mrt.MOVPLNCMPCAL'
+        db_table = 'mrt.MOVPLNCMPCAL' 
 
-    CODESTUNI = models.IntegerField()
+    CODESTUNI = models.CharField(max_length=2)
     CODFILEPD = models.IntegerField()
     CODFILFAT = models.IntegerField()
     CODPRD = models.IntegerField()
@@ -710,7 +710,7 @@ class PlanoCompras(models.Model):
     VLRCMVOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRCMVCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRDVLOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
-    VLRVLDCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    # VLRVLDCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRFLXPLN = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRFLXSUG = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRICMOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
@@ -735,6 +735,9 @@ class PlanoCompras(models.Model):
     VLRVBAOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRRBTCAL = models.DecimalField(decimal_places=2, max_digits=10, null=True)
     VLRRBTOCD = models.DecimalField(decimal_places=2, max_digits=10, null=True)
+    
+
+
 
 
 
