@@ -141,6 +141,6 @@ class PlanoComprasViewSet(viewsets.ModelViewSet):
     queryset = models.PlanoCompras.objects.all()
     serializer_class = serializers.PlanoComprasSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['CODESTUNI', 'CODFILEPD', 'CODPRD']
+    filterset_fields = ['CODESTUNI', 'CODFILEPD', 'CODFILFAT', 'CODPRD']
 
 
