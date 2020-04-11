@@ -134,6 +134,17 @@ class DiretrizesEstrategicaViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.DiretrizesEstrategicaSerializer
     pagination_class = pagination.StandardResultsSetPagination
 
+class DiretrizesFilterViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.all()
+    serializer_class = serializers.DiretrizesFilterSerializer
+    pagination_class = pagination.StandardResultsSetPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['DESDRTCLLATU', 'CODGRPMER', 'DESGRPMER', 'CODFMLMER', 'DESFMLMER',
+                  'CODCLSMER', 'DESCLSMER', 'CODDIVFRN', 'NOMFRN', 'CODFIL', 'CODESTUNI', ]
+
 class PlanoComprasViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows PlanoCompras to be viewed or edited.
