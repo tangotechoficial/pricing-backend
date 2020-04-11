@@ -116,6 +116,16 @@ class DiretrizesFilterSerializer(serializers.ModelSerializer):
         fields = ['DESDRTCLLATU', 'CODGRPMER', 'DESGRPMER', 'CODFMLMER', 'DESFMLMER',
                   'CODCLSMER', 'DESCLSMER', 'CODDIVFRN', 'NOMFRN', 'CODFIL', 'CODESTUNI']
 
+class DiretrizesFilterDirectoriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DiretrizesEstrategica
+        fields = ['DESDRTCLLATU']
+
+class DiretrizesFilterCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DiretrizesEstrategica
+        fields = ['CODGRPMER', 'DESGRPMER']
+
 
 class PlanoComprasSerializer(serializers.ModelSerializer):
     class Meta:
