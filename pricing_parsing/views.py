@@ -151,7 +151,6 @@ class DiretrizesFilterDirectoryViewSet(viewsets.ModelViewSet):
     """
     queryset = models.DiretrizesEstrategica.objects.distinct('DESDRTCLLATU')
     serializer_class = serializers.DiretrizesFilterDirectoriesSerializer
-    pagination_class = pagination.StandardResultsSetPagination
 
 class DiretrizesFilterGroupMerViewSet(viewsets.ModelViewSet):
     """
@@ -159,7 +158,6 @@ class DiretrizesFilterGroupMerViewSet(viewsets.ModelViewSet):
     """
     queryset = models.DiretrizesEstrategica.objects.distinct('CODGRPMER')
     serializer_class = serializers.DiretrizesFilterGroupMerSerializer
-    pagination_class = pagination.StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['DESDRTCLLATU']
 
@@ -169,7 +167,6 @@ class DiretrizesFilterCategoryViewSet(viewsets.ModelViewSet):
     """
     queryset = models.DiretrizesEstrategica.objects.distinct('CODFMLMER')
     serializer_class = serializers.DiretrizesFilterCategorySerializer
-    pagination_class = pagination.StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['CODGRPMER']
 
@@ -179,7 +176,6 @@ class DiretrizesFilterSubCategoryViewSet(viewsets.ModelViewSet):
     """
     queryset = models.DiretrizesEstrategica.objects.distinct('CODCLSMER')
     serializer_class = serializers.DiretrizesFilterSubCategorySerializer
-    pagination_class = pagination.StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['CODFMLMER']
     
@@ -187,9 +183,8 @@ class DiretrizesFilterFornecedorViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows DiretrizesEstrategica to be viewed or edited.
     """
-    queryset = models.DiretrizesEstrategica.objects.distinct('CODDIVFN')
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODDIVFRN')
     serializer_class = serializers.DiretrizesFilterFornecedorSerializer
-    pagination_class = pagination.StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['CODCLSMER']
 
@@ -199,7 +194,6 @@ class DiretrizesFilterFilialViewSet(viewsets.ModelViewSet):
     """
     queryset = models.DiretrizesEstrategica.objects.distinct('CODESTUNI')
     serializer_class = serializers.DiretrizesFilterFilialSerializer
-    pagination_class = pagination.StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['CODDIVFRN']
     
