@@ -126,7 +126,7 @@ class DiretrizesFilterGroupMerSerializer(serializers.ModelSerializer):
         model = models.DiretrizesEstrategica
         fields = ['CODGRPMER', 'DESGRPMER']
 
-class DiretrizesFilterGroupMerSerializer(serializers.ModelSerializer):
+class DiretrizesFilterCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = models.DiretrizesEstrategica
         fields = ['CODFMLMER', 'DESFMLMER']
