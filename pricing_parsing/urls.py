@@ -24,6 +24,8 @@ router.register('vendas', views.VendasViewSet)
 router.register('dadosmestrecomposicao', views.DadosMestre_ComposicaoPrecoViewSet)
 router.register('diretrizesestrategicas', views.DiretrizesEstrategicaViewSet)
 router.register('diretrizesfilter', views.DiretrizesFilterViewSet)
+router.register('diretrizesdirectories', views.DiretrizesFilterDirectoryViewSet)
+router.register('diretrizescategories', views.DiretrizesFilterCategoryViewSet)
 router.register('planocompras', views.PlanoComprasViewSet)
 
 
