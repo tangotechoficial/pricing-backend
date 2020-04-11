@@ -121,10 +121,15 @@ class DiretrizesFilterDirectoriesSerializer(serializers.ModelSerializer):
         model = models.DiretrizesEstrategica
         fields = ['DESDRTCLLATU']
 
-class DiretrizesFilterCategorySerializer(serializers.ModelSerializer):
+class DiretrizesFilterGroupMerSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.DiretrizesEstrategica
         fields = ['CODGRPMER', 'DESGRPMER']
+
+class DiretrizesFilterGroupMerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DiretrizesEstrategica
+        fields = ['CODFMLMER', 'DESFMLMER']
 
 
 class PlanoComprasSerializer(serializers.ModelSerializer):

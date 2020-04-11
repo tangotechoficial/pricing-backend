@@ -153,15 +153,25 @@ class DiretrizesFilterDirectoryViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.DiretrizesFilterDirectoriesSerializer
     pagination_class = pagination.StandardResultsSetPagination
 
-class DiretrizesFilterCategoryViewSet(viewsets.ModelViewSet):
+class DiretrizesFilterGroupMerViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows DiretrizesEstrategica to be viewed or edited.
     """
     queryset = models.DiretrizesEstrategica.objects.distinct('CODGRPMER')
-    serializer_class = serializers.DiretrizesFilterCategorySerializer
+    serializer_class = serializers.DiretrizesFilterGroupMerSerializer
     pagination_class = pagination.StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['DESDRTCLLATU']
+
+class DiretrizesFilterCategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODFLMMER')
+    serializer_class = serializers.DiretrizesFilterGroupMerSerializer
+    pagination_class = pagination.StandardResultsSetPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODGRPMER']
     
 
 class PlanoComprasViewSet(viewsets.ModelViewSet):
