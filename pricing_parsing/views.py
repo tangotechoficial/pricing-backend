@@ -177,11 +177,11 @@ class DiretrizesFilterSubCategoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows DiretrizesEstrategica to be viewed or edited.
     """
-    queryset = models.DiretrizesEstrategica.objects.distinct('CODFLMMER')
-    serializer_class = serializers.DiretrizesFilterGroupMerSerializer
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODCLSMER')
+    serializer_class = serializers.DiretrizesFilterSubCategorySerializer
     pagination_class = pagination.StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['CODGRPMER']
+    filterset_fields = ['CODFLMMER']
     
 
 class PlanoComprasViewSet(viewsets.ModelViewSet):

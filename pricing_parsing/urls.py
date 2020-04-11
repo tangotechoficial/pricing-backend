@@ -27,6 +27,7 @@ router.register('diretrizesfilter', views.DiretrizesFilterViewSet)
 router.register('diretrizesdirectories', views.DiretrizesFilterDirectoryViewSet)
 router.register('diretrizesgroups', views.DiretrizesFilterGroupMerViewSet)
 router.register('diretrizescategories', views.DiretrizesFilterCategoryViewSet)
+router.register('diretrizessubcategories', views.DiretrizesFilterSubCategoryViewSet)
 router.register('planocompras', views.PlanoComprasViewSet)
 
 

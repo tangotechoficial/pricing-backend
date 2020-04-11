@@ -131,6 +131,10 @@ class DiretrizesFilterCategorySerializer(serializers.ModelSerializer):
         model = models.DiretrizesEstrategica
         fields = ['CODFMLMER', 'DESFMLMER']
 
+class DiretrizesFilterSubCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DiretrizesEstrategica
+        fields = ['CODCLSMER', 'DESCLSMER']
 
 class PlanoComprasSerializer(serializers.ModelSerializer):
     class Meta:
