@@ -87,9 +87,10 @@ class DadosMestre_ComposicaoPrecoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class DiretrizesEstrategicaSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = models.DiretrizesEstrategica
-        fields = '__all__'
+        fields = ('__all__')
 
 class PlanoComprasSerializer(serializers.ModelSerializer):
     class Meta:
