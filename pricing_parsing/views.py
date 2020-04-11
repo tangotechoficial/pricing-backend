@@ -132,7 +132,6 @@ class DiretrizesEstrategicaViewSet(viewsets.ModelViewSet):
     """
     queryset = models.DiretrizesEstrategica.objects.all()
     serializer_class = serializers.DiretrizesEstrategicaSerializer
-    pagination_class = pagination.StandardResultsSetPagination
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['DESDRTCLLATU', 'CODGRPMER', 'DESGRPMER', 'CODFMLMER', 'DESFMLMER',
                   'CODCLSMER', 'DESCLSMER', 'CODDIVFRN', 'NOMFRN', 'CODFIL', 'CODESTUNI', ]

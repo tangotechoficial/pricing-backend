@@ -690,7 +690,6 @@ class DiretrizesEstrategica(models.Model):
     DESFMLMER = models.CharField(max_length=45)
     CODCLSMER = models.IntegerField(blank=True, null=True)
     DESCLSMER = models.CharField(max_length=45)
-    CODDRTCLLATU = models.IntegerField()
     CODGRPFRN = models.IntegerField()
     NOMGRPFRN = models.CharField(max_length=150)
     NOMFRN = models.CharField(max_length=150)
