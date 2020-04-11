@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'api',
     'dinamica',
-    'pricing_parsing'
+    'pricing_parsing',
+    'django_filters'
 ]
 
 MIDDLEWARE = [

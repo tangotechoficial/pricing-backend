@@ -133,6 +133,70 @@ class DiretrizesEstrategicaViewSet(viewsets.ModelViewSet):
     queryset = models.DiretrizesEstrategica.objects.all()
     serializer_class = serializers.DiretrizesEstrategicaSerializer
     pagination_class = pagination.StandardResultsSetPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['DESDRTCLLATU', 'CODGRPMER', 'DESGRPMER', 'CODFMLMER', 'DESFMLMER',
+                  'CODCLSMER', 'DESCLSMER', 'CODDIVFRN', 'NOMFRN', 'CODFIL', 'CODESTUNI', ]
+
+class DiretrizesFilterViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.all()
+    serializer_class = serializers.DiretrizesFilterSerializer
+    pagination_class = pagination.StandardResultsSetPagination
+
+class DiretrizesFilterDirectoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('DESDRTCLLATU')
+    serializer_class = serializers.DiretrizesFilterDirectoriesSerializer
+
+class DiretrizesFilterGroupMerViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODGRPMER')
+    serializer_class = serializers.DiretrizesFilterGroupMerSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['DESDRTCLLATU']
+
+class DiretrizesFilterCategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODFMLMER')
+    serializer_class = serializers.DiretrizesFilterCategorySerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODGRPMER']
+
+class DiretrizesFilterSubCategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODCLSMER')
+    serializer_class = serializers.DiretrizesFilterSubCategorySerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODFMLMER']
+    
+class DiretrizesFilterFornecedorViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODDIVFRN')
+    serializer_class = serializers.DiretrizesFilterFornecedorSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODCLSMER']
+
+class DiretrizesFilterFilialViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODESTUNI')
+    serializer_class = serializers.DiretrizesFilterFilialSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODDIVFRN']
+    
 
 class PlanoComprasViewSet(viewsets.ModelViewSet):
     """

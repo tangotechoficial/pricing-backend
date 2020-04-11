@@ -524,19 +524,21 @@ class Competitividade(models.Model):
         db_table = 'mrt.MOVPCOMCD'
 
     CODPRD = models.IntegerField()
-    CODIDTCUR = models.IntegerField(primary_key=True)
-    CODESTUNI = models.CharField(max_length=2, blank=True, null=True)
-    NUMANO = models.DateTimeField()
-    NUMANOMES = models.DateTimeField()
-    NUMSMNANO = models.DateTimeField()
-    NOMMES = models.DateTimeField()
-    DATREF = models.DateTimeField()
+    CODIDTCUR = models.CharField(primary_key=True, max_length=100)
+    CODESTUNI = models.CharField(max_length=100, blank=True, null=True)
+    NUMANO = models.IntegerField(blank=True, null=True)
+    NUMANOMES = models.IntegerField(blank=True, null=True)
+    NUMSMNANO = models.IntegerField(blank=True, null=True)
+    NOMMES = models.CharField(max_length=20, blank=True, null=True)
+    DATREF = models.CharField(max_length=20, blank=True, null=True)
     CODSML = models.IntegerField()
     DESGRPMERSMR = models.CharField(max_length=45, blank=True, null=True)
     CODTIPAPU = models.CharField(max_length=45, blank=True, null=True)
-    VLRPCOMEDMCD = models.DecimalField(decimal_places=2, max_digits=10)
+    VLRPCOMEDMCD = models.CharField(max_length=15)
     VLRPCOBSEMER = models.DecimalField(decimal_places=2, max_digits=10)
     CLFCRVABCMER = models.CharField(max_length=1, blank=True, null=True)
+
+    
 
 class Elasticidade(models.Model):
     """
