@@ -28,6 +28,8 @@ router.register('diretrizesdirectories', views.DiretrizesFilterDirectoryViewSet)
 router.register('diretrizesgroups', views.DiretrizesFilterGroupMerViewSet)
 router.register('diretrizescategories', views.DiretrizesFilterCategoryViewSet)
 router.register('diretrizessubcategories', views.DiretrizesFilterSubCategoryViewSet)
+router.register('diretrizesfornecedor', views.DiretrizesFilterFornecedorViewSet)
+router.register('diretrizesfilial', views.DiretrizesFilterFilialViewSet)
 router.register('planocompras', views.PlanoComprasViewSet)
 
 

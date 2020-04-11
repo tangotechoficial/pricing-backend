@@ -136,6 +136,16 @@ class DiretrizesFilterSubCategorySerializer(serializers.ModelSerializer):
         model = models.DiretrizesEstrategica
         fields = ['CODCLSMER', 'DESCLSMER']
 
+class DiretrizesFilterFornecedorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DiretrizesEstrategica
+        fields = ['CODDIVFRN', 'NOMFRN']
+
+class DiretrizesFilterFilialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.DiretrizesEstrategica
+        fields = ['CODESTUNI']
+
 class PlanoComprasSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.PlanoCompras
