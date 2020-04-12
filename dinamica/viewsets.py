@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import Campo, Sequencia, Camada, TipoValor, ChaveContas, Condicao, EsquemaDeCalculo, CondicaoCamadaEsquema, SequenciaCondicao, FilialExpedicao, FilialFaturamento, Regiao, Estado, Mercadoria, ChavePrecificao, Preco, CodterchvCodcnl, CampoSequencia
 from .serializer import CampoSerializer, SequenciaSerializer, CamadaSerializer, TipoValorSerializer, ChaveContasSerializer, CondicaoSerializer, EsquemaDeCalculoSerializer, CondicaoCamadaEsquemaSerializer, SequenciaCondicaoSerializer, FilialExpedicaoSerializer, FilialFaturamentoSerializer, RegiaoSerializer, EstadoSerializer, MercadoriaSerializer, ChavePrecificaoSerializer, PrecoSerializer, EsquemaRelationSerializer, CodterchvCodcnlSerializer, CampoSequenciaSerializer
-
+from pprint import pprint
 
 
 
@@ -118,4 +118,7 @@ class EsquemaRelationViewSet(viewsets.ModelViewSet):
 
 class CodterchvCodcnlViewSet(viewsets.ModelViewSet):
     queryset = CodterchvCodcnl.objects.all()
-    serializer_class = CodterchvCodcnlSerializer  
+    serializer_class = CodterchvCodcnlSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(id=self.request.data.get("codterchv") + self.request.data.get("codcnl"))

@@ -42,7 +42,7 @@ class Condicao(models.Model):
     cod_condicao = models.CharField(primary_key=True, max_length=10)
     desc_condicao = models.CharField(max_length=30)
     cod_camada = models.ForeignKey(Camada, models.DO_NOTHING, db_column='cod_camada')
-    cod_chavecontas = models.ForeignKey(ChaveContas, models.DO_NOTHING, db_column='cod_chavecontas')
+    cod_chavecontas = models.ForeignKey(ChaveContas, models.DO_NOTHING, db_column='cod_chavecontas', null=True, blank=True)
     cod_tipovalor = models.ForeignKey('TipoValor', models.DO_NOTHING, db_column='cod_tipovalor')
     escala_qtde = models.IntegerField()
     pos_neg = models.CharField(max_length=1)
@@ -182,6 +182,8 @@ class CodterchvCodcnl(models.Model):
     codterchv = models.CharField(max_length=10)
     codcnl = models.CharField(max_length=10)
     permrgadicnlvnd = models.IntegerField(blank=True, null=True)
+    startdate = models.DateField()
+    enddate = models.DateField()
 
     class Meta:
         managed = False
