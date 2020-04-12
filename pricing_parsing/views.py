@@ -2,6 +2,7 @@ from rest_framework import viewsets, mixins
 from . import models
 from . import serializers
 from . import pagination
+from django_filters.rest_framework import DjangoFilterBackend
 
 class BasePrecoViewSet(viewsets.ModelViewSet):
     """
@@ -30,6 +31,13 @@ class EttprdViewSet(viewsets.ModelViewSet):
     """
     queryset = models.Ettprd.objects.all()
     serializer_class = serializers.EttprdSerializer
+
+class EttprdFilterViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Ettprd to be viewed or edited.
+    """
+    queryset = models.Ettprd.objects.all()
+    serializer_class = serializers.EttprdFilterSerializer
 
 class MetasdiariasViewSet(viewsets.ModelViewSet):
     """
@@ -80,3 +88,162 @@ class PrdsmlViewSet(viewsets.ModelViewSet):
     """
     queryset = models.Prdsml.objects.all()
     serializer_class = serializers.PrdsmlSerializer
+
+class DadosMestre_VerbaViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DadosMestre_Verba to be viewed or edited.
+    """
+    queryset = models.DadosMestre_Verba.objects.all()
+    serializer_class = serializers.DadosMestre_VerbaSerializer
+    pagination_class = pagination.StandardResultsSetPagination
+
+class ElasticidadeViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Elasticidade to be viewed or edited.
+    """
+    queryset = models.Elasticidade.objects.all()
+    serializer_class = serializers.ElasticidadeSerializer
+
+class VerbaeBCViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows VerbaeBC to be viewed or edited.
+    """
+    queryset = models.VerbaeBC.objects.all()
+    serializer_class = serializers.VerbaeBCSerializer
+
+class VendasViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows Vendas to be viewed or edited.
+    """
+    queryset = models.Vendas.objects.all()
+    serializer_class = serializers.VendasSerializer
+
+class DadosMestre_ComposicaoPrecoViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DadosMestre_ComposicaoPreco to be viewed or edited.
+    """
+    queryset = models.DadosMestre_ComposicaoPreco.objects.all()
+    serializer_class = serializers.DadosMestre_ComposicaoPrecoSerializer
+    pagination_class = pagination.StandardResultsSetPagination
+
+class DiretrizesEstrategicaViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.all()
+    serializer_class = serializers.DiretrizesEstrategicaSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['DESDRTCLLATU', 'CODGRPMER', 'DESGRPMER', 'CODFMLMER', 'DESFMLMER',
+                  'CODCLSMER', 'DESCLSMER', 'CODDIVFRN', 'NOMFRN', 'CODFIL', 'CODESTUNI', ]
+
+class DiretrizesFilterViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.all()
+    serializer_class = serializers.DiretrizesFilterSerializer
+    pagination_class = pagination.StandardResultsSetPagination
+
+class DiretrizesFilterDirectoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('DESDRTCLLATU')
+    serializer_class = serializers.DiretrizesFilterDirectoriesSerializer
+
+class DiretrizesFilterGroupMerViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODGRPMER')
+    serializer_class = serializers.DiretrizesFilterGroupMerSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['DESDRTCLLATU']
+
+class DiretrizesFilterCategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODFMLMER')
+    serializer_class = serializers.DiretrizesFilterCategorySerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODGRPMER']
+
+class DiretrizesFilterSubCategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODCLSMER')
+    serializer_class = serializers.DiretrizesFilterSubCategorySerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODFMLMER']
+    
+class DiretrizesFilterFornecedorViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODDIVFRN')
+    serializer_class = serializers.DiretrizesFilterFornecedorSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODCLSMER']
+
+class DiretrizesFilterFilialViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows DiretrizesEstrategica to be viewed or edited.
+    """
+    queryset = models.DiretrizesEstrategica.objects.distinct('CODESTUNI')
+    serializer_class = serializers.DiretrizesFilterFilialSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODDIVFRN']
+    
+
+class PlanoComprasViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows PlanoCompras to be viewed or edited.
+    """
+    queryset = models.PlanoCompras.objects.all()
+    serializer_class = serializers.PlanoComprasSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODESTUNI', 'CODFILEPD', 'CODFILFAT', 'CODPRD']
+
+class PlanoComprasFilterFilialViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows PlanoCompras to be viewed or edited.
+    """
+    queryset = models.PlanoCompras.objects.distinct('CODFILEPD')
+    serializer_class = serializers.PlanoComprasFilterFilialSerializer
+
+class PlanoComprasFilterFaturamentoViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows PlanoCompras to be viewed or edited.
+    """
+    queryset = models.PlanoCompras.objects.distinct('CODFILFAT')
+    serializer_class = serializers.PlanoComprasFilterFaturamentoSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODFILEPD']
+
+class PlanoComprasFilterUFViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows PlanoCompras to be viewed or edited.
+    """
+    queryset = models.PlanoCompras.objects.distinct('CODESTUNI')
+    serializer_class = serializers.PlanoComprasFilterUFSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODFILFAT']
+
+
+class PlanoComprasFilterProdutoViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows PlanoCompras to be viewed or edited.
+    """
+    queryset = models.PlanoCompras.objects.distinct('CODPRD')
+    serializer_class = serializers.PlanoComprasFilterProdutoSerializer
+    
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['CODESTUNI']
+
+
+
+
+
+

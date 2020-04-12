@@ -334,7 +334,7 @@ class DiretrizesEstrategicaCSV(models.Model):
 class PlanoCompras(models.Model):
 
     class Meta:
-        db_table = "planocompras"
+        db_table = "mrt.MOVPLNCMPCAL"
 
     CODPRD = models.ForeignKey(Mercadoria, on_delete=models.DO_NOTHING)
     CODFILEPD = models.ForeignKey(RelacionamentoFilialRegiao, on_delete=models.DO_NOTHING)
@@ -408,3 +408,4 @@ class Otimizador(models.Model):
     VLRVNDLIQOCD = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
     VLRVNDLIQCAL = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
     VLRVNDLIQRLZ = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
+
