@@ -659,7 +659,7 @@ def calculate_sug_price_opt(df, trava_pco_min, trava_pco_max):
         vol = (
                x*(df['Elasticidade'] * df['QTDMED'] *(x - df['PCOMED'])/df['PCOMED']
                + df['QTDMED'])
-               )
+               )*df['QDEDIASMN']/7.
         return vol
 
     def objective_function(x, df):
@@ -700,7 +700,7 @@ def fix_sug_prc(df):
 def calculate_suggested_quantity(df):
     df['QTDSUG'] = (df['Elasticidade']*df['QTDMED']*
                     (df['VLRPCOSUG']-df['PCOMED'])/df['PCOMED'] + 
-                     df['QTDMED'])*df['QDEDIASMN']/7
+                     df['QTDMED'])*df['QDEDIASMN']/7.
 
     return df
 
@@ -843,7 +843,7 @@ def sales_volume_from_price(df):
     return df
 
 def pln_qtt(df):
-
+    
     def calculate_pln_qtt(df):
 
         qtt = df['VOLVNDPLN']/df['VLRPCOPLN']
@@ -855,6 +855,47 @@ def pln_qtt(df):
     return df
 
 
+def calculate_month_results(final):
+    
+    mes = final.iloc[[0]]
+
+    mes['WEEK'] = 'MÊS'
+
+    mes['VOLVNDSUG'] = final['VOLVNDSUG'].sum()
+
+    mes['VOLVNDSUGALC'] = final['VOLVNDSUGALC'].sum()
+
+    mes['VLRPCOSUG'] = sum(final['VLRPCOSUG']*final['QTDSUG'])/final['QTDSUG'].sum()
+
+    mes['VLRPCOBASESUG'] = sum(final['VLRPCOBASESUG']*final['QTDSUG'])/final['QTDSUG'].sum()
+
+    mes['VLRIMPTOTSUG'] = sum(final['VLRIMPTOTSUG']*final['QTDSUG'])/final['QTDSUG'].sum()
+    mes['VLRICMSSUG'] = sum(final['VLRICMSSUG']*final['QTDSUG'])/final['QTDSUG'].sum()
+    mes['VLRPISCOFSUG'] = sum(final['VLRPISCOFSUG']*final['QTDSUG'])/final['QTDSUG'].sum()
+    mes['VLRDEVSUG'] = sum(final['VLRDEVSUG']*final['QTDSUG'])/final['QTDSUG'].sum()
+    mes['VLRFLXSUG'] = sum(final['VLRFLXSUG']*final['QTDSUG'])/final['QTDSUG'].sum()
+    mes['VRBUNTSUGSUG'] = sum(final['VRBUNTSUGSUG']*final['QTDSUG'])/final['QTDSUG'].sum()
+
+    mes['VLRCMVPCOSUG'] = sum(final['VOLVNDSUG']*final['VLRCMVPCOSUG'])/final['VOLVNDSUG'].sum()
+    
+    mes['VOLVNDPLN'] = final['VOLVNDPLN'].sum()
+
+    mes['VLRPCOPLN'] = sum(final['VLRPCOPLN']*final['QTDPLN'])/final['QTDPLN'].sum()
+
+    mes['VLRPCOBASEPLN'] = sum(final['VLRPCOBASEPLN']*final['QTDPLN'])/final['QTDPLN'].sum()
+
+    mes['VLRIMPTOTPLN'] = sum(final['VLRIMPTOTPLN']*final['QTDPLN'])/final['QTDPLN'].sum()
+    mes['VLRICMSPLN'] = sum(final['VLRICMSPLN']*final['QTDPLN'])/final['QTDPLN'].sum()
+    mes['VLRPISCOFPLN'] = sum(final['VLRPISCOFPLN']*final['QTDPLN'])/final['QTDPLN'].sum()
+
+    mes['VLRDEVPLN'] = sum(final['VLRDEVPLN']*final['QTDPLN'])/final['QTDPLN'].sum()
+    mes['VLRFLXPLN'] = sum(final['VLRFLXPLN']*final['QTDPLN'])/final['QTDPLN'].sum()
+    mes['VLRVRBPLN'] = sum(final['VLRVRBPLN']*final['QTDPLN'])/final['QTDPLN'].sum()
+    mes['VLRCMVPCOPLN'] = sum(final['VLRCMVPCOPLN']*final['QTDPLN'])/final['QTDPLN'].sum()
+
+    final = pd.concat([final, mes], axis=0, ignore_index=True)
+    
+    return final
 
 def calculate_month_results_sug(final):
     
@@ -988,7 +1029,8 @@ def cmv_etq(df, prd, filepd, divfrn):
             FROM     "MOVETQ"
             WHERE    "CODPRD" IN ({prd}) AND 
                      "CODFIL" IN ({filepd}) AND
-                     "CODDIVFRN" IN ({divfrn})
+                     "CODDIVFRN" IN ({divfrn}) AND
+                     "VLRDIRCSTMEDMER" != 0
             ORDER BY "DATINI" DESC
             LIMIT 1
             '''.format(prd=','.join(prd),
