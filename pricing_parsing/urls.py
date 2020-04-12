@@ -31,6 +31,10 @@ router.register('diretrizessubcategories', views.DiretrizesFilterSubCategoryView
 router.register('diretrizesfornecedor', views.DiretrizesFilterFornecedorViewSet)
 router.register('diretrizesfilial', views.DiretrizesFilterFilialViewSet)
 router.register('planocompras', views.PlanoComprasViewSet)
+router.register('planocomprasfilial', views.PlanoComprasFilterFilialViewSet)
+router.register('planocomprasfaturamento', views.PlanoComprasFilterFaturamentoViewSet)
+router.register('planocomprasproduto', views.PlanoComprasFilterProdutoViewSet)
+router.register('planocomprasestado', views.PlanoComprasFilterUFViewSet)
 
 
 urlpatterns = router.urls

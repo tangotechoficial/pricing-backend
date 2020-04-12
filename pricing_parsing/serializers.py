@@ -150,3 +150,28 @@ class PlanoComprasSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.PlanoCompras
         fields = '__all__'
+
+class PlanoComprasFilterFilialSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.PlanoCompras
+        fields = ['CODFILEPD']
+
+class PlanoComprasFilterFaturamentoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.PlanoCompras
+        fields = ['CODFILFAT']
+
+class PlanoComprasFilterUFSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.PlanoCompras
+        fields = ['CODESTUNI']
+
+class PlanoComprasFilterProdutoSerializer(serializers.ModelSerializer):
+    DESPRD = serializers.SerializerMethodField()
+    class Meta:
+        model = models.PlanoCompras
+        fields = ['CODPRD', 'DESPRD']
+    
+    def get_DESPRD(self, obj):
+        return models.Ettprd.objects.values('desprd').filter(codprd=obj.CODPRD)[0]['desprd']
+
