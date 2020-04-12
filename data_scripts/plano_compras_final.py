@@ -74,18 +74,14 @@ def sugerido(result, last_n_weeks=15, trava_pco_min=0.1, trava_pco_max=0.1):
     final['VLRIMPTOTSUG'] = final['VLRICMSSUG'] + final['VLRPISCOFSUG']
     final['VLRVRBPLAN'] = '-'
 
-    final_tela = fpc.calculate_month_results_sug(final)
+#     final_tela = fpc.calculate_month_results_sug(final)
 
-    final_base = final_tela[['CODPRD', 'CODFILEPD', 'CODFILFAT', 'CODESTUNI', 'MONTH', 'YEAR',
+    final_base = final[['CODPRD', 'CODFILEPD', 'CODFILFAT', 'CODESTUNI', 'MONTH', 'YEAR',
                              'WEEK', 'VOLVNDSUG', 'VOLVNDSUGALC', 'MRGBRTPEROCD', 'VLRPCOSUG', 'VLRPCOBASESUG',
                              'VLRIMPTOTSUG', 'VLRICMSSUG', 'VLRPISCOFSUG', 'VLRDEVSUG', 'VLRFLXSUG','VLRMRGBRTSUG',
                              'VRBUNTSUGSUG', 'VLRVRBPLAN', 'VLRCMVPCOSUG', 'VLRCMVPCOATU', 'VLRCMVCMPATU']]
     
-    final_tela = final_tela[['WEEK', 'VOLVNDSUG', 'VOLVNDSUGALC', 'MRGBRTPEROCD', 'VLRPCOSUG', 'VLRPCOBASESUG',
-                             'VLRIMPTOTSUG', 'VLRICMSSUG', 'VLRPISCOFSUG', 'VLRDEVSUG', 'VLRFLXSUG',
-                             'VLRMRGBRTSUG', 'VRBUNTSUGSUG', 'VLRVRBPLAN', 'VLRCMVPCOSUG', 'VLRCMVPCOATU', 'VLRCMVCMPATU']]
-    
-    return final_tela, final_base, final
+    return final_base, final
 
 def planejado(user_input, final):
 
@@ -116,9 +112,79 @@ def planejado(user_input, final):
 
     planejado['VLRIMPTOTPLN'] = planejado['VLRICMSPLN'] + planejado['VLRPISCOFPLN']
 
-    planejado_base = fpc.calculate_month_results_pln(planejado)
+#     planejado_base = fpc.calculate_month_results(planejado)
 
-    planejado_base =  planejado_base[['CODPRD',
+    planejado_base =  planejado[['CODPRD',
+                                    'CODFILEPD',
+                                    'CODFILFAT',
+                                    'CODESTUNI',
+                                    'MONTH',
+                                    'YEAR',
+                                    'WEEK',
+                                    'VOLVNDSUG',
+                                    'VOLVNDSUGALC',
+                                    'MRGBRTOCD',
+                                    'VLRRCTLIQOCD', 
+                                    'MRGBRTPEROCD',
+                                    'VLRPCOSUG',
+                                    'VLRPCOBASESUG',
+                                    'VLRIMPTOTSUG',
+                                    'VLRICMSSUG',
+                                    'VLRPISCOFSUG',
+                                    'VLRDEVSUG',
+                                    'VLRFLXSUG',
+                                    'VLRMRGBRTSUG',
+                                    'VRBUNTSUGSUG',
+                                    'VLRCMVPCOSUG',
+                                    'VLRCMVPCOATU',
+                                    'VLRCMVCMPATU',
+                                      'VLRPCOMRC',
+                                      'VLRCOMPSUG',
+                                    'VOLVNDPLN',
+                                    'VLRPCOPLN',
+                                    'VLRPCOBASEPLN',
+                                    'VLRIMPTOTPLN',
+                                    'VLRICMSPLN',
+                                    'VLRPISCOFPLN',
+                                    'VLRDEVPLN',
+                                    'VLRFLXPLN',
+                                    'VLRMRGBRTPLN',
+                                    'VRBUNTSUGPLN',
+                                    'VLRVRBPLN',
+                                    'VLRCMVPCOPLN',
+                                    'VLRCMVCMPPLN',
+                                     'VLRCOMPPLN']]
+
+
+    
+    return planejado_base, planejado
+
+
+def planejado_tela(final):
+
+    planejado = final.copy()
+
+    planejado = fpc.etqcmv_to_prccmv(planejado)
+
+    planejado = fpc.suggested_funding_pln(planejado)
+
+    planejado = fpc.base_price_composition(planejado)
+
+    planejado = fpc.base_price_to_sales_price(planejado)
+
+    planejado = fpc.sales_volume_from_price(planejado)
+
+    planejado = fpc.compare_pln_sug(planejado)
+
+    planejado = fpc.pln_qtt(planejado)
+
+    planejado = fpc.calculate_pln_competitivity(planejado)
+
+    planejado['VLRIMPTOTPLN'] = planejado['VLRICMSPLN'] + planejado['VLRPISCOFPLN']
+
+#     planejado_base = fpc.calculate_month_results(planejado)
+
+    planejado_base =  planejado[['CODPRD',
                                     'CODFILEPD',
                                     'CODFILFAT',
                                     'CODESTUNI',
@@ -137,12 +203,11 @@ def planejado(user_input, final):
                                     'VLRFLXSUG',
                                     'VLRMRGBRTSUG',
                                     'VRBUNTSUGSUG',
-                                    'VLRVRBPLAN',
                                     'VLRCMVPCOSUG',
                                     'VLRCMVPCOATU',
                                     'VLRCMVCMPATU',
-                                    'VLRPCOMRC',
-                                    'VLRCOMPSUG',
+                                      'VLRPCOMRC',
+                                      'VLRCOMPSUG',
                                     'VOLVNDPLN',
                                     'VLRPCOPLN',
                                     'VLRPCOBASEPLN',
