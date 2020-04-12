@@ -167,8 +167,11 @@ class PlanoComprasFilterUFSerializer(serializers.ModelSerializer):
         fields = ['CODESTUNI']
 
 class PlanoComprasFilterProdutoSerializer(serializers.ModelSerializer):
+    DESPRD = serializers.SerializerMethodField()
     class Meta:
         model = models.PlanoCompras
-        fields = ['CODPRD']
-
+        fields = ['CODPRD', 'DESPRD']
+    
+    def get_DESPRD(self, obj):
+        return models.Ettprd.objects.values('desprd').filter(codprd=obj.CODPRD)[0]['desprd']
 
