@@ -154,7 +154,7 @@ class PlanoComprasSerializer(serializers.ModelSerializer):
 class PlanoComprasFilterFilialSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.PlanoCompras
-        fields = ['CODEFILEPD']
+        fields = ['CODFILEPD']
 
 class PlanoComprasFilterFaturamentoSerializer(serializers.ModelSerializer):
     class Meta:

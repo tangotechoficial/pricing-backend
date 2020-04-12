@@ -211,14 +211,14 @@ class PlanoComprasFilterFilialViewSet(viewsets.ModelViewSet):
     API endpoint that allows PlanoCompras to be viewed or edited.
     """
     queryset = models.PlanoCompras.objects.distinct('CODFILEPD')
-    serializer_class = serializers.PlanoComprasSerializer
+    serializer_class = serializers.PlanoComprasFilterFilialSerializer
 
 class PlanoComprasFilterFaturamentoViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows PlanoCompras to be viewed or edited.
     """
     queryset = models.PlanoCompras.objects.distinct('CODFILFAT')
-    serializer_class = serializers.PlanoComprasSerializer
+    serializer_class = serializers.PlanoComprasFilterFaturamentoSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['CODFILEPD']
 
@@ -227,7 +227,7 @@ class PlanoComprasFilterProdutoViewSet(viewsets.ModelViewSet):
     API endpoint that allows PlanoCompras to be viewed or edited.
     """
     queryset = models.PlanoCompras.objects.distinct('CODPRD')
-    serializer_class = serializers.PlanoComprasSerializer
+    serializer_class = serializers.PlanoComprasFilterProdutoSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['CODFILFAT']
 
@@ -236,7 +236,7 @@ class PlanoComprasFilterUFViewSet(viewsets.ModelViewSet):
     API endpoint that allows PlanoCompras to be viewed or edited.
     """
     queryset = models.PlanoCompras.objects.distinct('CODESTUNI')
-    serializer_class = serializers.PlanoComprasSerializer
+    serializer_class = serializers.PlanoComprasFilterUFSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['CODPRD']
 
