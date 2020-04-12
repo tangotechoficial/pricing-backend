@@ -161,13 +161,14 @@ class PlanoComprasFilterFaturamentoSerializer(serializers.ModelSerializer):
         model = models.PlanoCompras
         fields = ['CODFILFAT']
 
+class PlanoComprasFilterUFSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.PlanoCompras
+        fields = ['CODESTUNI']
+
 class PlanoComprasFilterProdutoSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.PlanoCompras
         fields = ['CODPRD']
 
-class PlanoComprasFilterUFSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.PlanoCompras
-        fields = ['CODESTUNI']
 

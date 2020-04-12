@@ -226,7 +226,7 @@ class PlanoComprasFilterProdutoViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows PlanoCompras to be viewed or edited.
     """
-    queryset = models.PlanoCompras.objects.distinct('CODPRD')
+    queryset = models.PlanoCompras.objects.distinct('CODESTUNI')
     serializer_class = serializers.PlanoComprasFilterProdutoSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['CODFILFAT']
@@ -235,10 +235,10 @@ class PlanoComprasFilterUFViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows PlanoCompras to be viewed or edited.
     """
-    queryset = models.PlanoCompras.objects.distinct('CODESTUNI')
+    queryset = models.PlanoCompras.objects.distinct('CODPRD')
     serializer_class = serializers.PlanoComprasFilterUFSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['CODPRD']
+    filterset_fields = ['CODESTUNI']
 
 
 
