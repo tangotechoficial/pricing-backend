@@ -185,7 +185,7 @@ class DiretrizesFilterFornecedorViewSet(viewsets.ModelViewSet):
     queryset = models.DiretrizesEstrategica.objects.distinct('CODDIVFRN')
     serializer_class = serializers.DiretrizesFilterFornecedorSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['CODCLSMER']
+    filterset_fields = ['CODCLSMER', 'CODFMLMER']
 
 class DiretrizesFilterFilialViewSet(viewsets.ModelViewSet):
     """
@@ -194,7 +194,7 @@ class DiretrizesFilterFilialViewSet(viewsets.ModelViewSet):
     queryset = models.DiretrizesEstrategica.objects.distinct('CODESTUNI')
     serializer_class = serializers.DiretrizesFilterFilialSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['CODDIVFRN']
+    filterset_fields = ['CODCLSMER', 'CODFMLMER','CODDIVFRN']
     
 
 class PlanoComprasViewSet(viewsets.ModelViewSet):
