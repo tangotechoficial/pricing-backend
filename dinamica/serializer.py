@@ -130,6 +130,8 @@ class EsquemaRelationSerializer(serializers.ModelSerializer):
         return CamadaCondicaoSerializer(camadas, many=True).data
 
 class CodterchvCodcnlSerializer(serializers.ModelSerializer):
+    startdate = serializers.DateField(format='%d-%m-%Y')
+    enddate = serializers.DateField(format='%d-%m-%Y')
     class Meta:
         model = CodterchvCodcnl
-        fields = '__all__'
+        fields = ['codterchv', 'codcnl', 'permrgadicnlvnd', 'startdate', 'enddate']
