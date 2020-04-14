@@ -272,7 +272,5 @@ def run_planejado_tela(week, plan_month, plan_year, prd, est, cmvcmp, vrbpln, fi
                 }
     
     planejado = planejado[dict_columns.keys()]
-
     planejado = planejado.rename(columns=dict_columns)
-    
-    return planejado
+    return planejado.to_dict(orient='records')[0]

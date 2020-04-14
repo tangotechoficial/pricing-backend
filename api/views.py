@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from . import models
 from . import serializers
-from pricing_parsing.models import Movplncmpcal
+from pricing_parsing.models import PlanoCompras
 from .utils import parse_csv_model
 from data_scripts.plano_compras_planejado import run_planejado_tela
 from data_scripts.plano_compras_sugerido import run_sugerido
@@ -195,9 +195,21 @@ class PlanejadoViewSet(viewsets.ViewSet):
         est = request.data.get('est')
         cmvcmp = request.data.get('cmvcmp')
         vrbpln = request.data.get('vrbpln')
-        planejado = run_planejado_tela(week, plan_month, plan_year, prd, est, cmvcmp, vrbpln, filepd=1, filfat=1)
+        filepd = request.data.get('filepd', 1)
+        filfat = request.data.get('filfat', 1)
 
+        numanomessmn = "%s%s%s" % (plan_year, str(plan_month).zfill(2), week)
+        planejado = run_planejado_tela(week, plan_month, plan_year, prd, est, cmvcmp, vrbpln, filepd, filfat)
+        plano = PlanoCompras.objects.get(CODESTUNI=est,
+                                         CODPRD=prd,
+                                         CODFILEPD=filepd,
+                                         CODFILFAT=filfat,
+                                         NUMANOMESSMN=numanomessmn
+                                         )
+        planejado['id'] = plano.id
         return Response(planejado)
+
+
 
 class SugeridoViewSet(viewsets.ViewSet):
     """
