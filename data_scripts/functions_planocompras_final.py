@@ -1196,6 +1196,7 @@ def calculate_pln_competitivity(df):
 
 
 def compare_pln_sug(df):
+    df = df.reset_index(drop=True)
     for i in range(df.shape[0]):
         if df.loc[i, 'VOLVNDPLN'] >= df.loc[i, 'VOLVNDSUG']:
             df.loc[i, 'VRBUNTSUGPLN'] = 0
