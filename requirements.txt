@@ -9,3 +9,4 @@ pandas
 sqlalchemy
 boto3
 django-filter
+cx_Oracle

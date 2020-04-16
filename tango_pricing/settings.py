@@ -117,6 +117,15 @@ DATABASES = {
             'options': '-c search_path=test'
         },
     },
+    'tangotech_oracle':{
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': 'DATABASE',
+        'USER': 'martins',
+        'PASSWORD': 'Martins#2020',
+        'HOST': 'martinsdbora.ch76x7yfj8iy.us-west-1.rds.amazonaws.com',
+        'PORT': '1521'
+    },
+
 }
 
 DATABASE_ROUTERS = ['api.authrouter.AuthRouter', 'pricing_parsing.parsingrouter.ParsingRouter', 'dinamica.dinamicarouter.DinamicaRouter']
