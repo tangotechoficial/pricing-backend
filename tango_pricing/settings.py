@@ -87,36 +87,16 @@ WSGI_APPLICATION = 'tango_pricing.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='postgres'),
-        'USER': config('DB_USER', default='postgres'),
-        'PASSWORD': config('DB_PASSWORD', default='devpass'),
-        'HOST': config('DB_HOST', default='db'),
-        'PORT': config('DB_PORT', default=5432),
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': '172.16.15.205:1565/MRTDSV01',
+        'USER': 'USRPRC',
+        'PASSWORD': 'm9g6+ghTuma5ARV85'
     },
     'auth_db': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'usersdb.sqlite3',
-    },
-    'pricing_data_parsing': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('PARSING_DB_NAME', default='postgres'),
-        'USER': config('PARSING_DB_USER', default='postgres'),
-        'PASSWORD': config('PARSING_DB_PASSWORD', default='pass'),
-        'HOST': config('PARSING_DB_HOST', default='localhost'),
-        'PORT': config('PARSING_DB_PORT', default=5432),
-    },
-    'martins_postgres': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='postgres'),
-        'USER': config('DB_USER', default='postgres'),
-        'PASSWORD': config('DB_PASSWORD', default='devpass'),
-        'HOST': config('DB_HOST', default='db'),
-        'PORT': config('DB_PORT', default=5432),
-        'OPTIONS': {
-            'options': '-c search_path=test'
-        },
-    },
+    }
+
 }
 DATABASE_ROUTERS = ['api.authrouter.AuthRouter', 'pricing_parsing.parsingrouter.ParsingRouter', 'dinamica.dinamicarouter.DinamicaRouter']
 
